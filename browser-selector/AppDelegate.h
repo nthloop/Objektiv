@@ -7,8 +7,11 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <Foundation/Foundation.h>
+#import <QuartzCore/QuartzCore.h>
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
+
+@interface AppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate>
 
 @property (assign) IBOutlet NSWindow *window;
 

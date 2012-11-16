@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC68B2D41653CE2C009465F5 /* DDHotKeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = BC68B2D31653CE2C009465F5 /* DDHotKeyCenter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BC68B2D81653CF92009465F5 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC68B2D71653CF92009465F5 /* Carbon.framework */; };
 		BCB54DE3164291F8003A59DF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCB54DE2164291F8003A59DF /* Cocoa.framework */; };
 		BCB54DED164291F8003A59DF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BCB54DEB164291F8003A59DF /* InfoPlist.strings */; };
 		BCB54DEF164291F8003A59DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB54DEE164291F8003A59DF /* main.m */; };
@@ -17,6 +19,7 @@
 		BCB54E02164291F8003A59DF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCB54DE2164291F8003A59DF /* Cocoa.framework */; };
 		BCB54E0A164291F8003A59DF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BCB54E08164291F8003A59DF /* InfoPlist.strings */; };
 		BCB54E0D164291F8003A59DF /* browser_selectorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB54E0C164291F8003A59DF /* browser_selectorTests.m */; };
+		BCB54E191642926D003A59DF /* NSWorkspace+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB54E181642926D003A59DF /* NSWorkspace+Utils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,6 +33,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BC68B2D21653CE2C009465F5 /* DDHotKeyCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDHotKeyCenter.h; path = ddhotkey/DDHotKeyCenter.h; sourceTree = "<group>"; };
+		BC68B2D31653CE2C009465F5 /* DDHotKeyCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDHotKeyCenter.m; path = ddhotkey/DDHotKeyCenter.m; sourceTree = "<group>"; };
+		BC68B2D71653CF92009465F5 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		BC7F331E1642A63700A2DAFD /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		BCB54DDE164291F8003A59DF /* browser-selector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "browser-selector.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCB54DE2164291F8003A59DF /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		BCB54DE5164291F8003A59DF /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -49,6 +56,8 @@
 		BCB54E09164291F8003A59DF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BCB54E0B164291F8003A59DF /* browser_selectorTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = browser_selectorTests.h; sourceTree = "<group>"; };
 		BCB54E0C164291F8003A59DF /* browser_selectorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = browser_selectorTests.m; sourceTree = "<group>"; };
+		BCB54E171642926D003A59DF /* NSWorkspace+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSWorkspace+Utils.h"; path = "mozilla/NSWorkspace+Utils.h"; sourceTree = "<group>"; };
+		BCB54E181642926D003A59DF /* NSWorkspace+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSWorkspace+Utils.m"; path = "mozilla/NSWorkspace+Utils.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC68B2D81653CF92009465F5 /* Carbon.framework in Frameworks */,
 				BCB54DE3164291F8003A59DF /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -72,9 +82,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BC68B2D61653CE33009465F5 /* ddhotkey */ = {
+			isa = PBXGroup;
+			children = (
+				BC68B2D21653CE2C009465F5 /* DDHotKeyCenter.h */,
+				BC68B2D31653CE2C009465F5 /* DDHotKeyCenter.m */,
+			);
+			name = ddhotkey;
+			sourceTree = "<group>";
+		};
 		BCB54DD3164291F8003A59DF = {
 			isa = PBXGroup;
 			children = (
+				BC68B2D71653CF92009465F5 /* Carbon.framework */,
 				BCB54DE8164291F8003A59DF /* browser-selector */,
 				BCB54E05164291F8003A59DF /* browser-selectorTests */,
 				BCB54DE1164291F8003A59DF /* Frameworks */,
@@ -114,10 +134,13 @@
 		BCB54DE8164291F8003A59DF /* browser-selector */ = {
 			isa = PBXGroup;
 			children = (
+				BC68B2D61653CE33009465F5 /* ddhotkey */,
+				BCB54E1F1642981C003A59DF /* mozilla */,
 				BCB54DF4164291F8003A59DF /* AppDelegate.h */,
 				BCB54DF5164291F8003A59DF /* AppDelegate.m */,
 				BCB54DF7164291F8003A59DF /* MainMenu.xib */,
 				BCB54DE9164291F8003A59DF /* Supporting Files */,
+				BC7F331E1642A63700A2DAFD /* Constants.h */,
 			);
 			path = "browser-selector";
 			sourceTree = "<group>";
@@ -151,6 +174,15 @@
 				BCB54E08164291F8003A59DF /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		BCB54E1F1642981C003A59DF /* mozilla */ = {
+			isa = PBXGroup;
+			children = (
+				BCB54E171642926D003A59DF /* NSWorkspace+Utils.h */,
+				BCB54E181642926D003A59DF /* NSWorkspace+Utils.m */,
+			);
+			name = mozilla;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -263,6 +295,8 @@
 			files = (
 				BCB54DEF164291F8003A59DF /* main.m in Sources */,
 				BCB54DF6164291F8003A59DF /* AppDelegate.m in Sources */,
+				BCB54E191642926D003A59DF /* NSWorkspace+Utils.m in Sources */,
+				BC68B2D41653CE2C009465F5 /* DDHotKeyCenter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,6 +480,7 @@
 				BCB54E12164291F8003A59DF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BCB54E13164291F8003A59DF /* Build configuration list for PBXNativeTarget "browser-selectorTests" */ = {
 			isa = XCConfigurationList;
@@ -454,6 +489,7 @@
 				BCB54E15164291F8003A59DF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
