@@ -11,3 +11,6 @@
 
 #define PrefStartAtLogin @"BrowserSelectorStartAtLogin"
 #define PrefAutoHideIcon @"BrowserSelectorAutoHideIcon"
+
+#define NotificationTitle @"%@ selected"
+#define NotificationText @"You selected %@ as your default browser using %@."

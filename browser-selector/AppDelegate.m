@@ -11,22 +11,118 @@
 #import "Constants.h"
 #import "DDHotKeyCenter.h"
 
-NSStatusItem *statusBarIcon;
-NSMenu *browserMenu;
-NSUserDefaults *defaults;
-DDHotKeyCenter *hotkeyCenter;
-NSWorkspace *sharedWorkspace;
-Boolean menuIsOpen = NO;
-
 @interface AppDelegate()
+{
+    @private
 
--(void) createStatusBarIcon;
-- (NSImage*) resizedIconForPath:(NSString*)path;
-- (void) selectABrowser:sender;
+    NSStatusItem *statusBarIcon;
+    NSMenu *browserMenu;
+    NSUserDefaults *defaults;
+    DDHotKeyCenter *hotkeyCenter;
+    NSWorkspace *sharedWorkspace;
+    Boolean menuIsOpen;
+}
 @end
 
 @implementation AppDelegate
 
+{} // TODO Figure out why the first pragma mark requires this empty block to show up
+
+#pragma mark - NSApplicationDelegate
+
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
+{
+    menuIsOpen = NO;
+    sharedWorkspace = [NSWorkspace sharedWorkspace];
+
+    [self createMenu];
+
+    hotkeyCenter = [[DDHotKeyCenter alloc] init];
+    [hotkeyCenter registerHotKeyWithKeyCode:0x0B
+                              modifierFlags:(NSAlternateKeyMask | NSCommandKeyMask)
+                                     target:self
+                                     action:@selector(showAndHideIcon:)
+                                     object:nil];
+
+    defaults = [NSUserDefaults standardUserDefaults];
+
+    [defaults addObserver:self
+               forKeyPath:PrefAutoHideIcon
+                  options:NSKeyValueObservingOptionNew
+                  context:NULL];
+    [defaults addObserver:self
+               forKeyPath:PrefStartAtLogin
+                  options:NSKeyValueObservingOptionNew
+                  context:NULL];
+
+    NSString *dictPath = [[NSBundle mainBundle] pathForResource:@"Defaults" ofType:@"plist"];
+    [defaults registerDefaults:[NSDictionary dictionaryWithContentsOfFile:dictPath]];
+
+    [self updateUI];
+    [self showAndHideIcon:nil];
+}
+
+- (BOOL)applicationShouldHandleReopen: (NSApplication *)application hasVisibleWindows: (BOOL)visibleWindows
+{
+    [self showAndHideIcon:nil];
+    return YES;
+}
+
+#pragma mark - NSMenuDelegate
+
+-(void) menuDidClose:(NSMenu *) theMenu { menuIsOpen = NO;  }
+-(void) menuWillOpen:(NSMenu *) theMenu { menuIsOpen = YES; }
+
+#pragma mark - IBActions
+
+- (IBAction)toggleLoginItem: (id)sender
+{
+    [defaults setBool:(self.startAtLogin.state == NSOnState) forKey:PrefAutoHideIcon];
+}
+
+- (IBAction)toggleHideItem: (id)sender
+{
+    BOOL autoHide = self.autoHideIcon.state == NSOnState;
+    [defaults setBool:autoHide forKey:PrefAutoHideIcon];
+}
+
+#pragma mark - NSKeyValueObserving
+
+-(void)observeValueForKeyPath:(NSString *)keyPath
+                     ofObject:(id)object
+                       change:(NSDictionary *)change
+                      context:(void *)context
+{
+
+    if ([keyPath isEqualToString:PrefAutoHideIcon])
+    {
+        [self showAndHideIcon:nil];
+    }
+
+    NSLog(@"KVO: %@ changed property %@ to value %@", object, keyPath, change);
+}
+
+#pragma mark - "Business" Logic
+
+- (void) selectABrowser:sender
+{
+    NSString *newDefaultBrowser = [sender representedObject];
+    NSMenuItem *menuItem = sender;
+    NSMenu *menu = menuItem.menu;
+
+    [menu.itemArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [obj setState:NSOffState];
+    }];
+    menuItem.state = NSOnState;
+
+    NSLog(@"Selecting a browser: %@", newDefaultBrowser);
+    [sharedWorkspace setDefaultBrowserWithIdentifier:newDefaultBrowser];
+    statusBarIcon.image = [self resizedIconForPath:newDefaultBrowser];
+
+    [self showNotification:newDefaultBrowser];
+}
+
+#pragma mark - UI
 
 - (void) createStatusBarIcon
 {
@@ -39,15 +135,6 @@ Boolean menuIsOpen = NO;
     statusBarIcon.image = [self resizedIconForPath:defaultBrowser];
 
     statusBarIcon.menu = browserMenu;
-}
-
-- (NSImage*) resizedIconForPath:(NSString*)browserIdentifier
-{
-    NSString *path = [sharedWorkspace absolutePathForAppBundleWithIdentifier:browserIdentifier];
-    NSImage *icon = [[sharedWorkspace iconForFile:path] copy];
-    icon.scalesWhenResized = YES;
-    icon.size = CGSizeMake(16, 16);
-    return icon;
 }
 
 - (void) destroyStatusBarIcon
@@ -74,26 +161,6 @@ Boolean menuIsOpen = NO;
     {
         [self performSelector:@selector(destroyStatusBarIcon) withObject:nil afterDelay:10];
     }
-}
-
-- (void) selectABrowser:sender 
-{
-    NSString *newDefaultBrowser = [sender representedObject];
-    NSMenuItem *menuItem = sender;
-    NSMenu *menu = menuItem.menu;
-
-    NSLog(@"Deselecting all other menu items");
-    for (NSMenuItem *item in menu.itemArray)
-    {
-        item.state = NSOffState;
-    }
-    menuItem.state = NSOnState;
-
-    NSLog(@"Selecting a browser: %@", newDefaultBrowser);
-    [sharedWorkspace setDefaultBrowserWithIdentifier:newDefaultBrowser];
-    statusBarIcon.image = [self resizedIconForPath:newDefaultBrowser];
-
-    [self showNotification:newDefaultBrowser];
 }
 
 - (void) createMenu
@@ -145,90 +212,33 @@ Boolean menuIsOpen = NO;
     [NSApp activateIgnoringOtherApps:YES];
 }
 
--(void) menuDidClose:(NSMenu *) theMenu { menuIsOpen = NO;  }
--(void) menuWillOpen:(NSMenu *) theMenu { menuIsOpen = YES; }
-
-- (void) showNotification:(NSString *)browserIdentifier
-{
-    NSUserNotification *notification = [[NSUserNotification alloc] init];
-    notification.title = @"Hello, World!";
-    notification.informativeText = @"A notification";
-
-    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
-}
-
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
-{
-    
-    self.window.title = AppName;
-    
-    sharedWorkspace = [NSWorkspace sharedWorkspace];
-    
-    [self createMenu];
-    
-    hotkeyCenter = [[DDHotKeyCenter alloc] init];
-    [hotkeyCenter registerHotKeyWithKeyCode:0x0B
-                              modifierFlags:(NSAlternateKeyMask | NSCommandKeyMask)
-                                     target:self
-                                     action:@selector(showAndHideIcon:)
-                                     object:nil];
-
-    defaults = [NSUserDefaults standardUserDefaults];
-
-    [defaults addObserver:self
-               forKeyPath:PrefAutoHideIcon
-                  options:NSKeyValueObservingOptionNew
-                  context:NULL];
-    [defaults addObserver:self
-               forKeyPath:PrefStartAtLogin
-                  options:NSKeyValueObservingOptionNew
-                  context:NULL];
-
-    NSString *dictPath = [[NSBundle mainBundle] pathForResource:@"Defaults" ofType:@"plist"];
-    [defaults registerDefaults:[NSDictionary dictionaryWithContentsOfFile:dictPath]];
-
-
-    [self updateUI];
-
-    [self showAndHideIcon:nil];
-}
-
--(void)observeValueForKeyPath:(NSString *)keyPath
-                     ofObject:(id)object
-                       change:(NSDictionary *)change
-                      context:(void *)context
-{
-
-    if ([keyPath isEqualToString:PrefAutoHideIcon])
-    {
-        [self showAndHideIcon:nil];
-    }
-
-    NSLog(@"KVO: %@ changed property %@ to value %@", object, keyPath, change);
-}
-
 - (void) updateUI
 {
     self.autoHideIcon.state = [defaults boolForKey:PrefAutoHideIcon] ? NSOnState : NSOffState;
     self.startAtLogin.state = [defaults boolForKey:PrefStartAtLogin] ? NSOnState : NSOffState;
 }
 
-- (IBAction)toggleLoginItem: (id)sender
+#pragma mark - Utilities
+
+- (NSImage*) resizedIconForPath:(NSString*)browserIdentifier
 {
-    [defaults setBool:(self.startAtLogin.state == NSOnState) forKey:PrefAutoHideIcon];
+    NSString *path = [sharedWorkspace absolutePathForAppBundleWithIdentifier:browserIdentifier];
+    NSImage *icon = [[sharedWorkspace iconForFile:path] copy];
+    icon.scalesWhenResized = YES;
+    icon.size = CGSizeMake(16, 16);
+    return icon;
 }
 
-- (IBAction)toggleHideItem: (id)sender
+- (void) showNotification:(NSString *)browserIdentifier
 {
-    BOOL autoHide = self.autoHideIcon.state == NSOnState;
-    [defaults setBool:autoHide forKey:PrefAutoHideIcon];
-}
+    NSString *browserPath = [sharedWorkspace absolutePathForAppBundleWithIdentifier:browserIdentifier];
+    NSString *browserName = [[NSFileManager defaultManager] displayNameAtPath:browserPath];
 
+    NSUserNotification *notification = [[NSUserNotification alloc] init];
+    notification.title = [NSString stringWithFormat:NotificationTitle, browserName];
+    notification.informativeText = [NSString stringWithFormat:NotificationText, browserName, AppName];
 
-- (BOOL)applicationShouldHandleReopen: (NSApplication *)application hasVisibleWindows: (BOOL)visibleWindows
-{
-    [self showAndHideIcon:nil];
-    return YES;
+    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
 }
 
 
