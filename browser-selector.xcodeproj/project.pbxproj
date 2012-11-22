@@ -99,6 +99,15 @@
 			name = ddhotkey;
 			sourceTree = "<group>";
 		};
+		BC747C8B165E622D00CFE627 /* zerokit */ = {
+			isa = PBXGroup;
+			children = (
+				BC747C87165E5CE900CFE627 /* ZeroKitUtilities.h */,
+				BC747C88165E5CE900CFE627 /* ZeroKitUtilities.m */,
+			);
+			name = zerokit;
+			sourceTree = "<group>";
+		};
 		BCB54DD3164291F8003A59DF = {
 			isa = PBXGroup;
 			children = (
@@ -144,15 +153,14 @@
 			children = (
 				BC68B2D61653CE33009465F5 /* ddhotkey */,
 				BCB54E1F1642981C003A59DF /* mozilla */,
-				BCB54DF4164291F8003A59DF /* AppDelegate.h */,
-				BCB54DF5164291F8003A59DF /* AppDelegate.m */,
+				BC747C8B165E622D00CFE627 /* zerokit */,
 				BCB54DE9164291F8003A59DF /* Supporting Files */,
 				BC7F331E1642A63700A2DAFD /* Constants.h */,
+				BCB54DF4164291F8003A59DF /* AppDelegate.h */,
+				BCB54DF5164291F8003A59DF /* AppDelegate.m */,
 				BC9C5497165E57A80098709F /* PrefsController.xib */,
 				BC9C5495165E57A80098709F /* PrefsController.h */,
 				BC9C5496165E57A80098709F /* PrefsController.m */,
-				BC747C87165E5CE900CFE627 /* ZeroKitUtilities.h */,
-				BC747C88165E5CE900CFE627 /* ZeroKitUtilities.m */,
 			);
 			path = "browser-selector";
 			sourceTree = "<group>";
