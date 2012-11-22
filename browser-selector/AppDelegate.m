@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "PrefsController.h"
 #import "NSWorkspace+Utils.h"
 #import "Constants.h"
 #import "DDHotKeyCenter.h"
@@ -15,6 +16,7 @@
 {
     @private
 
+    PrefsController *prefsController;
     NSStatusItem *statusBarIcon;
     NSMenu *browserMenu;
     NSUserDefaults *defaults;
@@ -32,6 +34,8 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+    prefsController = [[PrefsController alloc] initWithWindowNibName:@"PrefsController"];
+    
     menuIsOpen = NO;
     sharedWorkspace = [NSWorkspace sharedWorkspace];
 
@@ -58,7 +62,6 @@
     NSString *dictPath = [[NSBundle mainBundle] pathForResource:@"Defaults" ofType:@"plist"];
     [defaults registerDefaults:[NSDictionary dictionaryWithContentsOfFile:dictPath]];
 
-    [self updateUI];
     [self showAndHideIcon:nil];
 }
 
@@ -72,19 +75,6 @@
 
 -(void) menuDidClose:(NSMenu *) theMenu { menuIsOpen = NO;  }
 -(void) menuWillOpen:(NSMenu *) theMenu { menuIsOpen = YES; }
-
-#pragma mark - IBActions
-
-- (IBAction)toggleLoginItem: (id)sender
-{
-    [defaults setBool:(self.startAtLogin.state == NSOnState) forKey:PrefAutoHideIcon];
-}
-
-- (IBAction)toggleHideItem: (id)sender
-{
-    BOOL autoHide = self.autoHideIcon.state == NSOnState;
-    [defaults setBool:autoHide forKey:PrefAutoHideIcon];
-}
 
 #pragma mark - NSKeyValueObserving
 
@@ -195,6 +185,7 @@
     NSMenuItem *prefsItem = [[NSMenuItem alloc] initWithTitle:@"Preferences"
                                                        action:@selector(showPreferences)
                                                 keyEquivalent:@","];
+    prefsItem.target = prefsController;
     [browserMenu addItem:prefsItem];
 
     NSMenuItem *quitItem = [[NSMenuItem alloc] initWithTitle:@"Quit" action:@selector(doQuit) keyEquivalent:@"q"];
@@ -204,18 +195,6 @@
 - (void) doQuit
 {
     [NSApp terminate:nil];
-}
-
-- (void) showPreferences
-{
-    [[self window] makeKeyAndOrderFront:NSApp];
-    [NSApp activateIgnoringOtherApps:YES];
-}
-
-- (void) updateUI
-{
-    self.autoHideIcon.state = [defaults boolForKey:PrefAutoHideIcon] ? NSOnState : NSOffState;
-    self.startAtLogin.state = [defaults boolForKey:PrefStartAtLogin] ? NSOnState : NSOffState;
 }
 
 #pragma mark - Utilities

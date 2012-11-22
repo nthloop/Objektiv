@@ -13,12 +13,4 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate>
 
-@property (assign) IBOutlet NSWindow *window;
-
-@property (assign) IBOutlet NSButton *startAtLogin;
-@property (assign) IBOutlet NSButton *autoHideIcon;
-
-- (IBAction)toggleLoginItem: (id)sender;
-- (IBAction)toggleHideItem: (id)sender;
-
 @end
