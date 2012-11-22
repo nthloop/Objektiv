@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC605B0A165B71D500933942 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC605B08165B71D500933942 /* Defaults.plist */; };
 		BC68B2D41653CE2C009465F5 /* DDHotKeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = BC68B2D31653CE2C009465F5 /* DDHotKeyCenter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BC68B2D81653CF92009465F5 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC68B2D71653CF92009465F5 /* Carbon.framework */; };
 		BCB54DE3164291F8003A59DF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCB54DE2164291F8003A59DF /* Cocoa.framework */; };
@@ -33,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BC605B09165B71D500933942 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = en; path = en.lproj/Defaults.plist; sourceTree = "<group>"; };
 		BC68B2D21653CE2C009465F5 /* DDHotKeyCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDHotKeyCenter.h; path = ddhotkey/DDHotKeyCenter.h; sourceTree = "<group>"; };
 		BC68B2D31653CE2C009465F5 /* DDHotKeyCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDHotKeyCenter.m; path = ddhotkey/DDHotKeyCenter.m; sourceTree = "<group>"; };
 		BC68B2D71653CF92009465F5 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
@@ -153,6 +155,7 @@
 				BCB54DEE164291F8003A59DF /* main.m */,
 				BCB54DF0164291F8003A59DF /* browser-selector-Prefix.pch */,
 				BCB54DF1164291F8003A59DF /* Credits.rtf */,
+				BC605B08165B71D500933942 /* Defaults.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -259,6 +262,7 @@
 				BCB54DED164291F8003A59DF /* InfoPlist.strings in Resources */,
 				BCB54DF3164291F8003A59DF /* Credits.rtf in Resources */,
 				BCB54DF9164291F8003A59DF /* MainMenu.xib in Resources */,
+				BC605B0A165B71D500933942 /* Defaults.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -319,6 +323,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		BC605B08165B71D500933942 /* Defaults.plist */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BC605B09165B71D500933942 /* en */,
+			);
+			name = Defaults.plist;
+			sourceTree = "<group>";
+		};
 		BCB54DEB164291F8003A59DF /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (

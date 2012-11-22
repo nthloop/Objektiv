@@ -13,6 +13,7 @@
 
 NSStatusItem *statusBarIcon;
 NSMenu *browserMenu;
+NSUserDefaults *defaults;
 DDHotKeyCenter *hotkeyCenter;
 NSWorkspace *sharedWorkspace;
 Boolean menuIsOpen = NO;
@@ -29,7 +30,7 @@ Boolean menuIsOpen = NO;
 
 - (void) createStatusBarIcon
 {
-    
+    if (statusBarIcon != nil) return;
     NSStatusBar *statusBar = [NSStatusBar systemStatusBar];
     NSString *defaultBrowser = [sharedWorkspace defaultBrowserIdentifier];
 
@@ -51,6 +52,10 @@ Boolean menuIsOpen = NO;
 
 - (void) destroyStatusBarIcon
 {
+    if (![defaults boolForKey:PrefAutoHideIcon])
+    {
+        return;
+    }
     if (menuIsOpen)
     {
         [self performSelector:@selector(destroyStatusBarIcon) withObject:nil afterDelay:10];
@@ -58,13 +63,17 @@ Boolean menuIsOpen = NO;
     else
     {
         [[statusBarIcon statusBar] removeStatusItem:statusBarIcon];
+        statusBarIcon = nil;
     }
 }
 
-- (void) hotkeyAction:(NSEvent*)hotKeyEvent
+- (void) showAndHideIcon:(NSEvent*)hotKeyEvent
 {
     [self createStatusBarIcon];
-    [self performSelector:@selector(destroyStatusBarIcon) withObject:nil afterDelay:10];
+    if ([defaults boolForKey:PrefAutoHideIcon])
+    {
+        [self performSelector:@selector(destroyStatusBarIcon) withObject:nil afterDelay:10];
+    }
 }
 
 - (void) selectABrowser:sender 
@@ -83,6 +92,8 @@ Boolean menuIsOpen = NO;
     NSLog(@"Selecting a browser: %@", newDefaultBrowser);
     [sharedWorkspace setDefaultBrowserWithIdentifier:newDefaultBrowser];
     statusBarIcon.image = [self resizedIconForPath:newDefaultBrowser];
+
+    [self showNotification:newDefaultBrowser];
 }
 
 - (void) createMenu
@@ -134,9 +145,17 @@ Boolean menuIsOpen = NO;
     [NSApp activateIgnoringOtherApps:YES];
 }
 
-
 -(void) menuDidClose:(NSMenu *) theMenu { menuIsOpen = NO;  }
 -(void) menuWillOpen:(NSMenu *) theMenu { menuIsOpen = YES; }
+
+- (void) showNotification:(NSString *)browserIdentifier
+{
+    NSUserNotification *notification = [[NSUserNotification alloc] init];
+    notification.title = @"Hello, World!";
+    notification.informativeText = @"A notification";
+
+    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+}
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
@@ -151,9 +170,66 @@ Boolean menuIsOpen = NO;
     [hotkeyCenter registerHotKeyWithKeyCode:0x0B
                               modifierFlags:(NSAlternateKeyMask | NSCommandKeyMask)
                                      target:self
-                                     action:@selector(hotkeyAction:)
+                                     action:@selector(showAndHideIcon:)
                                      object:nil];
-    
+
+    defaults = [NSUserDefaults standardUserDefaults];
+
+    [defaults addObserver:self
+               forKeyPath:PrefAutoHideIcon
+                  options:NSKeyValueObservingOptionNew
+                  context:NULL];
+    [defaults addObserver:self
+               forKeyPath:PrefStartAtLogin
+                  options:NSKeyValueObservingOptionNew
+                  context:NULL];
+
+    NSString *dictPath = [[NSBundle mainBundle] pathForResource:@"Defaults" ofType:@"plist"];
+    [defaults registerDefaults:[NSDictionary dictionaryWithContentsOfFile:dictPath]];
+
+
+    [self updateUI];
+
+    [self showAndHideIcon:nil];
 }
+
+-(void)observeValueForKeyPath:(NSString *)keyPath
+                     ofObject:(id)object
+                       change:(NSDictionary *)change
+                      context:(void *)context
+{
+
+    if ([keyPath isEqualToString:PrefAutoHideIcon])
+    {
+        [self showAndHideIcon:nil];
+    }
+
+    NSLog(@"KVO: %@ changed property %@ to value %@", object, keyPath, change);
+}
+
+- (void) updateUI
+{
+    self.autoHideIcon.state = [defaults boolForKey:PrefAutoHideIcon] ? NSOnState : NSOffState;
+    self.startAtLogin.state = [defaults boolForKey:PrefStartAtLogin] ? NSOnState : NSOffState;
+}
+
+- (IBAction)toggleLoginItem: (id)sender
+{
+    [defaults setBool:(self.startAtLogin.state == NSOnState) forKey:PrefAutoHideIcon];
+}
+
+- (IBAction)toggleHideItem: (id)sender
+{
+    BOOL autoHide = self.autoHideIcon.state == NSOnState;
+    [defaults setBool:autoHide forKey:PrefAutoHideIcon];
+}
+
+
+- (BOOL)applicationShouldHandleReopen: (NSApplication *)application hasVisibleWindows: (BOOL)visibleWindows
+{
+    [self showAndHideIcon:nil];
+    return YES;
+}
+
 
 @end
