@@ -11,6 +11,7 @@
 #import "NSWorkspace+Utils.h"
 #import "Constants.h"
 #import "DDHotKeyCenter.h"
+#import "ZeroKitUtilities.h"
 
 @interface AppDelegate()
 {
@@ -89,6 +90,11 @@
         [self showAndHideIcon:nil];
     }
 
+    if ([keyPath isEqualToString:PrefStartAtLogin])
+    {
+        [self toggleLoginItem];
+    }
+
     NSLog(@"KVO: %@ changed property %@ to value %@", object, keyPath, change);
 }
 
@@ -110,6 +116,18 @@
     statusBarIcon.image = [self resizedIconForPath:newDefaultBrowser];
 
     [self showNotification:newDefaultBrowser];
+}
+
+- (void) toggleLoginItem
+{
+    if ([defaults boolForKey:PrefStartAtLogin])
+    {
+        [ZeroKitUtilities enableLoginItemForBundle:[NSBundle mainBundle]];
+    }
+    else
+    {
+        [ZeroKitUtilities disableLoginItemForBundle:[NSBundle mainBundle]];
+    }
 }
 
 #pragma mark - UI
