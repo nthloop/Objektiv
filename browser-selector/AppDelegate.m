@@ -11,7 +11,7 @@
 #import "NSWorkspace+Utils.h"
 #import "Constants.h"
 #import "DDHotKeyCenter.h"
-#import "ZeroKitUtilities.h"
+#import <ZeroKit/ZeroKitUtilities.h>
 
 @interface AppDelegate()
 {

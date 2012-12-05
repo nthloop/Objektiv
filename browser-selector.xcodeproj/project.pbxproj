@@ -7,10 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BC2F4A7D166F3A480087C199 /* ZeroKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC2F4A7C166F3A480087C199 /* ZeroKit.framework */; };
 		BC605B0A165B71D500933942 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC605B08165B71D500933942 /* Defaults.plist */; };
 		BC68B2D41653CE2C009465F5 /* DDHotKeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = BC68B2D31653CE2C009465F5 /* DDHotKeyCenter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BC68B2D81653CF92009465F5 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC68B2D71653CF92009465F5 /* Carbon.framework */; };
-		BC747C89165E5CE900CFE627 /* ZeroKitUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = BC747C88165E5CE900CFE627 /* ZeroKitUtilities.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BC9C5498165E57A80098709F /* PrefsController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9C5496165E57A80098709F /* PrefsController.m */; };
 		BC9C5499165E57A80098709F /* PrefsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC9C5497165E57A80098709F /* PrefsController.xib */; };
 		BCB54DE3164291F8003A59DF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCB54DE2164291F8003A59DF /* Cocoa.framework */; };
@@ -26,6 +26,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		BC2F4A79166F3A370087C199 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BC2F4A72166F3A360087C199 /* ZeroKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 8DC2EF5B0486A6940098B216;
+			remoteInfo = ZeroKit;
+		};
 		BCB54E03164291F8003A59DF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BCB54DD5164291F8003A59DF /* Project object */;
@@ -36,12 +43,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BC2F4A72166F3A360087C199 /* ZeroKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZeroKit.xcodeproj; path = "browser-selector/Frameworks/ZeroKit/ZeroKit.xcodeproj"; sourceTree = "<group>"; };
+		BC2F4A7C166F3A480087C199 /* ZeroKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ZeroKit.framework; path = "../../../Library/Developer/Xcode/DerivedData/browser-selector-hjlwxgyiauvwgoejmoxwgyobjqab/Build/Products/Release/ZeroKit.framework"; sourceTree = "<group>"; };
 		BC605B09165B71D500933942 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = en; path = en.lproj/Defaults.plist; sourceTree = "<group>"; };
 		BC68B2D21653CE2C009465F5 /* DDHotKeyCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDHotKeyCenter.h; path = ddhotkey/DDHotKeyCenter.h; sourceTree = "<group>"; };
 		BC68B2D31653CE2C009465F5 /* DDHotKeyCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDHotKeyCenter.m; path = ddhotkey/DDHotKeyCenter.m; sourceTree = "<group>"; };
 		BC68B2D71653CF92009465F5 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
-		BC747C87165E5CE900CFE627 /* ZeroKitUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZeroKitUtilities.h; sourceTree = "<group>"; };
-		BC747C88165E5CE900CFE627 /* ZeroKitUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZeroKitUtilities.m; sourceTree = "<group>"; };
 		BC7F331E1642A63700A2DAFD /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		BC9C5495165E57A80098709F /* PrefsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefsController.h; sourceTree = "<group>"; };
 		BC9C5496165E57A80098709F /* PrefsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrefsController.m; sourceTree = "<group>"; };
@@ -75,6 +82,7 @@
 			files = (
 				BC68B2D81653CF92009465F5 /* Carbon.framework in Frameworks */,
 				BCB54DE3164291F8003A59DF /* Cocoa.framework in Frameworks */,
+				BC2F4A7D166F3A480087C199 /* ZeroKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,6 +98,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BC2F4A73166F3A360087C199 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				BC2F4A7A166F3A370087C199 /* ZeroKit.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		BC68B2D61653CE33009465F5 /* ddhotkey */ = {
 			isa = PBXGroup;
 			children = (
@@ -99,19 +115,10 @@
 			name = ddhotkey;
 			sourceTree = "<group>";
 		};
-		BC747C8B165E622D00CFE627 /* zerokit */ = {
-			isa = PBXGroup;
-			children = (
-				BC747C87165E5CE900CFE627 /* ZeroKitUtilities.h */,
-				BC747C88165E5CE900CFE627 /* ZeroKitUtilities.m */,
-			);
-			name = zerokit;
-			sourceTree = "<group>";
-		};
 		BCB54DD3164291F8003A59DF = {
 			isa = PBXGroup;
 			children = (
-				BC68B2D71653CF92009465F5 /* Carbon.framework */,
+				BC2F4A72166F3A360087C199 /* ZeroKit.xcodeproj */,
 				BCB54DE8164291F8003A59DF /* browser-selector */,
 				BCB54E05164291F8003A59DF /* browser-selectorTests */,
 				BCB54DE1164291F8003A59DF /* Frameworks */,
@@ -131,6 +138,8 @@
 		BCB54DE1164291F8003A59DF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BC2F4A7C166F3A480087C199 /* ZeroKit.framework */,
+				BC68B2D71653CF92009465F5 /* Carbon.framework */,
 				BCB54DE2164291F8003A59DF /* Cocoa.framework */,
 				BCB54E00164291F8003A59DF /* SenTestingKit.framework */,
 				BCB54DE4164291F8003A59DF /* Other Frameworks */,
@@ -153,7 +162,6 @@
 			children = (
 				BC68B2D61653CE33009465F5 /* ddhotkey */,
 				BCB54E1F1642981C003A59DF /* mozilla */,
-				BC747C8B165E622D00CFE627 /* zerokit */,
 				BCB54DE9164291F8003A59DF /* Supporting Files */,
 				BC7F331E1642A63700A2DAFD /* Constants.h */,
 				BCB54DF4164291F8003A59DF /* AppDelegate.h */,
@@ -264,6 +272,12 @@
 			mainGroup = BCB54DD3164291F8003A59DF;
 			productRefGroup = BCB54DDF164291F8003A59DF /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = BC2F4A73166F3A360087C199 /* Products */;
+					ProjectRef = BC2F4A72166F3A360087C199 /* ZeroKit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				BCB54DDD164291F8003A59DF /* browser-selector */,
@@ -271,6 +285,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		BC2F4A7A166F3A370087C199 /* ZeroKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = ZeroKit.framework;
+			remoteRef = BC2F4A79166F3A370087C199 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		BCB54DDC164291F8003A59DF /* Resources */ = {
@@ -320,7 +344,6 @@
 				BCB54E191642926D003A59DF /* NSWorkspace+Utils.m in Sources */,
 				BC68B2D41653CE2C009465F5 /* DDHotKeyCenter.m in Sources */,
 				BC9C5498165E57A80098709F /* PrefsController.m in Sources */,
-				BC747C89165E5CE900CFE627 /* ZeroKitUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -435,6 +458,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/browser-selector-hjlwxgyiauvwgoejmoxwgyobjqab/Build/Products/Release\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "browser-selector/browser-selector-Prefix.pch";
 				INFOPLIST_FILE = "browser-selector/browser-selector-Info.plist";
@@ -447,6 +475,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+					"\"$(SRCROOT)/../../../Library/Developer/Xcode/DerivedData/browser-selector-hjlwxgyiauvwgoejmoxwgyobjqab/Build/Products/Release\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "browser-selector/browser-selector-Prefix.pch";
 				INFOPLIST_FILE = "browser-selector/browser-selector-Info.plist";

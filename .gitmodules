@@ -1,0 +1,3 @@
+[submodule "browser-selector/Frameworks/ZeroKit"]
+	path = browser-selector/Frameworks/ZeroKit
+	url = git@github.com:eczarny/zerokit.git
