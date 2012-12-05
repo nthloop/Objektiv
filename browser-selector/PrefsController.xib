@@ -92,7 +92,7 @@
 							<string key="NSFrame">{{16, 176}, {186, 18}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="109490800"/>
+							<reference key="NSNextKeyView" ref="242226229"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="975986305">
@@ -119,7 +119,7 @@
 							<string key="NSFrame">{{57, 87}, {426, 58}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView" ref="242226229"/>
+							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<string key="NSAntiCompressionPriority">{250, 750}</string>
 							<bool key="NSEnabled">YES</bool>
@@ -216,7 +216,7 @@
 							<string key="NSFrame">{{216, 174}, {163, 22}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
-							<reference key="NSNextKeyView"/>
+							<reference key="NSNextKeyView" ref="109490800"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<string key="NSClassName">ZeroKitHotKeyRecorder</string>
 						</object>
@@ -274,6 +274,14 @@
 						<reference key="destination" ref="671938587"/>
 					</object>
 					<int key="connectionID">73</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBOutletConnection" key="connection">
+						<string key="label">hotkeyRecorder</string>
+						<reference key="source" ref="1001"/>
+						<reference key="destination" ref="242226229"/>
+					</object>
+					<int key="connectionID">162</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBOutletConnection" key="connection">
@@ -420,7 +428,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">161</int>
+			<int key="maxID">162</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -443,12 +451,17 @@
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="autoHideIcon">NSButton</string>
+						<string key="hotkeyRecorder">ZeroKitHotKeyRecorder</string>
 						<string key="startAtLogin">NSButton</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
 						<object class="IBToOneOutletInfo" key="autoHideIcon">
 							<string key="name">autoHideIcon</string>
 							<string key="candidateClassName">NSButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="hotkeyRecorder">
+							<string key="name">hotkeyRecorder</string>
+							<string key="candidateClassName">ZeroKitHotKeyRecorder</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="startAtLogin">
 							<string key="name">startAtLogin</string>

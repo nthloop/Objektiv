@@ -7,16 +7,21 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import <ZeroKit/ZeroKit.h>
 
-@interface PrefsController : NSWindowController
+@interface PrefsController : NSWindowController<ZeroKitHotKeyRecorderDelegate>
 
 -(void) showPreferences;
 
 @property (assign) IBOutlet NSButton *startAtLogin;
 @property (assign) IBOutlet NSButton *autoHideIcon;
+@property (assign) IBOutlet ZeroKitHotKeyRecorder *hotkeyRecorder;
+
 
 - (IBAction)toggleLoginItem: (id)sender;
 - (IBAction)toggleHideItem: (id)sender;
 
+- (void)hotKeyRecorder:(ZeroKitHotKeyRecorder *)hotKeyRecorder didClearExistingHotKey:(ZeroKitHotKey *)hotKey;
+- (void)hotKeyRecorder:(ZeroKitHotKeyRecorder *)hotKeyRecorder didReceiveNewHotKey:(ZeroKitHotKey *)hotKey;
 
 @end

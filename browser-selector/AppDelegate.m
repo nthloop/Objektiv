@@ -89,13 +89,10 @@
     {
         [self showAndHideIcon:nil];
     }
-
-    if ([keyPath isEqualToString:PrefStartAtLogin])
+    else if ([keyPath isEqualToString:PrefStartAtLogin])
     {
         [self toggleLoginItem];
     }
-
-    NSLog(@"KVO: %@ changed property %@ to value %@", object, keyPath, change);
 }
 
 #pragma mark - "Business" Logic
