@@ -4,6 +4,10 @@
 <dict>
 	<key>BrowserSelectorStartAtLogin</key>
 	<true/>
+	<key>BrowserSelectorHotkeyCode</key>
+	<integer>11</integer>
+	<key>BrowserSelectorHotkeyModifiers</key>
+	<integer>1572864</integer>
 	<key>BrowserSelectorAutoHideIcon</key>
 	<false/>
 </dict>

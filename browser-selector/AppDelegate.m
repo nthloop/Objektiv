@@ -8,9 +8,9 @@
 
 #import "AppDelegate.h"
 #import "PrefsController.h"
+#import "HotkeyManager.h"
 #import "NSWorkspace+Utils.h"
 #import "Constants.h"
-#import "DDHotKeyCenter.h"
 #import <ZeroKit/ZeroKitUtilities.h>
 
 @interface AppDelegate()
@@ -21,9 +21,9 @@
     NSStatusItem *statusBarIcon;
     NSMenu *browserMenu;
     NSUserDefaults *defaults;
-    DDHotKeyCenter *hotkeyCenter;
     NSWorkspace *sharedWorkspace;
     Boolean menuIsOpen;
+    HotkeyManager *hotkeyManager;
 }
 @end
 
@@ -42,12 +42,9 @@
 
     [self createMenu];
 
-    hotkeyCenter = [[DDHotKeyCenter alloc] init];
-    [hotkeyCenter registerHotKeyWithKeyCode:0x0B
-                              modifierFlags:(NSAlternateKeyMask | NSCommandKeyMask)
-                                     target:self
-                                     action:@selector(showAndHideIcon:)
-                                     object:nil];
+    hotkeyManager = [HotkeyManager sharedInstance];
+
+    [hotkeyManager registerHotkeyWithKeyCode:0x0B modifierFlags:(NSAlternateKeyMask|NSCommandKeyMask)];
 
     defaults = [NSUserDefaults standardUserDefaults];
 
@@ -128,6 +125,12 @@
 }
 
 #pragma mark - UI
+
+- (void) hotkeyTriggered
+{
+    NSLog(@"@Hotkey triggered");
+    [self showAndHideIcon:nil];
+}
 
 - (void) createStatusBarIcon
 {

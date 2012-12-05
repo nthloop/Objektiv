@@ -8,11 +8,14 @@
 
 #import "PrefsController.h"
 #import "Constants.h"
+#import "HotkeyManager.h"
 
 @interface PrefsController ()
 {
     @private
     NSUserDefaults *defaults;
+    ZeroKitHotKey *lastHotkey;
+    HotkeyManager *hotkeyManager;
 }
 @end
 
@@ -23,6 +26,7 @@
     self = [super initWithWindow:window];
     if (self) {
         defaults = [NSUserDefaults standardUserDefaults];
+        hotkeyManager = [HotkeyManager sharedInstance];
     }
 
     return self;
@@ -44,31 +48,33 @@
     [NSApp activateIgnoringOtherApps:YES];
 }
 
+
 - (void) initUI
 {
     self.autoHideIcon.state = [defaults boolForKey:PrefAutoHideIcon] ? NSOnState : NSOffState;
     self.startAtLogin.state = [defaults boolForKey:PrefStartAtLogin] ? NSOnState : NSOffState;
 
-    ZeroKitHotKey *hotkey = [[ZeroKitHotKey alloc]
-                             initWithHotKeyCode:0x0B hotKeyModifiers:(NSAlternateKeyMask | NSCommandKeyMask)];
+    lastHotkey = [[ZeroKitHotKey alloc] initWithHotKeyCode:[defaults integerForKey:PrefHotkeyCode]
+                                           hotKeyModifiers:[defaults integerForKey:PrefHotkeyModifiers]];
 
-    NSLog(@"Setting up hotkey recorder: %@", self.hotkeyRecorder);
-    self.hotkeyRecorder.hotKey = hotkey;
-    self.hotkeyRecorder.hotKeyName = [hotkey hotKeyName];
+
+    self.hotkeyRecorder.hotKey = lastHotkey;
+    self.hotkeyRecorder.hotKeyName = [lastHotkey hotKeyName];
     self.hotkeyRecorder.delegate = self;
-    
-    NSLog(@"initUI called");
-    NSLog(@"Outlets: %@, %@", self.autoHideIcon, self.startAtLogin);
 }
 
 #pragma mark - HotkeyRecorder
 - (void)hotKeyRecorder:(ZeroKitHotKeyRecorder *)hotKeyRecorder didClearExistingHotKey:(ZeroKitHotKey *)hotKey
 {
     NSLog(@"didClearExistingHotKey: %@", hotKey);
+    [hotkeyManager clearHotkey:hotKey];
 }
 - (void)hotKeyRecorder:(ZeroKitHotKeyRecorder *)hotKeyRecorder didReceiveNewHotKey:(ZeroKitHotKey *)hotKey
 {
     NSLog(@"didReceiveNewHotKey: %@", hotKey);
+    [hotkeyManager clearHotkey:hotKey];
+
+    [hotkeyManager registerHotkey: hotKey];
 }
 
 

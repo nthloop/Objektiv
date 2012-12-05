@@ -13,4 +13,6 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate>
 
+-(void) hotkeyTriggered;
+
 @end

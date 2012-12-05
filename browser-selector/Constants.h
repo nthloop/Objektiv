@@ -12,5 +12,8 @@
 #define PrefStartAtLogin @"BrowserSelectorStartAtLogin"
 #define PrefAutoHideIcon @"BrowserSelectorAutoHideIcon"
 
+#define PrefHotkeyCode @"BrowserSelectorHotkeyCode"
+#define PrefHotkeyModifiers @"BrowserSelectorHotkeyModifiers"
+
 #define NotificationTitle @"%@ selected"
 #define NotificationText @"You selected %@ as your default browser using %@."

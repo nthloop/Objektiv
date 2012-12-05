@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		BC2F4A7D166F3A480087C199 /* ZeroKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC2F4A7C166F3A480087C199 /* ZeroKit.framework */; };
+		BC418C7F166F56B5007789E5 /* HotkeyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = BC418C7E166F56B5007789E5 /* HotkeyManager.m */; };
+		BC502C72166F6B8A0075E4D8 /* ZeroKit.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BC2F4A7A166F3A370087C199 /* ZeroKit.framework */; };
+		BC502C74166F6F0B0075E4D8 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = BC502C73166F6F0B0075E4D8 /* MainMenu.nib */; };
 		BC605B0A165B71D500933942 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC605B08165B71D500933942 /* Defaults.plist */; };
 		BC68B2D41653CE2C009465F5 /* DDHotKeyCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = BC68B2D31653CE2C009465F5 /* DDHotKeyCenter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BC68B2D81653CF92009465F5 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC68B2D71653CF92009465F5 /* Carbon.framework */; };
@@ -42,9 +45,25 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		BC502C71166F6B6F0075E4D8 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BC502C72166F6B8A0075E4D8 /* ZeroKit.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		BC2F4A72166F3A360087C199 /* ZeroKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZeroKit.xcodeproj; path = "browser-selector/Frameworks/ZeroKit/ZeroKit.xcodeproj"; sourceTree = "<group>"; };
 		BC2F4A7C166F3A480087C199 /* ZeroKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ZeroKit.framework; path = "../../../Library/Developer/Xcode/DerivedData/browser-selector-hjlwxgyiauvwgoejmoxwgyobjqab/Build/Products/Release/ZeroKit.framework"; sourceTree = "<group>"; };
+		BC418C7D166F56B5007789E5 /* HotkeyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HotkeyManager.h; sourceTree = "<group>"; };
+		BC418C7E166F56B5007789E5 /* HotkeyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HotkeyManager.m; sourceTree = "<group>"; };
+		BC502C73166F6F0B0075E4D8 /* MainMenu.nib */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = MainMenu.nib; sourceTree = "<group>"; };
 		BC605B09165B71D500933942 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = en; path = en.lproj/Defaults.plist; sourceTree = "<group>"; };
 		BC68B2D21653CE2C009465F5 /* DDHotKeyCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DDHotKeyCenter.h; path = ddhotkey/DDHotKeyCenter.h; sourceTree = "<group>"; };
 		BC68B2D31653CE2C009465F5 /* DDHotKeyCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DDHotKeyCenter.m; path = ddhotkey/DDHotKeyCenter.m; sourceTree = "<group>"; };
@@ -169,6 +188,8 @@
 				BC9C5497165E57A80098709F /* PrefsController.xib */,
 				BC9C5495165E57A80098709F /* PrefsController.h */,
 				BC9C5496165E57A80098709F /* PrefsController.m */,
+				BC418C7D166F56B5007789E5 /* HotkeyManager.h */,
+				BC418C7E166F56B5007789E5 /* HotkeyManager.m */,
 			);
 			path = "browser-selector";
 			sourceTree = "<group>";
@@ -176,6 +197,7 @@
 		BCB54DE9164291F8003A59DF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BC502C73166F6F0B0075E4D8 /* MainMenu.nib */,
 				BCB54DEA164291F8003A59DF /* browser-selector-Info.plist */,
 				BCB54DEB164291F8003A59DF /* InfoPlist.strings */,
 				BCB54DEE164291F8003A59DF /* main.m */,
@@ -224,6 +246,7 @@
 				BCB54DDA164291F8003A59DF /* Sources */,
 				BCB54DDB164291F8003A59DF /* Frameworks */,
 				BCB54DDC164291F8003A59DF /* Resources */,
+				BC502C71166F6B6F0075E4D8 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -305,6 +328,7 @@
 				BCB54DF3164291F8003A59DF /* Credits.rtf in Resources */,
 				BC605B0A165B71D500933942 /* Defaults.plist in Resources */,
 				BC9C5499165E57A80098709F /* PrefsController.xib in Resources */,
+				BC502C74166F6F0B0075E4D8 /* MainMenu.nib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -344,6 +368,7 @@
 				BCB54E191642926D003A59DF /* NSWorkspace+Utils.m in Sources */,
 				BC68B2D41653CE2C009465F5 /* DDHotKeyCenter.m in Sources */,
 				BC9C5498165E57A80098709F /* PrefsController.m in Sources */,
+				BC418C7F166F56B5007789E5 /* HotkeyManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,6 +491,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "browser-selector/browser-selector-Prefix.pch";
 				INFOPLIST_FILE = "browser-selector/browser-selector-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -483,6 +509,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "browser-selector/browser-selector-Prefix.pch";
 				INFOPLIST_FILE = "browser-selector/browser-selector-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
