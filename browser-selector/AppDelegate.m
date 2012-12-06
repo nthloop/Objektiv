@@ -24,6 +24,7 @@
     NSWorkspace *sharedWorkspace;
     Boolean menuIsOpen;
     HotkeyManager *hotkeyManager;
+    NSArray *blacklist;
 }
 @end
 
@@ -39,6 +40,10 @@
     
     menuIsOpen = NO;
     sharedWorkspace = [NSWorkspace sharedWorkspace];
+
+    blacklist = [[NSArray alloc] initWithContentsOfFile:[[NSBundle mainBundle]
+                                                         pathForResource:@"Blacklist"
+                                                         ofType:@"plist"]];
 
     browserMenu = [[NSMenu alloc] init];
     [browserMenu setDelegate:self];
@@ -135,6 +140,16 @@
     }
 }
 
+- (BOOL) isBlacklisted:(NSString*) browserIdentifier
+{
+    NSInteger index = [blacklist indexOfObjectPassingTest:^BOOL(id blacklistedIdentifier, NSUInteger idx, BOOL *stop) {
+        NSRange range = [browserIdentifier rangeOfString:blacklistedIdentifier];
+        return range.location != NSNotFound;
+    }];
+
+    return  index != NSNotFound;
+}
+
 #pragma mark - UI
 
 - (void) hotkeyTriggered
@@ -189,10 +204,15 @@
     NSArray *browsers = [sharedWorkspace installedBrowserIdentifiers];
     NSString *defaultBrowser = [sharedWorkspace defaultBrowserIdentifier];
     NSFileManager *defaultFileManager = [NSFileManager defaultManager];
-    
+
+    NSLog(@"Browsers list: %@", browsers);
+
     for (int i = 0; i < browsers.count; i++)
     {
         NSString *browser = browsers[i];
+
+        if ([self isBlacklisted:browser]) { continue; }
+
         NSString *browserPath = [sharedWorkspace absolutePathForAppBundleWithIdentifier:browser];
         NSString *browserName = [defaultFileManager displayNameAtPath:browserPath];
 
