@@ -215,8 +215,19 @@
     prefsItem.target = prefsController;
     [browserMenu addItem:prefsItem];
 
+    [browserMenu addItem:[[NSMenuItem alloc]
+                          initWithTitle:@"About"
+                                 action:@selector(showAbout)
+                          keyEquivalent:@"a"]];
+
+
     NSMenuItem *quitItem = [[NSMenuItem alloc] initWithTitle:@"Quit" action:@selector(doQuit) keyEquivalent:@"q"];
     [browserMenu addItem:quitItem];
+}
+
+- (void) showAbout
+{
+    [[NSApplication sharedApplication] orderFrontStandardAboutPanel:nil];
 }
 
 - (void) doQuit
