@@ -3,11 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>BrowserSelectorStartAtLogin</key>
-	<true/>
+	<false/>
 	<key>BrowserSelectorHotkeyCode</key>
-	<integer>11</integer>
+	<integer>0</integer>
 	<key>BrowserSelectorHotkeyModifiers</key>
-	<integer>1572864</integer>
+	<integer>0</integer>
 	<key>BrowserSelectorAutoHideIcon</key>
 	<false/>
 </dict>

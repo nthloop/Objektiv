@@ -16,9 +16,9 @@
 
 -(void) registerHotkeyWithKeyCode:(unsigned short)keyCode modifierFlags:(NSUInteger)flags;
 -(void) registerHotkey:(ZeroKitHotKey*) hotkey;
+-(void) registerStoredHotkey;
 
--(void) clearHotkeyWithKeyCode:(unsigned short)keyCode modifierFlags:(NSUInteger)flags;
--(void) clearHotkey:(ZeroKitHotKey*) hotkey;
+-(void) clearHotkey;
 
 -(void) hotkeyDidFire: (NSEvent*)hotKeyEvent;
 

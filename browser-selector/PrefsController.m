@@ -14,7 +14,6 @@
 {
     @private
     NSUserDefaults *defaults;
-    ZeroKitHotKey *lastHotkey;
     HotkeyManager *hotkeyManager;
 }
 @end
@@ -54,26 +53,30 @@
     self.autoHideIcon.state = [defaults boolForKey:PrefAutoHideIcon] ? NSOnState : NSOffState;
     self.startAtLogin.state = [defaults boolForKey:PrefStartAtLogin] ? NSOnState : NSOffState;
 
-    lastHotkey = [[ZeroKitHotKey alloc] initWithHotKeyCode:[defaults integerForKey:PrefHotkeyCode]
-                                           hotKeyModifiers:[defaults integerForKey:PrefHotkeyModifiers]];
-
-
-    self.hotkeyRecorder.hotKey = lastHotkey;
-    self.hotkeyRecorder.hotKeyName = [lastHotkey hotKeyName];
     self.hotkeyRecorder.delegate = self;
+
+    NSInteger code = [defaults integerForKey:PrefHotkeyCode];
+    NSInteger flags = [defaults integerForKey:PrefHotkeyModifiers];
+    if (code != 0 && flags != 0)
+    {
+        ZeroKitHotKey *lastHotkey = [[ZeroKitHotKey alloc] initWithHotKeyCode:code hotKeyModifiers:flags];
+        self.hotkeyRecorder.hotKey = lastHotkey;
+        self.hotkeyRecorder.hotKeyName = [lastHotkey hotKeyName];
+        NSLog(@"Hotkey restored ==> %@, %@", lastHotkey.hotKeyName, lastHotkey.displayString);
+
+    }
 }
 
 #pragma mark - HotkeyRecorder
 - (void)hotKeyRecorder:(ZeroKitHotKeyRecorder *)hotKeyRecorder didClearExistingHotKey:(ZeroKitHotKey *)hotKey
 {
     NSLog(@"didClearExistingHotKey: %@", hotKey);
-    [hotkeyManager clearHotkey:hotKey];
+    [hotkeyManager clearHotkey];
 }
 - (void)hotKeyRecorder:(ZeroKitHotKeyRecorder *)hotKeyRecorder didReceiveNewHotKey:(ZeroKitHotKey *)hotKey
 {
     NSLog(@"didReceiveNewHotKey: %@", hotKey);
-    [hotkeyManager clearHotkey:hotKey];
-
+    [hotkeyManager clearHotkey];
     [hotkeyManager registerHotkey: hotKey];
 }
 
@@ -91,6 +94,5 @@
     NSLog(@"PrefsController :: toggleHideItem");
     [defaults setBool:(self.autoHideIcon.state == NSOnState) forKey:PrefAutoHideIcon];
 }
-
 
 @end

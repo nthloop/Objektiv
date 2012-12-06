@@ -40,11 +40,12 @@
     menuIsOpen = NO;
     sharedWorkspace = [NSWorkspace sharedWorkspace];
 
-    [self createMenu];
+    browserMenu = [[NSMenu alloc] init];
+    [browserMenu setDelegate:self];
 
     hotkeyManager = [HotkeyManager sharedInstance];
 
-    [hotkeyManager registerHotkeyWithKeyCode:0x0B modifierFlags:(NSAlternateKeyMask|NSCommandKeyMask)];
+    [ZeroKitUtilities registerDefaultsForBundle:[NSBundle mainBundle]];
 
     defaults = [NSUserDefaults standardUserDefaults];
 
@@ -57,9 +58,7 @@
                   options:NSKeyValueObservingOptionNew
                   context:NULL];
 
-    NSString *dictPath = [[NSBundle mainBundle] pathForResource:@"Defaults" ofType:@"plist"];
-    [defaults registerDefaults:[NSDictionary dictionaryWithContentsOfFile:dictPath]];
-
+    if ([defaults boolForKey:PrefAutoHideIcon]) [hotkeyManager registerStoredHotkey];
     [self showAndHideIcon:nil];
 }
 
@@ -71,8 +70,12 @@
 
 #pragma mark - NSMenuDelegate
 
--(void) menuDidClose:(NSMenu *) theMenu { menuIsOpen = NO;  }
--(void) menuWillOpen:(NSMenu *) theMenu { menuIsOpen = YES; }
+-(void) menuDidClose:(NSMenu *) theMenu { menuIsOpen = NO; }
+
+-(void) menuWillOpen:(NSMenu *) theMenu {
+    menuIsOpen = YES;
+    [self createMenu];
+}
 
 #pragma mark - NSKeyValueObserving
 
@@ -84,6 +87,14 @@
 
     if ([keyPath isEqualToString:PrefAutoHideIcon])
     {
+        if ([change valueForKey:@"new"])
+        {
+            [hotkeyManager registerStoredHotkey];
+        } else
+        {
+            [hotkeyManager clearHotkey];
+        }
+
         [self showAndHideIcon:nil];
     }
     else if ([keyPath isEqualToString:PrefStartAtLogin])
@@ -173,10 +184,8 @@
 
 - (void) createMenu
 {
-    browserMenu = [[NSMenu alloc] init];
-    
-    [browserMenu setDelegate:self];
-    
+    [browserMenu removeAllItems];
+
     NSArray *browsers = [sharedWorkspace installedBrowserIdentifiers];
     NSString *defaultBrowser = [sharedWorkspace defaultBrowserIdentifier];
     NSFileManager *defaultFileManager = [NSFileManager defaultManager];

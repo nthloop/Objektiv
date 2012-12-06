@@ -53,43 +53,54 @@ static HotkeyManager *_sharedInstance = nil;
 {
     NSLog(@"Registering hotkey: %d %ld", keyCode, flags);
 
-    BOOL retVal = [hotkeyCenter registerHotKeyWithKeyCode:keyCode
-                                            modifierFlags:flags
-                                                   target:self
-                                                   action:@selector(hotkeyDidFire:)
-                                                   object:nil];
-
     [defaults setInteger:keyCode forKey:PrefHotkeyCode];
     [defaults setInteger:flags forKey:PrefHotkeyModifiers];
 
-    NSLog(@"New saved values: %ld %ld", [defaults integerForKey:PrefHotkeyCode], [defaults integerForKey:PrefHotkeyModifiers]);
+    if ([defaults boolForKey:PrefAutoHideIcon])
+    {
+        [hotkeyCenter registerHotKeyWithKeyCode:keyCode
+                                  modifierFlags:flags
+                                         target:self
+                                         action:@selector(hotkeyDidFire:)
+                                         object:nil];
+    }
+
+    NSLog(@"New saved values: %ld %ld",
+          [defaults integerForKey:PrefHotkeyCode],
+          [defaults integerForKey:PrefHotkeyModifiers]);
 
 }
 
--(void) clearHotkey:(ZeroKitHotKey*) hotkey
+-(void) clearHotkey
 {
-    [self clearHotkeyWithKeyCode:hotkey.hotKeyCode
-                   modifierFlags:[self convertCarbonModifiersToCocoa:hotkey.hotKeyModifiers]];
-}
-
--(void) clearHotkeyWithKeyCode:(unsigned short)keyCode modifierFlags:(NSUInteger)flags
-{
-
-    NSLog(@"Defaults: %@", defaults);
-
-    NSLog(@"Clearing hotkey: %d %ld", keyCode, flags);
-
     [defaults setInteger:0 forKey:PrefHotkeyCode];
     [defaults setInteger:0 forKey:PrefHotkeyModifiers];
+    NSLog(@"New saved values: %ld %ld",
+          [defaults integerForKey:PrefHotkeyCode],
+          [defaults integerForKey:PrefHotkeyModifiers]);
 
-    NSLog(@"New saved values: %ld %ld", [defaults integerForKey:PrefHotkeyCode], [defaults integerForKey:PrefHotkeyModifiers]);
-
-    [hotkeyCenter unregisterHotKeyWithKeyCode:keyCode modifierFlags:flags];
+    [[hotkeyCenter registeredHotKeys] enumerateObjectsUsingBlock:^(id obj, BOOL *stop) {
+        DDHotKey *hotkey = (DDHotKey*) obj;
+        [hotkeyCenter unregisterHotKey:hotkey];
+    }];
 }
 
 -(void) hotkeyDidFire: (NSEvent*)hotKeyEvent
 {
     [[NSApplication sharedApplication].delegate performSelector:@selector(hotkeyTriggered)];
+}
+
+-(void) registerStoredHotkey
+{
+    NSInteger code = [defaults integerForKey:PrefHotkeyCode];
+    NSInteger flags = [defaults integerForKey:PrefHotkeyModifiers];
+
+    [self clearHotkey];
+
+    if ([defaults boolForKey:PrefAutoHideIcon] && code != 0 && flags != 0)
+    {
+        [self registerHotkeyWithKeyCode:code modifierFlags:flags];
+    }
 }
 
 

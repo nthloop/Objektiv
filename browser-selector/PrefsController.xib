@@ -43,7 +43,7 @@
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{196, 240}, {500, 250}}</string>
 				<int key="NSWTFlags">544735232</int>
-				<string key="NSWindowTitle">Window</string>
+				<string key="NSWindowTitle">Browser Selector Preferences</string>
 				<string key="NSWindowClass">NSWindow</string>
 				<nil key="NSViewClass"/>
 				<nil key="NSUserInterfaceItemIdentifier"/>
@@ -116,7 +116,7 @@
 						<object class="NSTextField" id="1001006009">
 							<reference key="NSNextResponder" ref="1006"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{57, 87}, {426, 58}}</string>
+							<string key="NSFrame">{{33, 82}, {426, 58}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView"/>
@@ -126,7 +126,7 @@
 							<object class="NSTextFieldCell" key="NSCell" id="813486149">
 								<int key="NSCellFlags">67108864</int>
 								<int key="NSCellFlags2">272629760</int>
-								<string key="NSContents">You can temporarily show the status bar icon by launching Browser Selector again, or invoking the keyboard shortcut. The icon will disappear after 10 seconds.</string>
+								<string key="NSContents">You can temporarily show the Browser Selector icon by launching the app again, or by invoking this keyboard shortcut. The icon will disappear after 10 seconds.</string>
 								<object class="NSFont" key="NSSupport">
 									<string key="NSName">LucidaGrande</string>
 									<double key="NSSize">13</double>
@@ -159,7 +159,7 @@
 						<object class="NSTextField" id="109490800">
 							<reference key="NSNextResponder" ref="1006"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{57, 153}, {215, 17}}</string>
+							<string key="NSFrame">{{205, 151}, {215, 17}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="1001006009"/>
@@ -213,7 +213,7 @@
 						<object class="NSCustomView" id="242226229">
 							<reference key="NSNextResponder" ref="1006"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{216, 174}, {163, 22}}</string>
+							<string key="NSFrame">{{37, 148}, {163, 22}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="109490800"/>
@@ -332,10 +332,10 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="350379093"/>
 							<reference ref="671938587"/>
-							<reference ref="1001006009"/>
-							<reference ref="109490800"/>
 							<reference ref="193250854"/>
 							<reference ref="242226229"/>
+							<reference ref="109490800"/>
+							<reference ref="1001006009"/>
 						</array>
 						<reference key="parent" ref="1005"/>
 					</object>
