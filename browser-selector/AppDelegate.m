@@ -224,13 +224,24 @@
     {
         NSString *browser = browsers[i];
 
+        if (!browser) {
+            NSLog(@"Invalid application identifier: position %d of %@", i, browsers);
+            continue;
+        }
+
         if ([self isBlacklisted:browser]) { continue; }
 
         NSString *browserPath = [sharedWorkspace absolutePathForAppBundleWithIdentifier:browser];
-        if (!browserPath) continue;
+        if (!browserPath) {
+            NSLog(@"Can't find path of browser: %@", browser);
+            continue;
+        }
 
         NSString *browserName = [defaultFileManager displayNameAtPath:browserPath];
-        if (!browserName) continue;
+        if (!browserName) {
+            NSLog(@"Can't find path of browser: %@", browser);
+            continue;
+        }
 
         NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:browserName
                                                       action:@selector(selectABrowser:)
