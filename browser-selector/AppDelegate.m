@@ -36,22 +36,22 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
-    prefsController = [[PrefsController alloc] initWithWindowNibName:@"PrefsController"];
-    
-    menuIsOpen = NO;
-    sharedWorkspace = [NSWorkspace sharedWorkspace];
+    NSLog(@"applicationDidFinishLaunching");
 
+    prefsController = [[PrefsController alloc] initWithWindowNibName:@"PrefsController"];
+    sharedWorkspace = [NSWorkspace sharedWorkspace];
     blacklist = [[NSArray alloc] initWithContentsOfFile:[[NSBundle mainBundle]
                                                          pathForResource:@"Blacklist"
                                                          ofType:@"plist"]];
+    menuIsOpen = NO;
 
     browserMenu = [[NSMenu alloc] init];
     [browserMenu setDelegate:self];
 
     hotkeyManager = [HotkeyManager sharedInstance];
 
+    NSLog(@"Setting defaults");
     [ZeroKitUtilities registerDefaultsForBundle:[NSBundle mainBundle]];
-
     defaults = [NSUserDefaults standardUserDefaults];
 
     [defaults addObserver:self
@@ -65,6 +65,13 @@
 
     if ([defaults boolForKey:PrefAutoHideIcon]) [hotkeyManager registerStoredHotkey];
     [self showAndHideIcon:nil];
+
+    NSLog(@"Initial debug data");
+    NSArray *browsers = [sharedWorkspace installedBrowserIdentifiers];
+    NSLog(@"Browser: %@", browsers);
+    NSLog(@"Default browser: %@", [sharedWorkspace defaultBrowserIdentifier]);
+
+    NSLog(@"applicationDidFinishLaunching :: finish");
 }
 
 - (BOOL)applicationShouldHandleReopen: (NSApplication *)application hasVisibleWindows: (BOOL)visibleWindows
@@ -142,6 +149,8 @@
 
 - (BOOL) isBlacklisted:(NSString*) browserIdentifier
 {
+    if (!blacklist.count || !browserIdentifier) return NO;
+
     NSInteger index = [blacklist indexOfObjectPassingTest:^BOOL(id blacklistedIdentifier, NSUInteger idx, BOOL *stop) {
         NSRange range = [browserIdentifier rangeOfString:blacklistedIdentifier];
         return range.location != NSNotFound;
@@ -160,6 +169,7 @@
 
 - (void) createStatusBarIcon
 {
+    NSLog(@"createStatusBarIcon");
     if (statusBarIcon != nil) return;
     NSStatusBar *statusBar = [NSStatusBar systemStatusBar];
     NSString *defaultBrowser = [sharedWorkspace defaultBrowserIdentifier];
@@ -173,6 +183,7 @@
 
 - (void) destroyStatusBarIcon
 {
+    NSLog(@"destroyStatusBarIcon");
     if (![defaults boolForKey:PrefAutoHideIcon])
     {
         return;
@@ -190,6 +201,7 @@
 
 - (void) showAndHideIcon:(NSEvent*)hotKeyEvent
 {
+    NSLog(@"showAndHideIcon");
     [self createStatusBarIcon];
     if ([defaults boolForKey:PrefAutoHideIcon])
     {
@@ -199,6 +211,7 @@
 
 - (void) createMenu
 {
+    NSLog(@"Create Menu");
     [browserMenu removeAllItems];
 
     NSArray *browsers = [sharedWorkspace installedBrowserIdentifiers];
@@ -214,7 +227,10 @@
         if ([self isBlacklisted:browser]) { continue; }
 
         NSString *browserPath = [sharedWorkspace absolutePathForAppBundleWithIdentifier:browser];
+        if (!browserPath) continue;
+
         NSString *browserName = [defaultFileManager displayNameAtPath:browserPath];
+        if (!browserName) continue;
 
         NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:browserName
                                                       action:@selector(selectABrowser:)
