@@ -28,6 +28,7 @@
 		BCB54E191642926D003A59DF /* NSWorkspace+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB54E181642926D003A59DF /* NSWorkspace+Utils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BCBC14FB167F0E06007D12E3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCBC14FA167F0E06007D12E3 /* QuartzCore.framework */; };
 		BCCF8A7A167F37CA00ACCB83 /* ZeroKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = BCCF8A77167F379E00ACCB83 /* ZeroKit.framework */; };
+		BCFF40CD167F3D8D00F9B8C5 /* ImageUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = BCFF40CC167F3D8D00F9B8C5 /* ImageUtils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +105,8 @@
 		BCB54E181642926D003A59DF /* NSWorkspace+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSWorkspace+Utils.m"; path = "mozilla/NSWorkspace+Utils.m"; sourceTree = "<group>"; };
 		BCBC14FA167F0E06007D12E3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		BCCF8A6F167F379D00ACCB83 /* ZeroKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ZeroKit.xcodeproj; path = "browser-selector/Frameworks/ZeroKit/ZeroKit.xcodeproj"; sourceTree = "<group>"; };
+		BCFF40CB167F3D8D00F9B8C5 /* ImageUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUtils.h; sourceTree = "<group>"; };
+		BCFF40CC167F3D8D00F9B8C5 /* ImageUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageUtils.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +194,8 @@
 				BC7F331E1642A63700A2DAFD /* Constants.h */,
 				BCB54DF4164291F8003A59DF /* AppDelegate.h */,
 				BCB54DF5164291F8003A59DF /* AppDelegate.m */,
+				BCFF40CB167F3D8D00F9B8C5 /* ImageUtils.h */,
+				BCFF40CC167F3D8D00F9B8C5 /* ImageUtils.m */,
 				BC9C5497165E57A80098709F /* PrefsController.xib */,
 				BC9C5495165E57A80098709F /* PrefsController.h */,
 				BC9C5496165E57A80098709F /* PrefsController.m */,
@@ -387,6 +392,7 @@
 				BC68B2D41653CE2C009465F5 /* DDHotKeyCenter.m in Sources */,
 				BC9C5498165E57A80098709F /* PrefsController.m in Sources */,
 				BC418C7F166F56B5007789E5 /* HotkeyManager.m in Sources */,
+				BCFF40CD167F3D8D00F9B8C5 /* ImageUtils.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

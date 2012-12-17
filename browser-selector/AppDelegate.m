@@ -6,11 +6,12 @@
 //  Copyright (c) 2012 nth loop. All rights reserved.
 //
 
+#import "Constants.h"
 #import "AppDelegate.h"
 #import "PrefsController.h"
 #import "HotkeyManager.h"
 #import "NSWorkspace+Utils.h"
-#import "Constants.h"
+#import "ImageUtils.h"
 #import <ZeroKit/ZeroKitUtilities.h>
 
 @interface AppDelegate()
@@ -130,7 +131,7 @@
 
     NSLog(@"Selecting a browser: %@", newDefaultBrowser);
     [sharedWorkspace setDefaultBrowserWithIdentifier:newDefaultBrowser];
-    statusBarIcon.image = [self resizedIconForPath:newDefaultBrowser];
+    statusBarIcon.image = [ImageUtils statusBarIconForAppId:newDefaultBrowser];
 
     [self showNotification:newDefaultBrowser];
 }
@@ -176,7 +177,7 @@
 
     statusBarIcon = [statusBar statusItemWithLength:NSVariableStatusItemLength];
     statusBarIcon.toolTip = AppDescription;
-    statusBarIcon.image = [self resizedIconForPath:defaultBrowser];
+    statusBarIcon.image = [ImageUtils statusBarIconForAppId:defaultBrowser];
 
     statusBarIcon.menu = browserMenu;
 }
@@ -247,7 +248,7 @@
                                                       action:@selector(selectABrowser:)
                                                keyEquivalent:@""];
 
-        item.image = [self resizedIconForPath:browser];
+        item.image = [ImageUtils menuIconForAppId:browser];
         item.representedObject = browser;
         item.state = [browser isEqualToString:defaultBrowser];
 
@@ -284,15 +285,6 @@
 
 #pragma mark - Utilities
 
-- (NSImage*) resizedIconForPath:(NSString*)browserIdentifier
-{
-    NSString *path = [sharedWorkspace absolutePathForAppBundleWithIdentifier:browserIdentifier];
-    NSImage *icon = [[sharedWorkspace iconForFile:path] copy];
-    icon.scalesWhenResized = YES;
-    icon.size = CGSizeMake(16, 16);
-    return icon;
-}
-
 - (void) showNotification:(NSString *)browserIdentifier
 {
     NSString *browserPath = [sharedWorkspace absolutePathForAppBundleWithIdentifier:browserIdentifier];
@@ -304,6 +296,5 @@
 
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
 }
-
 
 @end
