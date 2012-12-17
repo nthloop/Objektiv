@@ -27,6 +27,8 @@
 		BCB54E0A164291F8003A59DF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = BCB54E08164291F8003A59DF /* InfoPlist.strings */; };
 		BCB54E0D164291F8003A59DF /* browser_selectorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB54E0C164291F8003A59DF /* browser_selectorTests.m */; };
 		BCB54E191642926D003A59DF /* NSWorkspace+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB54E181642926D003A59DF /* NSWorkspace+Utils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BCBC14FB167F0E06007D12E3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCBC14FA167F0E06007D12E3 /* QuartzCore.framework */; };
+		BCBC1506167F2417007D12E3 /* ZeroKit.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = BC2F4A7A166F3A370087C199 /* ZeroKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,17 @@
 			files = (
 				BC502C72166F6B8A0075E4D8 /* ZeroKit.framework in CopyFiles */,
 			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BCBC14FF167F23DD007D12E3 /* Copy Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BCBC1506167F2417007D12E3 /* ZeroKit.framework in Copy Frameworks */,
+			);
+			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -94,6 +107,7 @@
 		BCB54E0C164291F8003A59DF /* browser_selectorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = browser_selectorTests.m; sourceTree = "<group>"; };
 		BCB54E171642926D003A59DF /* NSWorkspace+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSWorkspace+Utils.h"; path = "mozilla/NSWorkspace+Utils.h"; sourceTree = "<group>"; };
 		BCB54E181642926D003A59DF /* NSWorkspace+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSWorkspace+Utils.m"; path = "mozilla/NSWorkspace+Utils.m"; sourceTree = "<group>"; };
+		BCBC14FA167F0E06007D12E3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BCBC14FB167F0E06007D12E3 /* QuartzCore.framework in Frameworks */,
 				BC68B2D81653CF92009465F5 /* Carbon.framework in Frameworks */,
 				BCB54DE3164291F8003A59DF /* Cocoa.framework in Frameworks */,
 				BC2F4A7D166F3A480087C199 /* ZeroKit.framework in Frameworks */,
@@ -159,6 +174,7 @@
 		BCB54DE1164291F8003A59DF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BCBC14FA167F0E06007D12E3 /* QuartzCore.framework */,
 				BC2F4A7C166F3A480087C199 /* ZeroKit.framework */,
 				BC68B2D71653CF92009465F5 /* Carbon.framework */,
 				BCB54DE2164291F8003A59DF /* Cocoa.framework */,
@@ -250,6 +266,7 @@
 				BCB54DDB164291F8003A59DF /* Frameworks */,
 				BCB54DDC164291F8003A59DF /* Resources */,
 				BC502C71166F6B6F0075E4D8 /* CopyFiles */,
+				BCBC14FF167F23DD007D12E3 /* Copy Frameworks */,
 			);
 			buildRules = (
 			);
