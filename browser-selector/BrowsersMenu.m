@@ -79,17 +79,21 @@
 
     [self addItem:[NSMenuItem separatorItem]];
 
-    NSMenuItem *prefsItem = [[NSMenuItem alloc] initWithTitle:@"Preferences"
+    NSMenuItem *prefsItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Preferences", nil)
                                                        action:@selector(showPreferences)
                                                 keyEquivalent:@","];
     prefsItem.target = appDelegate.prefsController;
     [self addItem:prefsItem];
 
-    NSMenuItem *aboutItem = [[NSMenuItem alloc] initWithTitle:@"About" action:@selector(showAbout) keyEquivalent:@"a"];
+    NSMenuItem *aboutItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"About", nil)
+                                                       action:@selector(showAbout)
+                                                keyEquivalent:@"a"];
     aboutItem.target = appDelegate;
     [self addItem:aboutItem];
 
-    NSMenuItem *quitItem = [[NSMenuItem alloc] initWithTitle:@"Quit" action:@selector(doQuit) keyEquivalent:@"q"];
+    NSMenuItem *quitItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Quit", nil)
+                                                      action:@selector(doQuit)
+                                               keyEquivalent:@"q"];
     quitItem.target = appDelegate;
     [self addItem:quitItem];
 }
