@@ -15,5 +15,7 @@
 #define PrefHotkeyCode @"BrowserSelectorHotkeyCode"
 #define PrefHotkeyModifiers @"BrowserSelectorHotkeyModifiers"
 
+#define PrefBlacklist @"BrowserSelectorBlacklist"
+
 #define NotificationTitle @"%@ selected"
 #define NotificationText @"You selected %@ as your default browser using %@."

@@ -10,5 +10,10 @@
 	<integer>0</integer>
 	<key>BrowserSelectorAutoHideIcon</key>
 	<false/>
+	<key>BrowserSelectorBlacklist</key>
+	<array>
+	  <string>com.googlecode.iterm</string>
+	  <string>com.fluidapp</string>
+    </array>
 </dict>
 </plist>

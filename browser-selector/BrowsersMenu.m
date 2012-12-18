@@ -55,9 +55,46 @@
         item.state = [browser.identifier isEqualToString:defaultBrowser];
 
         [self addItem:item];
-        count++;
 
+        // Create an alternate item used to blacklist the browser
+        NSMenuItem *alternate = [item copy];
+        alternate.keyEquivalentModifierMask = NSAlternateKeyMask;
+        [alternate setAlternate:YES];
+        alternate.action = @selector(blacklistABrowser:);
+
+        [self addItem:alternate];
+
+        count++;
     }
+
+    NSMenuItem *submenu = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Blacklisted", nil)
+                                                     action:@selector(showAbout) keyEquivalent:@""];
+    submenu.view = [[NSView alloc] init];
+    [self addItem:submenu];
+
+    NSMenuItem *submenuAlt = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Blacklisted", nil)
+                                                        action:@selector(showAbout) keyEquivalent:@""];
+    submenuAlt.submenu = [[NSMenu alloc] init];
+    submenuAlt.keyEquivalentModifierMask = NSAlternateKeyMask;
+    [submenuAlt setAlternate:YES];
+
+    for (int i = 0; i < browsers.count; i++)
+    {
+        BrowserItem *browser = browsers[i];
+
+        if (!browser.blacklisted) { continue; }
+        NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:browser.name
+                                                      action:@selector(removeFromBlacklist:)
+                                               keyEquivalent:@""];
+
+        item.target = appDelegate;
+        item.image = [ImageUtils menuIconForAppId:browser.identifier];
+        item.representedObject = browser.identifier;
+
+        [submenuAlt.submenu addItem:item];
+    }
+    [self addItem:submenuAlt];
+
 
     [self addItem:[NSMenuItem separatorItem]];
 

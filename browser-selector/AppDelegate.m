@@ -168,14 +168,37 @@
 
 - (BOOL) isBlacklisted:(NSString*) browserIdentifier
 {
-    if (!blacklist.count || !browserIdentifier) return NO;
+    if (!browserIdentifier) return NO;
 
-    NSInteger index = [blacklist indexOfObjectPassingTest:^BOOL(id blacklistedIdentifier, NSUInteger idx, BOOL *stop) {
-        NSRange range = [browserIdentifier rangeOfString:blacklistedIdentifier];
-        return range.location != NSNotFound;
+    NSArray *prefsBlacklist = [defaults valueForKey:PrefBlacklist];
+    NSUInteger index = [prefsBlacklist indexOfObjectPassingTest:^BOOL(id blacklistedIdentifier, NSUInteger idx, BOOL *stop) {
+        return [browserIdentifier rangeOfString:blacklistedIdentifier].location != NSNotFound;
     }];
 
-    return  index != NSNotFound;
+    return index != NSNotFound;
+}
+
+- (void) blacklistABrowser:sender
+{
+    NSString *identifier = [sender representedObject];
+    NSMutableArray *prefsBlacklist = [[defaults valueForKey:PrefBlacklist] mutableCopy];
+    [prefsBlacklist addObject:identifier];
+    [defaults setValue:prefsBlacklist forKey:PrefBlacklist];
+}
+
+- (void) removeFromBlacklist:sender
+{
+    NSString *identifier = [sender representedObject];
+    NSMutableArray *prefsBlacklist = [[defaults valueForKey:PrefBlacklist] mutableCopy];
+
+    NSUInteger index = [prefsBlacklist indexOfObjectPassingTest:^BOOL(id blacklistedIdentifier, NSUInteger idx, BOOL *stop) {
+        return [identifier rangeOfString:blacklistedIdentifier].location != NSNotFound;
+    }];
+
+    if (index == NSNotFound) { return; }
+
+    [prefsBlacklist removeObjectAtIndex:index];
+    [defaults setValue:prefsBlacklist forKey:PrefBlacklist];
 }
 
 #pragma mark - UI
