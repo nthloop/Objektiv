@@ -53,6 +53,11 @@ static ImageUtils *_sharedInstance = nil;
     return [[ImageUtils sharedInstance] menuIconForAppId:applicationIdentifier];
 }
 
++ (NSImage*) fullSizeIconForAppId: (NSString*) applicationIdentifier
+{
+    return [[ImageUtils sharedInstance] iconForAppIdentifier:applicationIdentifier];
+}
+
 # pragma mark instance methods
 
 - (NSImage*) statusBarIconForAppId: (NSString*) applicationIdentifier
