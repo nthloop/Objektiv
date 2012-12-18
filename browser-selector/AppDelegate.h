@@ -14,6 +14,7 @@
 
 -(void) hotkeyTriggered;
 - (BOOL) isBlacklisted:(NSString*) browserIdentifier;
+- (NSArray*) browsers;
 
 @property PrefsController* prefsController;
 

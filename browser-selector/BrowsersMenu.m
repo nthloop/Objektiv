@@ -10,6 +10,7 @@
 #import "NSWorkspace+Utils.h"
 #import "ImageUtils.h"
 #import "AppDelegate.h"
+#import "BrowserItem.h"
 
 @implementation BrowsersMenu {
     @private
@@ -34,43 +35,24 @@
     NSLog(@"Create Menu");
     [self removeAllItems];
 
-    NSArray *browsers = [sharedWorkspace installedBrowserIdentifiers];
+    NSArray *browsers = [appDelegate browsers];
     NSString *defaultBrowser = [sharedWorkspace defaultBrowserIdentifier];
-    NSFileManager *defaultFileManager = [NSFileManager defaultManager];
 
     NSLog(@"Browsers list: %@", browsers);
 
     for (int i = 0, count = 1; i < browsers.count; i++)
     {
-        NSString *browser = browsers[i];
+        BrowserItem *browser = browsers[i];
 
-        if (!browser) {
-            NSLog(@"Invalid application identifier: position %d of %@", i, browsers);
-            continue;
-        }
-
-        if ([appDelegate isBlacklisted:browser]) { continue; }
-
-        NSString *browserPath = [sharedWorkspace absolutePathForAppBundleWithIdentifier:browser];
-        if (!browserPath) {
-            NSLog(@"Can't find path of browser: %@", browser);
-            continue;
-        }
-
-        NSString *browserName = [defaultFileManager displayNameAtPath:browserPath];
-        if (!browserName) {
-            NSLog(@"Can't find path of browser: %@", browser);
-            continue;
-        }
-
-        NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:browserName
+        if (browser.blacklisted) { continue; }
+        NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:browser.name
                                                       action:@selector(selectABrowser:)
                                                keyEquivalent:[NSString stringWithFormat:@"%d", count]];
 
         item.target = appDelegate;
-        item.image = [ImageUtils menuIconForAppId:browser];
-        item.representedObject = browser;
-        item.state = [browser isEqualToString:defaultBrowser];
+        item.image = [ImageUtils menuIconForAppId:browser.identifier];
+        item.representedObject = browser.identifier;
+        item.state = [browser.identifier isEqualToString:defaultBrowser];
 
         [self addItem:item];
         count++;

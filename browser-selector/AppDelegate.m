@@ -6,8 +6,9 @@
 //  Copyright (c) 2012 nth loop. All rights reserved.
 //
 
-#import "Constants.h"
 #import "AppDelegate.h"
+#import "BrowserItem.h"
+#import "Constants.h"
 #import "PrefsController.h"
 #import "HotkeyManager.h"
 #import "NSWorkspace+Utils.h"
@@ -63,11 +64,6 @@
     if ([defaults boolForKey:PrefAutoHideIcon]) [hotkeyManager registerStoredHotkey];
     [self showAndHideIcon:nil];
 
-    NSLog(@"Initial debug data");
-    NSArray *browsers = [sharedWorkspace installedBrowserIdentifiers];
-    NSLog(@"Browser: %@", browsers);
-    NSLog(@"Default browser: %@", [sharedWorkspace defaultBrowserIdentifier]);
-
     NSLog(@"applicationDidFinishLaunching :: finish");
 }
 
@@ -105,6 +101,40 @@
 }
 
 #pragma mark - "Business" Logic
+
+- (NSArray*) browsers
+{
+    NSFileManager *defaultFileManager = [NSFileManager defaultManager];
+    NSArray *identifiers = [sharedWorkspace installedBrowserIdentifiers];
+    NSMutableArray *allBrowsers = [[NSMutableArray alloc] initWithCapacity:identifiers.count];
+
+    for (int i = 0; i < identifiers.count; i++) {
+        NSString *browser = identifiers[i];
+
+        if (!browser) {
+            NSLog(@"Invalid application identifier: position %d of %@", i, identifiers);
+            continue;
+        }
+
+        NSString *browserPath = [sharedWorkspace absolutePathForAppBundleWithIdentifier:browser];
+        if (!browserPath) {
+            NSLog(@"Can't find path of browser: %@", browser);
+            continue;
+        }
+
+        NSString *browserName = [defaultFileManager displayNameAtPath:browserPath];
+        if (!browserName) {
+            NSLog(@"Can't find path of browser: %@", browser);
+            continue;
+        }
+
+        BrowserItem *item = [[BrowserItem alloc] initWithApplicationId:browser name:browserName path:browserPath];
+        item.blacklisted = [self isBlacklisted:browser];
+        [allBrowsers addObject:item];
+    }
+
+    return  [allBrowsers copy];
+}
 
 - (void) selectABrowser:sender
 {

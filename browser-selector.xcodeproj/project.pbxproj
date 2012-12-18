@@ -16,6 +16,7 @@
 		BC8DDBC31670DB3D0098F508 /* Blacklist.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC8DDBC11670DB3D0098F508 /* Blacklist.plist */; };
 		BC9736A716806798002304FA /* BrowsersMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9736A616806798002304FA /* BrowsersMenu.m */; };
 		BC9736AA1680A8D0002304FA /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BC9736A81680A8D0002304FA /* Localizable.strings */; };
+		BC9736B01680ACC1002304FA /* BrowserItem.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9736AF1680ACC1002304FA /* BrowserItem.m */; };
 		BC9C5498165E57A80098709F /* PrefsController.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9C5496165E57A80098709F /* PrefsController.m */; };
 		BC9C5499165E57A80098709F /* PrefsController.xib in Resources */ = {isa = PBXBuildFile; fileRef = BC9C5497165E57A80098709F /* PrefsController.xib */; };
 		BCB54DE3164291F8003A59DF /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCB54DE2164291F8003A59DF /* Cocoa.framework */; };
@@ -85,6 +86,8 @@
 		BC9736A516806798002304FA /* BrowsersMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowsersMenu.h; sourceTree = "<group>"; };
 		BC9736A616806798002304FA /* BrowsersMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowsersMenu.m; sourceTree = "<group>"; };
 		BC9736A91680A8D0002304FA /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		BC9736AE1680ACC1002304FA /* BrowserItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowserItem.h; sourceTree = "<group>"; };
+		BC9736AF1680ACC1002304FA /* BrowserItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrowserItem.m; sourceTree = "<group>"; };
 		BC9C5495165E57A80098709F /* PrefsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefsController.h; sourceTree = "<group>"; };
 		BC9C5496165E57A80098709F /* PrefsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrefsController.m; sourceTree = "<group>"; };
 		BC9C5497165E57A80098709F /* PrefsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrefsController.xib; sourceTree = "<group>"; };
@@ -197,6 +200,8 @@
 				BCB54E1F1642981C003A59DF /* mozilla */,
 				BCB54DE9164291F8003A59DF /* Supporting Files */,
 				BC7F331E1642A63700A2DAFD /* Constants.h */,
+				BC9736AE1680ACC1002304FA /* BrowserItem.h */,
+				BC9736AF1680ACC1002304FA /* BrowserItem.m */,
 				BCB54DF4164291F8003A59DF /* AppDelegate.h */,
 				BCB54DF5164291F8003A59DF /* AppDelegate.m */,
 				BCFF40CB167F3D8D00F9B8C5 /* ImageUtils.h */,
@@ -403,6 +408,7 @@
 				BC418C7F166F56B5007789E5 /* HotkeyManager.m in Sources */,
 				BCFF40CD167F3D8D00F9B8C5 /* ImageUtils.m in Sources */,
 				BC9736A716806798002304FA /* BrowsersMenu.m in Sources */,
+				BC9736B01680ACC1002304FA /* BrowserItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
