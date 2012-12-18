@@ -7,10 +7,14 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "PrefsController.h"
 
 
-@interface AppDelegate : NSObject <NSApplicationDelegate, NSMenuDelegate>
+@interface AppDelegate : NSObject <NSApplicationDelegate>
 
 -(void) hotkeyTriggered;
+- (BOOL) isBlacklisted:(NSString*) browserIdentifier;
+
+@property PrefsController* prefsController;
 
 @end

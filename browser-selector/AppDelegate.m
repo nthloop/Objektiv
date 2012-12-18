@@ -12,18 +12,16 @@
 #import "HotkeyManager.h"
 #import "NSWorkspace+Utils.h"
 #import "ImageUtils.h"
+#import "BrowsersMenu.h"
 #import <ZeroKit/ZeroKitUtilities.h>
 
 @interface AppDelegate()
 {
     @private
-
-    PrefsController *prefsController;
     NSStatusItem *statusBarIcon;
-    NSMenu *browserMenu;
+    BrowsersMenu *browserMenu;
     NSUserDefaults *defaults;
     NSWorkspace *sharedWorkspace;
-    Boolean menuIsOpen;
     HotkeyManager *hotkeyManager;
     NSArray *blacklist;
 }
@@ -39,15 +37,13 @@
 {
     NSLog(@"applicationDidFinishLaunching");
 
-    prefsController = [[PrefsController alloc] initWithWindowNibName:@"PrefsController"];
+    self.prefsController = [[PrefsController alloc] initWithWindowNibName:@"PrefsController"];
     sharedWorkspace = [NSWorkspace sharedWorkspace];
     blacklist = [[NSArray alloc] initWithContentsOfFile:[[NSBundle mainBundle]
                                                          pathForResource:@"Blacklist"
                                                          ofType:@"plist"]];
-    menuIsOpen = NO;
 
-    browserMenu = [[NSMenu alloc] init];
-    [browserMenu setDelegate:self];
+    browserMenu = [[BrowsersMenu alloc] init];
 
     hotkeyManager = [HotkeyManager sharedInstance];
 
@@ -81,14 +77,6 @@
     return YES;
 }
 
-#pragma mark - NSMenuDelegate
-
--(void) menuDidClose:(NSMenu *) theMenu { menuIsOpen = NO; }
-
--(void) menuWillOpen:(NSMenu *) theMenu {
-    menuIsOpen = YES;
-    [self createMenu];
-}
 
 #pragma mark - NSKeyValueObserving
 
@@ -189,7 +177,7 @@
     {
         return;
     }
-    if (menuIsOpen)
+    if (browserMenu.menuIsOpen)
     {
         [self performSelector:@selector(destroyStatusBarIcon) withObject:nil afterDelay:10];
     }
@@ -208,69 +196,6 @@
     {
         [self performSelector:@selector(destroyStatusBarIcon) withObject:nil afterDelay:10];
     }
-}
-
-- (void) createMenu
-{
-    NSLog(@"Create Menu");
-    [browserMenu removeAllItems];
-
-    NSArray *browsers = [sharedWorkspace installedBrowserIdentifiers];
-    NSString *defaultBrowser = [sharedWorkspace defaultBrowserIdentifier];
-    NSFileManager *defaultFileManager = [NSFileManager defaultManager];
-
-    NSLog(@"Browsers list: %@", browsers);
-
-    for (int i = 0; i < browsers.count; i++)
-    {
-        NSString *browser = browsers[i];
-
-        if (!browser) {
-            NSLog(@"Invalid application identifier: position %d of %@", i, browsers);
-            continue;
-        }
-
-        if ([self isBlacklisted:browser]) { continue; }
-
-        NSString *browserPath = [sharedWorkspace absolutePathForAppBundleWithIdentifier:browser];
-        if (!browserPath) {
-            NSLog(@"Can't find path of browser: %@", browser);
-            continue;
-        }
-
-        NSString *browserName = [defaultFileManager displayNameAtPath:browserPath];
-        if (!browserName) {
-            NSLog(@"Can't find path of browser: %@", browser);
-            continue;
-        }
-
-        NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:browserName
-                                                      action:@selector(selectABrowser:)
-                                               keyEquivalent:@""];
-
-        item.image = [ImageUtils menuIconForAppId:browser];
-        item.representedObject = browser;
-        item.state = [browser isEqualToString:defaultBrowser];
-
-        [browserMenu addItem:item];
-    }
-
-    [browserMenu addItem:[NSMenuItem separatorItem]];
-
-    NSMenuItem *prefsItem = [[NSMenuItem alloc] initWithTitle:@"Preferences"
-                                                       action:@selector(showPreferences)
-                                                keyEquivalent:@","];
-    prefsItem.target = prefsController;
-    [browserMenu addItem:prefsItem];
-
-    [browserMenu addItem:[[NSMenuItem alloc]
-                          initWithTitle:@"About"
-                                 action:@selector(showAbout)
-                          keyEquivalent:@"a"]];
-
-
-    NSMenuItem *quitItem = [[NSMenuItem alloc] initWithTitle:@"Quit" action:@selector(doQuit) keyEquivalent:@"q"];
-    [browserMenu addItem:quitItem];
 }
 
 - (void) showAbout
