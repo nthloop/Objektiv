@@ -60,6 +60,10 @@
         NSMenuItem *alternate = [item copy];
         alternate.keyEquivalentModifierMask = NSAlternateKeyMask;
         [alternate setAlternate:YES];
+        alternate.state = NSMixedState;
+        alternate.mixedStateImage = [NSImage imageNamed:NSImageNameRemoveTemplate];
+        alternate.toolTip = [NSString stringWithFormat:NSLocalizedString(@"Hide %@", nil), browser.name];
+
         alternate.action = @selector(blacklistABrowser:);
 
         [self addItem:alternate];
@@ -67,12 +71,12 @@
         count++;
     }
 
-    NSMenuItem *submenu = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Blacklisted", nil)
-                                                     action:@selector(showAbout) keyEquivalent:@""];
-    submenu.view = [[NSView alloc] init];
+    NSMenuItem *submenu = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Press ⌥ for more options", nil)
+                                                     action:nil keyEquivalent:@""];
+    //submenu.view = [[NSView alloc] init];
     [self addItem:submenu];
 
-    NSMenuItem *submenuAlt = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Blacklisted", nil)
+    NSMenuItem *submenuAlt = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Hidden Items", nil)
                                                         action:@selector(showAbout) keyEquivalent:@""];
     submenuAlt.submenu = [[NSMenu alloc] init];
     submenuAlt.keyEquivalentModifierMask = NSAlternateKeyMask;
@@ -88,13 +92,15 @@
                                                keyEquivalent:@""];
 
         item.target = appDelegate;
+        item.state = NSOffState;
+        item.offStateImage = [NSImage imageNamed:NSImageNameAddTemplate];
         item.image = [ImageUtils menuIconForAppId:browser.identifier];
         item.representedObject = browser.identifier;
+        item.toolTip = [NSString stringWithFormat:NSLocalizedString(@"Show %@", nil), browser.name];
 
         [submenuAlt.submenu addItem:item];
     }
     [self addItem:submenuAlt];
-
 
     [self addItem:[NSMenuItem separatorItem]];
 

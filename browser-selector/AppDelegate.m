@@ -133,7 +133,7 @@
         [allBrowsers addObject:item];
     }
 
-    return  [allBrowsers copy];
+    return [allBrowsers sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]];
 }
 
 - (void) selectABrowser:sender
@@ -219,6 +219,7 @@
     statusBarIcon = [statusBar statusItemWithLength:NSVariableStatusItemLength];
     statusBarIcon.toolTip = AppDescription;
     statusBarIcon.image = [ImageUtils statusBarIconForAppId:defaultBrowser];
+    statusBarIcon.highlightMode = YES;
 
     statusBarIcon.menu = browserMenu;
 }
