@@ -14,6 +14,7 @@
 #import "NSWorkspace+Utils.h"
 #import "ImageUtils.h"
 #import "BrowsersMenu.h"
+#import "OverlayWindow.h"
 #import <ZeroKit/ZeroKitUtilities.h>
 
 @interface AppDelegate()
@@ -25,6 +26,7 @@
     NSWorkspace *sharedWorkspace;
     HotkeyManager *hotkeyManager;
     NSArray *blacklist;
+    OverlayWindow *overlayWindow;
 }
 @end
 
@@ -63,6 +65,8 @@
 
     if ([defaults boolForKey:PrefAutoHideIcon]) [hotkeyManager registerStoredHotkey];
     [self showAndHideIcon:nil];
+
+    overlayWindow = [[OverlayWindow alloc] init];
 
     NSLog(@"applicationDidFinishLaunching :: finish");
 }
@@ -206,6 +210,7 @@
 - (void) hotkeyTriggered
 {
     NSLog(@"@Hotkey triggered");
+    [overlayWindow makeKeyAndOrderFront:NSApp];
     [self showAndHideIcon:nil];
 }
 

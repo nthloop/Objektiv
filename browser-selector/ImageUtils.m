@@ -55,7 +55,9 @@ static ImageUtils *_sharedInstance = nil;
 
 + (NSImage*) fullSizeIconForAppId: (NSString*) applicationIdentifier
 {
-    return [[ImageUtils sharedInstance] iconForAppIdentifier:applicationIdentifier];
+    NSImage *image = [[[ImageUtils sharedInstance] iconForAppIdentifier:applicationIdentifier] copy];
+    image.size = CGSizeMake(128, 128);
+    return image;
 }
 
 # pragma mark instance methods
