@@ -37,6 +37,7 @@
 
     NSArray *browsers = [appDelegate browsers];
     NSString *defaultBrowser = [sharedWorkspace defaultBrowserIdentifier];
+    NSMenu *hiddenMenu = [[NSMenu alloc] init];
 
     NSLog(@"Browsers list: %@", browsers);
 
@@ -44,20 +45,28 @@
     {
         BrowserItem *browser = browsers[i];
 
-        if (browser.blacklisted) { continue; }
-        NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:browser.name
-                                                      action:@selector(selectABrowser:)
-                                               keyEquivalent:[NSString stringWithFormat:@"%d", count]];
+        // Blacklisted browsers will be present in a hidden menu
+        // that will only be made visible on pressing Option
+        if (browser.blacklisted) {
+            NSMenuItem *item = [self menuItemForBrowser:browser withHotkey:nil];
 
-        item.target = appDelegate;
-        item.image = [ImageUtils menuIconForAppId:browser.identifier];
-        item.representedObject = browser.identifier;
+            item.offStateImage = [NSImage imageNamed:NSImageNameAddTemplate];
+            item.toolTip = [NSString stringWithFormat:NSLocalizedString(@"Show %@", nil), browser.name];
+            item.action = @selector(removeFromBlacklist:);
+
+            [hiddenMenu addItem:item];
+            continue;
+        }
+
+        NSMenuItem *item = [self menuItemForBrowser:browser withHotkey:[NSString stringWithFormat:@"%d", count]];
+        item.action = @selector(selectABrowser:);
         item.state = [browser.identifier isEqualToString:defaultBrowser];
 
         [self addItem:item];
 
         // Create an alternate item used to blacklist the browser
         NSMenuItem *alternate = [item copy];
+
         alternate.keyEquivalentModifierMask = NSAlternateKeyMask;
         [alternate setAlternate:YES];
         alternate.state = NSMixedState;
@@ -65,7 +74,6 @@
         alternate.toolTip = [NSString stringWithFormat:NSLocalizedString(@"Hide %@", nil), browser.name];
 
         alternate.action = @selector(blacklistABrowser:);
-
         [self addItem:alternate];
 
         count++;
@@ -73,35 +81,36 @@
 
     NSMenuItem *submenu = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Press ⌥ for more options", nil)
                                                      action:nil keyEquivalent:@""];
-    //submenu.view = [[NSView alloc] init];
     [self addItem:submenu];
 
     NSMenuItem *submenuAlt = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Hidden Items", nil)
-                                                        action:@selector(showAbout) keyEquivalent:@""];
-    submenuAlt.submenu = [[NSMenu alloc] init];
+                                                        action:nil keyEquivalent:@""];
+    submenuAlt.submenu = hiddenMenu;
     submenuAlt.keyEquivalentModifierMask = NSAlternateKeyMask;
     [submenuAlt setAlternate:YES];
-
-    for (int i = 0; i < browsers.count; i++)
-    {
-        BrowserItem *browser = browsers[i];
-
-        if (!browser.blacklisted) { continue; }
-        NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:browser.name
-                                                      action:@selector(removeFromBlacklist:)
-                                               keyEquivalent:@""];
-
-        item.target = appDelegate;
-        item.state = NSOffState;
-        item.offStateImage = [NSImage imageNamed:NSImageNameAddTemplate];
-        item.image = [ImageUtils menuIconForAppId:browser.identifier];
-        item.representedObject = browser.identifier;
-        item.toolTip = [NSString stringWithFormat:NSLocalizedString(@"Show %@", nil), browser.name];
-
-        [submenuAlt.submenu addItem:item];
-    }
     [self addItem:submenuAlt];
 
+    [self addCommonItems];
+}
+
+# pragma mark - Internal methods
+
+-(NSMenuItem*) menuItemForBrowser: (BrowserItem*) browser withHotkey:(NSString*) hotkey
+{
+    NSMenuItem *item = [[NSMenuItem alloc] initWithTitle:browser.name
+                                                  action:nil
+                                           keyEquivalent:hotkey == nil ? @"" : hotkey];
+
+    item.target = appDelegate;
+    item.image = [ImageUtils menuIconForAppId:browser.identifier];
+    item.state = NSOffState;
+    item.representedObject = browser.identifier;
+
+    return item;
+}
+
+-(void) addCommonItems
+{
     [self addItem:[NSMenuItem separatorItem]];
 
     NSMenuItem *prefsItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Preferences", nil)
