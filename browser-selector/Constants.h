@@ -6,6 +6,8 @@
 //  Copyright (c) 2012 nth loop. All rights reserved.
 //
 
+#include <Foundation/Foundation.h>
+
 #define AppName @"Browser Selector"
 #define AppDescription @"Browser Selector is a simple menu-bar app that allows you to quickly toggle your default browser"
 
@@ -17,5 +19,5 @@
 
 #define PrefBlacklist @"BrowserSelectorBlacklist"
 
-#define NotificationTitle @"%@ selected"
-#define NotificationText @"You selected %@ as your default browser using %@."
+#define NotificationTitle NSLocalizedString(@"%@ selected", @"Title of the notification")
+#define NotificationText NSLocalizedString(@"You selected %@ as your default browser using %@.", @"Notification text")
