@@ -15,6 +15,11 @@
     AppDelegate *appDelegate;
 }
 
+const NSUInteger ICON_SIZE = 72;
+const NSUInteger TEXT_HEIGHT = 24;
+const NSUInteger H_PADDING = 16;
+const NSUInteger BOX_PADDING = 16;
+
 - (id)initWithFrame:(NSRect)frame
 {
     self = [super initWithFrame:frame];
@@ -31,11 +36,11 @@
     return self;
 }
 
+// Draws the semi-transparent background for the overlay panel
 - (void)drawRect:(NSRect)dirtyRect
 {
-    NSLog(@"Size: %f %f, Position: %f %f", dirtyRect.size.width, dirtyRect.size.height, dirtyRect.origin.x, dirtyRect.origin.y);
-    NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect:dirtyRect xRadius:10.0 yRadius:10.0];
-    [[NSColor blackColor] set];
+    NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect:dirtyRect xRadius:16 yRadius:16];
+    [[NSColor colorWithCalibratedRed:0 green:0 blue:0 alpha:0.7] set];
     [path fill];
 }
 
@@ -49,61 +54,124 @@
     [appDelegate selectABrowser: button.cell];
 }
 
+// Adds buttons for browser icons in a 9-column wide grid.
+// The first 9 will have hotkeys associated with them (numbers 1-9).
 - (NSSize)addBrowsers:(NSArray*)browsers
 {
-    int count = 0;
+    browsers = [browsers filteredArrayUsingPredicate:
+                [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+                    BrowserItem *item = evaluatedObject;
+                    return !item.blacklisted;
+                }]];
 
-    NSRect iconRect = NSMakeRect(0, 36, 128, 128);
-    NSRect textRect = NSMakeRect(0,  0, 128,  36);
+    NSRect itemRect = NSMakeRect(BOX_PADDING, BOX_PADDING, ICON_SIZE + H_PADDING, ICON_SIZE + TEXT_HEIGHT);
+    NSRect buttonRect = CGRectInset(itemRect, H_PADDING / 2, 0);
+    NSUInteger width = itemRect.size.width, height = itemRect.size.height;
+
+    NSUInteger maxRow = browsers.count / 9, maxColumn = browsers.count > 9 ? 9 : browsers.count;
+    NSUInteger row = maxRow, column = 0;
 
     for (int i = 0; i < browsers.count; i++) {
         BrowserItem *browser = browsers[i];
 
-        if (browser.blacklisted) { continue; }
+        NSRect offset = CGRectOffset(buttonRect, width * column, height * row);
 
-        NSButton *button = [self buttonForBrowser:browser withFrame:CGRectOffset(iconRect, count * 128, 0)];
+        NSButton *button = [self buttonForBrowser:browser
+                                       atPosition:i
+                                        withFrame:offset];
         [self addSubview:button];
 
-        NSTextView *textView = [self textViewForBrowser:browser withFrame:CGRectOffset(textRect, count * 128, 0)];
-        [self addSubview:textView];
-
-        count++;
+        column++;
+        if (column >= 9 && row > 0) {
+            row--;
+            column = 0;
+        }
     }
 
-    NSSize size = NSMakeSize(128 * count + 6, 128 + 42);
+    NSSize size = NSMakeSize(width * maxColumn + BOX_PADDING * 2, height * (maxRow + 1) + BOX_PADDING * 2);
     return size;
 }
 
--(NSButton*)buttonForBrowser:(BrowserItem*)browser withFrame:(NSRect)frame
+-(NSButton*)buttonForBrowser:(BrowserItem*)browser atPosition:(NSUInteger)position withFrame:(NSRect)frame
 {
     NSButton *button = [[NSButton alloc] initWithFrame:frame];
-    button.image = [ImageUtils fullSizeIconForAppId:browser.identifier];
-
+    
+    button.image = [self imageForBrowser:browser withBadge:position + 1];
+    button.attributedTitle = [self titleForButton:browser.name inColor:[NSColor whiteColor]];
     button.target = self;
+    button.focusRingType = NSFocusRingTypeNone;
     button.action = @selector(buttonClicked:);
 
     NSButtonCell *cell = button.cell;
+    cell.imagePosition = NSImageAbove;
+
+    [cell setBackgroundColor:[NSColor colorWithCalibratedRed:0 green:0 blue:0 alpha:0.7]];
     [cell setBezeled:NO];
     [cell setBordered:NO];
+    [cell setButtonType:NSMomentaryPushInButton];
+    [cell setShowsStateBy:NSPushInCellMask];
+    [cell setHighlightsBy:NSContentsCellMask];
     [cell setRepresentedObject:browser.identifier];
 
     return button;
 }
 
-
--(NSTextView*)textViewForBrowser:(BrowserItem*)browser withFrame:(NSRect)frame
+-(NSImage*) imageForBrowser:(BrowserItem*)browser withBadge:(NSUInteger)position
 {
-    NSTextView *textView = [[NSTextView alloc] initWithFrame:frame];
 
-    [textView changeColor:[NSColor whiteColor]];
-    [textView setDrawsBackground:NO];
-    [textView setFont:[NSFont labelFontOfSize:[NSFont labelFontSize] + 4]];
-    [textView setAlignment:NSCenterTextAlignment];
-    [textView setSelectable:NO];
-    [textView setEditable:NO];
+    NSImage *image = [[ImageUtils fullSizeIconForAppId:browser.identifier
+                                             withSize:NSMakeSize(ICON_SIZE, ICON_SIZE)] copy];
+    if (position > 9) return image;
 
-    [textView setString:browser.name];
-    return textView;
+    NSString *badge = [NSString stringWithFormat:@"%ld", position];
+
+    [image lockFocus];
+
+
+    NSRect rect = NSMakeRect(0, 0, 20, 20);
+    NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect:rect xRadius:4 yRadius:4];
+    [[NSColor colorWithCalibratedRed:0 green:0 blue:0 alpha:0.75] set];
+    [path fill];
+
+    [badge drawInRect:CGRectInset(rect, 7, 2)
+       withAttributes:@{NSForegroundColorAttributeName : [NSColor whiteColor]}];
+
+    [image unlockFocus];
+    return image;
+}
+
+
+-(NSAttributedString*) titleForButton:(NSString*) plainTitle inColor:(NSColor*) color
+{
+    NSMutableAttributedString *title = [[NSMutableAttributedString alloc] initWithString:plainTitle];
+
+    NSRange range = NSMakeRange(0, title.length);
+    [title addAttribute:NSForegroundColorAttributeName
+                  value:color
+                  range:range];
+    [title addAttribute:NSFontAttributeName
+                  value:[NSFont labelFontOfSize:[NSFont labelFontSize] + 2]
+                  range:range];
+    [title setAlignment:NSCenterTextAlignment range:range];
+    [title fixAttributesInRange:range];
+
+    return [self truncateString:title toWidth:ICON_SIZE];
+}
+
+- (NSAttributedString *)truncateString:(NSAttributedString*)attributedString toWidth:(NSUInteger)width
+{
+	NSAttributedString *result = attributedString;
+	if (result.size.width > width)
+	{
+		NSMutableAttributedString *newString = [[NSMutableAttributedString alloc] initWithAttributedString:result];
+		while ([newString size].width > width)
+		{
+			NSRange range = NSMakeRange(newString.length - 2, 2);
+			[newString replaceCharactersInRange:range withString:@"…"];
+		}
+		result = newString;
+	}
+	return result;
 }
 
 @end

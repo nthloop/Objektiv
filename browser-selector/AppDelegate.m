@@ -142,14 +142,17 @@
 
 - (void) selectABrowser:sender
 {
-    NSString *newDefaultBrowser = [sender representedObject];
-    NSMenuItem *menuItem = sender;
-    NSMenu *menu = menuItem.menu;
-
-    [menu.itemArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [obj setState:NSOffState];
-    }];
-    menuItem.state = NSOnState;
+    NSString *newDefaultBrowser = [sender respondsToSelector:@selector(representedObject)]
+        ? [sender representedObject]
+        :sender;
+    
+//    NSMenuItem *menuItem = sender;
+//    NSMenu *menu = menuItem.menu;
+//
+//    [menu.itemArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+//        [obj setState:NSOffState];
+//    }];
+//    menuItem.state = NSOnState;
 
     NSLog(@"Selecting a browser: %@", newDefaultBrowser);
     [sharedWorkspace setDefaultBrowserWithIdentifier:newDefaultBrowser];

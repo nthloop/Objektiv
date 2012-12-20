@@ -16,5 +16,6 @@
 + (NSImage*) statusBarIconForAppId: (NSString*) applicationIdentifier;
 + (NSImage*) menuIconForAppId: (NSString*) applicationIdentifier;
 + (NSImage*) fullSizeIconForAppId: (NSString*) applicationIdentifier;
++ (NSImage*) fullSizeIconForAppId: (NSString*) applicationIdentifier withSize:(NSSize)size;
 
 @end

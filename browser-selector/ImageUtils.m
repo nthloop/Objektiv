@@ -56,7 +56,13 @@ static ImageUtils *_sharedInstance = nil;
 + (NSImage*) fullSizeIconForAppId: (NSString*) applicationIdentifier
 {
     NSImage *image = [[[ImageUtils sharedInstance] iconForAppIdentifier:applicationIdentifier] copy];
-    image.size = CGSizeMake(128, 128);
+    return image;
+}
+
++ (NSImage*) fullSizeIconForAppId: (NSString*) applicationIdentifier withSize:(NSSize)size
+{
+    NSImage *image = [ImageUtils fullSizeIconForAppId:applicationIdentifier];
+    image.size = size;
     return image;
 }
 

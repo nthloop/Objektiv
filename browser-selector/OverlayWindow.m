@@ -17,6 +17,7 @@
 
     @private
     AppDelegate *appDelegate;
+    NSArray *browsers;
 }
 
 -(id)init
@@ -33,7 +34,8 @@
         [self setLevel:NSFloatingWindowLevel];
         [self setBackgroundColor:[NSColor clearColor]];
         [self setFloatingPanel:YES];
-        [self setAlphaValue:0.8];
+        [self setMovable:NO];
+        [self setOpaque:NO];
     }
 
     return self;
@@ -49,7 +51,7 @@
 -(void)windowDidBecomeKey:(NSNotification *)notification
 {
     NSLog(@"became key");
-    NSArray *browsers = appDelegate.browsers;
+    browsers = appDelegate.browsers;
 
     OverlayWindowView *contentView = [[OverlayWindowView alloc] init];
     [self setContentView:contentView];
@@ -57,11 +59,16 @@
     [self setContentSize:contentSize];
 
     [self center];
+    [contentView setNeedsUpdateConstraints:YES];
+    [contentView setNeedsDisplay:YES];
 }
 
 -(void)windowDidResignKey:(NSNotification *)notification
 {
+    browsers = nil;
     [self setContentView:nil];
+    [self orderOut:nil];
+    [self close];
 }
 
 -(void)keyDown:(NSEvent *)theEvent
@@ -70,6 +77,17 @@
     {
         [self orderOut:nil];
         [self close];
+    }
+
+    if (theEvent.keyCode >= kVK_ANSI_1 && theEvent.keyCode <= kVK_ANSI_9)
+    {
+        NSUInteger offset = theEvent.keyCode - kVK_ANSI_1;
+        if (offset < browsers.count)
+        {
+            BrowserItem *item = browsers[offset];
+            [appDelegate selectABrowser:item.identifier];
+            [self orderOut:nil];
+        }
     }
 }
 
