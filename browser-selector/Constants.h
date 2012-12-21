@@ -14,8 +14,7 @@
 #define PrefStartAtLogin @"BrowserSelectorStartAtLogin"
 #define PrefAutoHideIcon @"BrowserSelectorAutoHideIcon"
 
-#define PrefHotkeyCode @"BrowserSelectorHotkeyCode"
-#define PrefHotkeyModifiers @"BrowserSelectorHotkeyModifiers"
+#define PrefHotkey @"BrowserSelectorHotkey"
 
 #define PrefBlacklist @"BrowserSelectorBlacklist"
 

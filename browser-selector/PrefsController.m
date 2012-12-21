@@ -8,13 +8,12 @@
 
 #import "PrefsController.h"
 #import "Constants.h"
-#import "HotkeyManager.h"
+#import <MASShortcut/MASShortcut.h>
 
 @interface PrefsController ()
 {
     @private
     NSUserDefaults *defaults;
-    HotkeyManager *hotkeyManager;
 }
 @end
 
@@ -25,7 +24,6 @@
     self = [super initWithWindow:window];
     if (self) {
         defaults = [NSUserDefaults standardUserDefaults];
-        hotkeyManager = [HotkeyManager sharedInstance];
     }
 
     return self;
@@ -42,44 +40,17 @@
 - (void) showPreferences
 {
     //[self initUI];
-
     [self.window makeKeyAndOrderFront:NSApp];
     [NSApp activateIgnoringOtherApps:YES];
 }
-
 
 - (void) initUI
 {
     self.autoHideIcon.state = [defaults boolForKey:PrefAutoHideIcon] ? NSOnState : NSOffState;
     self.startAtLogin.state = [defaults boolForKey:PrefStartAtLogin] ? NSOnState : NSOffState;
 
-    self.hotkeyRecorder.delegate = self;
-
-    NSInteger code = [defaults integerForKey:PrefHotkeyCode];
-    NSInteger flags = [defaults integerForKey:PrefHotkeyModifiers];
-    if (code != 0 && flags != 0)
-    {
-        ZeroKitHotKey *lastHotkey = [[ZeroKitHotKey alloc] initWithHotKeyCode:code hotKeyModifiers:flags];
-        self.hotkeyRecorder.hotKey = lastHotkey;
-        self.hotkeyRecorder.hotKeyName = [lastHotkey hotKeyName];
-        NSLog(@"Hotkey restored ==> %@, %@", lastHotkey.hotKeyName, lastHotkey.displayString);
-
-    }
+    self.hotkeyRecorder.associatedUserDefaultsKey = PrefHotkey;
 }
-
-#pragma mark - HotkeyRecorder
-- (void)hotKeyRecorder:(ZeroKitHotKeyRecorder *)hotKeyRecorder didClearExistingHotKey:(ZeroKitHotKey *)hotKey
-{
-    NSLog(@"didClearExistingHotKey: %@", hotKey);
-    [hotkeyManager clearHotkey];
-}
-- (void)hotKeyRecorder:(ZeroKitHotKeyRecorder *)hotKeyRecorder didReceiveNewHotKey:(ZeroKitHotKey *)hotKey
-{
-    NSLog(@"didReceiveNewHotKey: %@", hotKey);
-    [hotkeyManager clearHotkey];
-    [hotkeyManager registerHotkey: hotKey];
-}
-
 
 #pragma mark - IBActions
 

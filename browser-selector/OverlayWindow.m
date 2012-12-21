@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 #import "BrowserItem.h"
 #import "OverlayWindowView.h"
+#import <Carbon/Carbon.h>
 
 @implementation OverlayWindow {
 

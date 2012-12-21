@@ -218,7 +218,7 @@
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView" ref="109490800"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
-							<string key="NSClassName">ZeroKitHotKeyRecorder</string>
+							<string key="NSClassName">MASShortcutView</string>
 						</object>
 					</array>
 					<string key="NSFrameSize">{500, 250}</string>
@@ -433,6 +433,14 @@
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
+					<string key="className">MASShortcutView</string>
+					<string key="superclassName">NSView</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/MASShortcutView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
 					<string key="className">PrefsController</string>
 					<string key="superclassName">NSWindowController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
@@ -451,7 +459,7 @@
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="autoHideIcon">NSButton</string>
-						<string key="hotkeyRecorder">ZeroKitHotKeyRecorder</string>
+						<string key="hotkeyRecorder">MASShortcutView</string>
 						<string key="startAtLogin">NSButton</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -461,7 +469,7 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="hotkeyRecorder">
 							<string key="name">hotkeyRecorder</string>
-							<string key="candidateClassName">ZeroKitHotKeyRecorder</string>
+							<string key="candidateClassName">MASShortcutView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="startAtLogin">
 							<string key="name">startAtLogin</string>
@@ -471,14 +479,6 @@
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
 						<string key="majorKey">IBProjectSource</string>
 						<string key="minorKey">./Classes/PrefsController.h</string>
-					</object>
-				</object>
-				<object class="IBPartialClassDescription">
-					<string key="className">ZeroKitHotKeyRecorder</string>
-					<string key="superclassName">NSControl</string>
-					<object class="IBClassDescriptionSource" key="sourceIdentifier">
-						<string key="majorKey">IBProjectSource</string>
-						<string key="minorKey">./Classes/ZeroKitHotKeyRecorder.h</string>
 					</object>
 				</object>
 			</array>

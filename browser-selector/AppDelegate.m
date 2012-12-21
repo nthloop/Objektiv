@@ -10,12 +10,13 @@
 #import "BrowserItem.h"
 #import "Constants.h"
 #import "PrefsController.h"
-#import "HotkeyManager.h"
 #import "NSWorkspace+Utils.h"
 #import "ImageUtils.h"
 #import "BrowsersMenu.h"
 #import "OverlayWindow.h"
-#import <ZeroKit/ZeroKitUtilities.h>
+#import "ZeroKitUtilities.h"
+#import <MASShortcut.h>
+#import <MASShortcut+UserDefaults.h>
 
 @interface AppDelegate()
 {
@@ -24,7 +25,6 @@
     BrowsersMenu *browserMenu;
     NSUserDefaults *defaults;
     NSWorkspace *sharedWorkspace;
-    HotkeyManager *hotkeyManager;
     NSArray *blacklist;
     OverlayWindow *overlayWindow;
 }
@@ -48,8 +48,6 @@
 
     browserMenu = [[BrowsersMenu alloc] init];
 
-    hotkeyManager = [HotkeyManager sharedInstance];
-
     NSLog(@"Setting defaults");
     [ZeroKitUtilities registerDefaultsForBundle:[NSBundle mainBundle]];
     defaults = [NSUserDefaults standardUserDefaults];
@@ -63,7 +61,10 @@
                   options:NSKeyValueObservingOptionNew
                   context:NULL];
 
-    if ([defaults boolForKey:PrefAutoHideIcon]) [hotkeyManager registerStoredHotkey];
+    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:PrefHotkey handler:^{
+        [self hotkeyTriggered];
+    }];
+
     [self showAndHideIcon:nil];
 
     overlayWindow = [[OverlayWindow alloc] init];
@@ -85,20 +86,11 @@
                        change:(NSDictionary *)change
                       context:(void *)context
 {
-
     if ([keyPath isEqualToString:PrefAutoHideIcon])
     {
-        if ([change valueForKey:@"new"])
-        {
-            [hotkeyManager registerStoredHotkey];
-        } else
-        {
-            [hotkeyManager clearHotkey];
-        }
-
         [self showAndHideIcon:nil];
     }
-    else if ([keyPath isEqualToString:PrefStartAtLogin])
+    if ([keyPath isEqualToString:PrefStartAtLogin])
     {
         [self toggleLoginItem];
     }

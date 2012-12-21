@@ -4,16 +4,12 @@
 <dict>
 	<key>BrowserSelectorStartAtLogin</key>
 	<false/>
-	<key>BrowserSelectorHotkeyCode</key>
-	<integer>0</integer>
-	<key>BrowserSelectorHotkeyModifiers</key>
-	<integer>0</integer>
 	<key>BrowserSelectorAutoHideIcon</key>
 	<false/>
 	<key>BrowserSelectorBlacklist</key>
 	<array>
-	  <string>com.googlecode.iterm</string>
-	  <string>com.fluidapp</string>
-    </array>
+		<string>com.googlecode.iterm</string>
+		<string>com.fluidapp</string>
+	</array>
 </dict>
 </plist>
