@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		85E05F32EFA24E52AA562CC4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F7216227D724BE9A9EBC6DC /* libPods.a */; };
 		BC084585168484D500619E60 /* ZeroKitUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = BC084584168484D500619E60 /* ZeroKitUtilities.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BC084589168498D000619E60 /* PFMoveApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = BC084588168498D000619E60 /* PFMoveApplication.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BC08458D1684998600619E60 /* NSString+SymlinksAndAliases.m in Sources */ = {isa = PBXBuildFile; fileRef = BC08458B1684998600619E60 /* NSString+SymlinksAndAliases.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		BC08458F16849A7200619E60 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC08458E16849A7200619E60 /* Security.framework */; };
+		BC08459216849D2C00619E60 /* MoveApplication.strings in Resources */ = {isa = PBXBuildFile; fileRef = BC08459016849D2C00619E60 /* MoveApplication.strings */; };
 		BC502C74166F6F0B0075E4D8 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = BC502C73166F6F0B0075E4D8 /* MainMenu.nib */; };
 		BC605B0A165B71D500933942 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC605B08165B71D500933942 /* Defaults.plist */; };
 		BC68B2D81653CF92009465F5 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC68B2D71653CF92009465F5 /* Carbon.framework */; };
@@ -62,10 +66,15 @@
 		8F7216227D724BE9A9EBC6DC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC084583168484D500619E60 /* ZeroKitUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZeroKitUtilities.h; path = zerokit/ZeroKitUtilities.h; sourceTree = "<group>"; };
 		BC084584168484D500619E60 /* ZeroKitUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZeroKitUtilities.m; path = zerokit/ZeroKitUtilities.m; sourceTree = "<group>"; };
+		BC084587168498D000619E60 /* PFMoveApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PFMoveApplication.h; path = potionfactory/PFMoveApplication.h; sourceTree = "<group>"; };
+		BC084588168498D000619E60 /* PFMoveApplication.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PFMoveApplication.m; path = potionfactory/PFMoveApplication.m; sourceTree = "<group>"; };
+		BC08458B1684998600619E60 /* NSString+SymlinksAndAliases.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+SymlinksAndAliases.m"; path = "potionfactory/NSString+SymlinksAndAliases.m"; sourceTree = "<group>"; };
+		BC08458C1684998600619E60 /* NSString+SymlinksAndAliases.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+SymlinksAndAliases.h"; path = "potionfactory/NSString+SymlinksAndAliases.h"; sourceTree = "<group>"; };
+		BC08458E16849A7200619E60 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		BC08459116849D2C00619E60 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MoveApplication.strings; sourceTree = "<group>"; };
 		BC502C73166F6F0B0075E4D8 /* MainMenu.nib */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = MainMenu.nib; sourceTree = "<group>"; };
 		BC605B09165B71D500933942 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = en; path = en.lproj/Defaults.plist; sourceTree = "<group>"; };
 		BC68B2D71653CF92009465F5 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
-		BC751356167F393C00A970E4 /* ZeroKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = ZeroKit.framework; sourceTree = "<group>"; };
 		BC7F331E1642A63700A2DAFD /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		BC8DDBC21670DB3D0098F508 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = en; path = en.lproj/Blacklist.plist; sourceTree = "<group>"; };
 		BC9736A516806798002304FA /* BrowsersMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowsersMenu.h; sourceTree = "<group>"; };
@@ -110,6 +119,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC08458F16849A7200619E60 /* Security.framework in Frameworks */,
 				BCBC14FB167F0E06007D12E3 /* QuartzCore.framework in Frameworks */,
 				BC68B2D81653CF92009465F5 /* Carbon.framework in Frameworks */,
 				BCB54DE3164291F8003A59DF /* Cocoa.framework in Frameworks */,
@@ -138,9 +148,21 @@
 			name = zerokit;
 			sourceTree = "<group>";
 		};
+		BC08458A168498D600619E60 /* potionfactory */ = {
+			isa = PBXGroup;
+			children = (
+				BC08458B1684998600619E60 /* NSString+SymlinksAndAliases.m */,
+				BC08458C1684998600619E60 /* NSString+SymlinksAndAliases.h */,
+				BC084587168498D000619E60 /* PFMoveApplication.h */,
+				BC084588168498D000619E60 /* PFMoveApplication.m */,
+			);
+			name = potionfactory;
+			sourceTree = "<group>";
+		};
 		BCB54DD3164291F8003A59DF = {
 			isa = PBXGroup;
 			children = (
+				BC08458E16849A7200619E60 /* Security.framework */,
 				BCB54DE8164291F8003A59DF /* browser-selector */,
 				BCB54E05164291F8003A59DF /* browser-selectorTests */,
 				BCB54DE1164291F8003A59DF /* Frameworks */,
@@ -161,7 +183,6 @@
 		BCB54DE1164291F8003A59DF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BC751356167F393C00A970E4 /* ZeroKit.framework */,
 				BCBC14FA167F0E06007D12E3 /* QuartzCore.framework */,
 				BC68B2D71653CF92009465F5 /* Carbon.framework */,
 				BCB54DE2164291F8003A59DF /* Cocoa.framework */,
@@ -185,6 +206,7 @@
 		BCB54DE8164291F8003A59DF /* browser-selector */ = {
 			isa = PBXGroup;
 			children = (
+				BC08458A168498D600619E60 /* potionfactory */,
 				BC0845861684856100619E60 /* zerokit */,
 				BCB54E1F1642981C003A59DF /* mozilla */,
 				BCB54DE9164291F8003A59DF /* Supporting Files */,
@@ -211,6 +233,7 @@
 		BCB54DE9164291F8003A59DF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BC08459016849D2C00619E60 /* MoveApplication.strings */,
 				BC9736A81680A8D0002304FA /* Localizable.strings */,
 				BC502C73166F6F0B0075E4D8 /* MainMenu.nib */,
 				BCB54DEA164291F8003A59DF /* browser-selector-Info.plist */,
@@ -333,6 +356,7 @@
 				BC502C74166F6F0B0075E4D8 /* MainMenu.nib in Resources */,
 				BC8DDBC31670DB3D0098F508 /* Blacklist.plist in Resources */,
 				BCE2D47C1681B36600F4B40D /* Localizable.strings in Resources */,
+				BC08459216849D2C00619E60 /* MoveApplication.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -391,6 +415,8 @@
 				BCE2D47F1681B76200F4B40D /* OverlayWindow.m in Sources */,
 				BCE2D4861681CD4300F4B40D /* OverlayWindowView.m in Sources */,
 				BC084585168484D500619E60 /* ZeroKitUtilities.m in Sources */,
+				BC084589168498D000619E60 /* PFMoveApplication.m in Sources */,
+				BC08458D1684998600619E60 /* NSString+SymlinksAndAliases.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -413,6 +439,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		BC08459016849D2C00619E60 /* MoveApplication.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				BC08459116849D2C00619E60 /* en */,
+			);
+			name = MoveApplication.strings;
+			sourceTree = "<group>";
+		};
 		BC605B08165B71D500933942 /* Defaults.plist */ = {
 			isa = PBXVariantGroup;
 			children = (

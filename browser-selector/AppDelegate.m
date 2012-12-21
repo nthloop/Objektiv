@@ -17,6 +17,7 @@
 #import "ZeroKitUtilities.h"
 #import <MASShortcut.h>
 #import <MASShortcut+UserDefaults.h>
+#import "PFMoveApplication.h"
 
 @interface AppDelegate()
 {
@@ -38,6 +39,9 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
+
+    PFMoveToApplicationsFolderIfNecessary();
+
     NSLog(@"applicationDidFinishLaunching");
 
     self.prefsController = [[PrefsController alloc] initWithWindowNibName:@"PrefsController"];
