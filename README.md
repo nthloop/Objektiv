@@ -8,19 +8,20 @@ webdevs who need to run a lot of different browsers while testing.
 Building & Running
 ----------------------------------------
 
-browser-selector depends on ZeroKit, which is defined as a git
-submodule. After cloning this repository, run:
+browser-selector requires [CocoaPods][] in order to be built.
 
-    $ git submodule update --init
+After cloning this repository, run:
 
-in order to grab it. Next, you can just open the main
-`browser-selector.xcodeproj` in XCode,  and you're set.
+    $ pod install
+
+in order to grab dependencies. Also, make sure that you open
+`browser-selector.xcworkspace`, not `browser-selector.xcodeproj`.
 
 Credits
 ----------------------------------------
 
   a. ZeroKit by eczarny (MIT Licensed)
-  b. DDHotKey by Dave DeLong
+  b. MASShortcut by Vadim Shpakovski
   c. NSWorkspace+Utils from Mozilla's Camino project (Mozilla Public
       License)
 
@@ -31,3 +32,4 @@ Copyright 2012, [nth loop][]. browser-selector is available under the
 MIT License.
 
   [nth loop]: http://nthloop.com
+  [CocoaPods]: http://cocoapods.org/
