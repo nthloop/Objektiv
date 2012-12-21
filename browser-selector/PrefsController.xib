@@ -43,7 +43,7 @@
 				<int key="NSWindowBacking">2</int>
 				<string key="NSWindowRect">{{196, 240}, {500, 250}}</string>
 				<int key="NSWTFlags">544735232</int>
-				<string key="NSWindowTitle">Browser Selector Preferences</string>
+				<string key="NSWindowTitle">Objektiv Preferences</string>
 				<string key="NSWindowClass">NSWindow</string>
 				<nil key="NSViewClass"/>
 				<nil key="NSUserInterfaceItemIdentifier"/>
@@ -62,7 +62,7 @@
 							<object class="NSButtonCell" key="NSCell" id="94718970">
 								<int key="NSCellFlags">67108864</int>
 								<int key="NSCellFlags2">0</int>
-								<string key="NSContents">Launch Browser Selector on Login</string>
+								<string key="NSContents">Launch Objektiv on Login</string>
 								<object class="NSFont" key="NSSupport" id="99084793">
 									<string key="NSName">LucidaGrande</string>
 									<double key="NSSize">13</double>
@@ -116,7 +116,7 @@
 						<object class="NSTextField" id="1001006009">
 							<reference key="NSNextResponder" ref="1006"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{33, 82}, {426, 58}}</string>
+							<string key="NSFrame">{{33, 36}, {426, 104}}</string>
 							<reference key="NSSuperview" ref="1006"/>
 							<reference key="NSWindow"/>
 							<reference key="NSNextKeyView"/>
@@ -126,7 +126,10 @@
 							<object class="NSTextFieldCell" key="NSCell" id="813486149">
 								<int key="NSCellFlags">67108864</int>
 								<int key="NSCellFlags2">272629760</int>
-								<string key="NSContents">You can temporarily show the Browser Selector icon by launching the app again, or by invoking this keyboard shortcut. The icon will disappear after 10 seconds.</string>
+								<string type="base64-UTF8" key="NSContents">QnkgZGVmYXVsdCwgT2JqZWt0aXYgcmVzaWRlcyBpbiB5b3VyIG1lbnUgYmFyLgpZb3UgY2FuIGNob29z
+ZSB0byBoaWRlIHRoaXMgaWNvbiAod2hpY2ggd2lsbCBjb21lIGJhY2sgaWYgeW91IGxhdW5jaCB0aGUg
+YXBwbGljYXRpb24gYWdhaW4pLCBvciB1c2UgYSBnbG9iYWwgaG90a2V5IHRvIHN3aXRjaCBicm93c2Vy
+cyB3aXRoIGFuIG92ZXJsYXkgd2luZG93Lg</string>
 								<object class="NSFont" key="NSSupport">
 									<string key="NSName">LucidaGrande</string>
 									<double key="NSSize">13</double>
@@ -168,7 +171,7 @@
 							<object class="NSTextFieldCell" key="NSCell" id="743894541">
 								<int key="NSCellFlags">68157504</int>
 								<int key="NSCellFlags2">272630784</int>
-								<string key="NSContents">Optional Hotkey to show the icon</string>
+								<string key="NSContents">Optional Hotkey to show Overlay</string>
 								<reference key="NSSupport" ref="99084793"/>
 								<string key="NSCellIdentifier">_NS:1535</string>
 								<reference key="NSControlView" ref="109490800"/>

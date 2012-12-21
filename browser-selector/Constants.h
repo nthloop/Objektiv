@@ -8,8 +8,8 @@
 
 #include <Foundation/Foundation.h>
 
-#define AppName @"Browser Selector"
-#define AppDescription @"Browser Selector is a simple menu-bar app that allows you to quickly toggle your default browser"
+#define AppName @"Objektiv"
+#define AppDescription @"Objektiv is a simple menu-bar app that allows you to quickly toggle your default browser";
 
 #define PrefStartAtLogin @"BrowserSelectorStartAtLogin"
 #define PrefAutoHideIcon @"BrowserSelectorAutoHideIcon"

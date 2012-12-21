@@ -71,7 +71,7 @@
 		BC08458B1684998600619E60 /* NSString+SymlinksAndAliases.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+SymlinksAndAliases.m"; path = "potionfactory/NSString+SymlinksAndAliases.m"; sourceTree = "<group>"; };
 		BC08458C1684998600619E60 /* NSString+SymlinksAndAliases.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+SymlinksAndAliases.h"; path = "potionfactory/NSString+SymlinksAndAliases.h"; sourceTree = "<group>"; };
 		BC08458E16849A7200619E60 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		BC08459116849D2C00619E60 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MoveApplication.strings; sourceTree = "<group>"; };
+		BC08459116849D2C00619E60 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MoveApplication.strings; sourceTree = "<group>"; };
 		BC502C73166F6F0B0075E4D8 /* MainMenu.nib */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = MainMenu.nib; sourceTree = "<group>"; };
 		BC605B09165B71D500933942 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = en; path = en.lproj/Defaults.plist; sourceTree = "<group>"; };
 		BC68B2D71653CF92009465F5 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
@@ -85,7 +85,7 @@
 		BC9C5495165E57A80098709F /* PrefsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefsController.h; sourceTree = "<group>"; };
 		BC9C5496165E57A80098709F /* PrefsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PrefsController.m; sourceTree = "<group>"; };
 		BC9C5497165E57A80098709F /* PrefsController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrefsController.xib; sourceTree = "<group>"; };
-		BCB54DDE164291F8003A59DF /* browser-selector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "browser-selector.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCB54DDE164291F8003A59DF /* Objektiv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Objektiv.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCB54DE2164291F8003A59DF /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		BCB54DE5164291F8003A59DF /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		BCB54DE6164291F8003A59DF /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -159,10 +159,32 @@
 			name = potionfactory;
 			sourceTree = "<group>";
 		};
+		BC0845931684A1CA00619E60 /* source */ = {
+			isa = PBXGroup;
+			children = (
+				BC7F331E1642A63700A2DAFD /* Constants.h */,
+				BC9736AE1680ACC1002304FA /* BrowserItem.h */,
+				BC9736AF1680ACC1002304FA /* BrowserItem.m */,
+				BCB54DF4164291F8003A59DF /* AppDelegate.h */,
+				BCB54DF5164291F8003A59DF /* AppDelegate.m */,
+				BCFF40CB167F3D8D00F9B8C5 /* ImageUtils.h */,
+				BCFF40CC167F3D8D00F9B8C5 /* ImageUtils.m */,
+				BC9736A516806798002304FA /* BrowsersMenu.h */,
+				BC9736A616806798002304FA /* BrowsersMenu.m */,
+				BC9C5497165E57A80098709F /* PrefsController.xib */,
+				BC9C5495165E57A80098709F /* PrefsController.h */,
+				BC9C5496165E57A80098709F /* PrefsController.m */,
+				BCE2D47D1681B76200F4B40D /* OverlayWindow.h */,
+				BCE2D47E1681B76200F4B40D /* OverlayWindow.m */,
+				BCE2D4841681CD4300F4B40D /* OverlayWindowView.h */,
+				BCE2D4851681CD4300F4B40D /* OverlayWindowView.m */,
+			);
+			name = source;
+			sourceTree = "<group>";
+		};
 		BCB54DD3164291F8003A59DF = {
 			isa = PBXGroup;
 			children = (
-				BC08458E16849A7200619E60 /* Security.framework */,
 				BCB54DE8164291F8003A59DF /* browser-selector */,
 				BCB54E05164291F8003A59DF /* browser-selectorTests */,
 				BCB54DE1164291F8003A59DF /* Frameworks */,
@@ -174,7 +196,7 @@
 		BCB54DDF164291F8003A59DF /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BCB54DDE164291F8003A59DF /* browser-selector.app */,
+				BCB54DDE164291F8003A59DF /* Objektiv.app */,
 				BCB54DFF164291F8003A59DF /* browser-selectorTests.octest */,
 			);
 			name = Products;
@@ -183,6 +205,7 @@
 		BCB54DE1164291F8003A59DF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BC08458E16849A7200619E60 /* Security.framework */,
 				BCBC14FA167F0E06007D12E3 /* QuartzCore.framework */,
 				BC68B2D71653CF92009465F5 /* Carbon.framework */,
 				BCB54DE2164291F8003A59DF /* Cocoa.framework */,
@@ -210,22 +233,7 @@
 				BC0845861684856100619E60 /* zerokit */,
 				BCB54E1F1642981C003A59DF /* mozilla */,
 				BCB54DE9164291F8003A59DF /* Supporting Files */,
-				BC7F331E1642A63700A2DAFD /* Constants.h */,
-				BC9736AE1680ACC1002304FA /* BrowserItem.h */,
-				BC9736AF1680ACC1002304FA /* BrowserItem.m */,
-				BCB54DF4164291F8003A59DF /* AppDelegate.h */,
-				BCB54DF5164291F8003A59DF /* AppDelegate.m */,
-				BCFF40CB167F3D8D00F9B8C5 /* ImageUtils.h */,
-				BCFF40CC167F3D8D00F9B8C5 /* ImageUtils.m */,
-				BC9736A516806798002304FA /* BrowsersMenu.h */,
-				BC9736A616806798002304FA /* BrowsersMenu.m */,
-				BC9C5497165E57A80098709F /* PrefsController.xib */,
-				BC9C5495165E57A80098709F /* PrefsController.h */,
-				BC9C5496165E57A80098709F /* PrefsController.m */,
-				BCE2D47D1681B76200F4B40D /* OverlayWindow.h */,
-				BCE2D47E1681B76200F4B40D /* OverlayWindow.m */,
-				BCE2D4841681CD4300F4B40D /* OverlayWindowView.h */,
-				BCE2D4851681CD4300F4B40D /* OverlayWindowView.m */,
+				BC0845931684A1CA00619E60 /* source */,
 			);
 			path = "browser-selector";
 			sourceTree = "<group>";
@@ -294,7 +302,7 @@
 			);
 			name = "browser-selector";
 			productName = "browser-selector";
-			productReference = BCB54DDE164291F8003A59DF /* browser-selector.app */;
+			productReference = BCB54DDE164291F8003A59DF /* Objektiv.app */;
 			productType = "com.apple.product-type.application";
 		};
 		BCB54DFE164291F8003A59DF /* browser-selectorTests */ = {
@@ -560,7 +568,7 @@
 				GCC_PREFIX_HEADER = "browser-selector/browser-selector-Prefix.pch";
 				INFOPLIST_FILE = "browser-selector/browser-selector-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Objektiv;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				WRAPPER_EXTENSION = app;
 			};
@@ -575,7 +583,7 @@
 				GCC_PREFIX_HEADER = "browser-selector/browser-selector-Prefix.pch";
 				INFOPLIST_FILE = "browser-selector/browser-selector-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Objektiv;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				WRAPPER_EXTENSION = app;
 			};
