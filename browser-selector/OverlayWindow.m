@@ -60,8 +60,14 @@
     [self setContentSize:contentSize];
 
     [self center];
-    [contentView setNeedsUpdateConstraints:YES];
-    [contentView setNeedsDisplay:YES];
+
+    self.alphaValue = 0;
+
+    [NSAnimationContext beginGrouping];
+    [[NSAnimationContext currentContext] setTimingFunction:
+     [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut]];
+    [self.animator setAlphaValue:1];
+    [NSAnimationContext endGrouping];
 }
 
 -(void)windowDidResignKey:(NSNotification *)notification
