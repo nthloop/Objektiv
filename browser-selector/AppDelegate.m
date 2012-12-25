@@ -106,6 +106,7 @@
 {
     NSFileManager *defaultFileManager = [NSFileManager defaultManager];
     NSArray *identifiers = [sharedWorkspace installedBrowserIdentifiers];
+    NSString *defaultBrowser = [sharedWorkspace defaultBrowserIdentifier];
     NSMutableArray *allBrowsers = [[NSMutableArray alloc] initWithCapacity:identifiers.count];
 
     for (int i = 0; i < identifiers.count; i++) {
@@ -130,6 +131,7 @@
 
         BrowserItem *item = [[BrowserItem alloc] initWithApplicationId:browser name:browserName path:browserPath];
         item.blacklisted = [self isBlacklisted:browser];
+        item.isDefault = [browser isEqualToString:defaultBrowser];
         [allBrowsers addObject:item];
     }
 

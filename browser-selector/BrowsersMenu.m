@@ -36,7 +36,6 @@
     [self removeAllItems];
 
     NSArray *browsers = [appDelegate browsers];
-    NSString *defaultBrowser = [sharedWorkspace defaultBrowserIdentifier];
     NSMenu *hiddenMenu = [[NSMenu alloc] init];
 
     NSLog(@"Browsers list: %@", browsers);
@@ -60,7 +59,7 @@
 
         NSMenuItem *item = [self menuItemForBrowser:browser withHotkey:[NSString stringWithFormat:@"%d", count]];
         item.action = @selector(selectABrowser:);
-        item.state = [browser.identifier isEqualToString:defaultBrowser];
+        item.state = browser.isDefault;
 
         [self addItem:item];
 

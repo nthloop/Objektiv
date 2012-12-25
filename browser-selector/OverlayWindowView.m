@@ -146,12 +146,19 @@ const NSUInteger BOX_PADDING = 16;
 
     NSImage *image = [[ImageUtils fullSizeIconForAppId:browser.identifier
                                              withSize:NSMakeSize(ICON_SIZE, ICON_SIZE)] copy];
-    if (position > 9) return image;
+
+    if (browser.isDefault)
+    {
+        [image lockFocus];
+        NSImage *selectionImage = [NSImage imageNamed:NSImageNameMenuOnStateTemplate];
+        [selectionImage drawAtPoint:CGPointZero fromRect:CGRectZero operation:NSCompositeHighlight fraction:1];
+        [image unlockFocus];
+    }
+
+    if (position > 9 || browser.isDefault) return image;
 
     NSString *badge = [NSString stringWithFormat:@"%ld", position];
-
     [image lockFocus];
-
 
     NSRect rect = NSMakeRect(0, 0, 20, 20);
     NSBezierPath *path = [NSBezierPath bezierPathWithRoundedRect:rect xRadius:4 yRadius:4];
