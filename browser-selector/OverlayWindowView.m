@@ -151,6 +151,7 @@ const NSUInteger BOX_PADDING = 16;
     {
         [image lockFocus];
         NSImage *selectionImage = [NSImage imageNamed:NSImageNameMenuOnStateTemplate];
+        selectionImage = [ImageUtils tintInputImage:selectionImage toColor:self.strokeColor];
         [selectionImage drawAtPoint:CGPointZero fromRect:CGRectZero operation:NSCompositeHighlight fraction:1];
         [image unlockFocus];
     }

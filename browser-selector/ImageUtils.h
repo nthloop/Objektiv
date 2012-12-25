@@ -17,5 +17,6 @@
 + (NSImage*) menuIconForAppId: (NSString*) applicationIdentifier;
 + (NSImage*) fullSizeIconForAppId: (NSString*) applicationIdentifier;
 + (NSImage*) fullSizeIconForAppId: (NSString*) applicationIdentifier withSize:(NSSize)size;
++ (NSImage*) tintInputImage:(NSImage*)inputImage toColor:(NSColor*)outputColor;
 
 @end

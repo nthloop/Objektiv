@@ -66,6 +66,22 @@ static ImageUtils *_sharedInstance = nil;
     return image;
 }
 
++ (NSImage*) tintInputImage:(NSImage*)inputImage toColor:(NSColor*)outputColor
+{
+    CIColor *ciColor = [CIColor colorWithCGColor:[outputColor CGColor]];
+    CIImage *ciColorImage = [CIImage imageWithColor:(CIColor*)ciColor];
+    CIImage *ciInputImage = [ImageUtils ciImageFromNSImate:inputImage];
+
+    CIFilter *filter = [CIFilter filterWithName:@"CISourceInCompositing"];
+    [filter setValue:ciColorImage forKey:@"inputImage"];
+    [filter setValue:ciInputImage forKey:@"inputBackgroundImage"];
+
+    CIImage *image = [filter valueForKey:@"outputImage"];
+    NSImage *output = [ImageUtils imageFromCIImage:image];
+
+    return output;
+}
+
 # pragma mark instance methods
 
 - (NSImage*) statusBarIconForAppId: (NSString*) applicationIdentifier
@@ -116,12 +132,22 @@ static ImageUtils *_sharedInstance = nil;
     return icon;
 }
 
--(NSImage *) imageFromCIImage:(CIImage *)ciImage
++ (NSImage *) imageFromCIImage:(CIImage *)ciImage
 {
     NSSize size = ciImage.extent.size;
     NSImage *image = [[NSImage alloc] initWithSize:NSMakeSize(size.width, size.height)];
     [image addRepresentation:[NSCIImageRep imageRepWithCIImage:ciImage]];
     return image;
+}
+
++ (CIImage*) ciImageFromNSImate:(NSImage *)image
+{
+    NSSize size = [image size];
+    [image lockFocus];
+    NSRect imageRect = NSMakeRect(0, 0, size.width, size.height);
+    NSBitmapImageRep* rep = [[NSBitmapImageRep alloc] initWithFocusedViewRect: imageRect];
+    [image unlockFocus];
+    return [[CIImage alloc] initWithBitmapImageRep:rep];
 }
 
 - (NSImage*) destaurateIcon:(NSImage*)original
@@ -140,7 +166,7 @@ static ImageUtils *_sharedInstance = nil;
     [filter setValue:[NSNumber numberWithInt:0] forKey:@"inputSaturation"];
     [filter setValue:[NSNumber numberWithInt:1] forKey:@"inputContrast"];
 
-    return [self imageFromCIImage:[filter valueForKey:@"outputImage"]];
+    return [ImageUtils imageFromCIImage:[filter valueForKey:@"outputImage"]];
 }
 
 
