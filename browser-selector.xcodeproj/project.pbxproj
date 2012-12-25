@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		307D52181689B493003D6C8C /* objektiv-overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 307D52161689B493003D6C8C /* objektiv-overlay.png */; };
 		85E05F32EFA24E52AA562CC4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F7216227D724BE9A9EBC6DC /* libPods.a */; };
 		BC084585168484D500619E60 /* ZeroKitUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = BC084584168484D500619E60 /* ZeroKitUtilities.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BC084589168498D000619E60 /* PFMoveApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = BC084588168498D000619E60 /* PFMoveApplication.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -62,6 +63,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		307D52171689B493003D6C8C /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/objektiv-overlay.png"; sourceTree = "<group>"; };
 		3DAAA205D2EE40DDA76D0F72 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
 		8F7216227D724BE9A9EBC6DC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		BC084583168484D500619E60 /* ZeroKitUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZeroKitUtilities.h; path = zerokit/ZeroKitUtilities.h; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 		BCB54DE9164291F8003A59DF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				307D52161689B493003D6C8C /* objektiv-overlay.png */,
 				BC08459016849D2C00619E60 /* MoveApplication.strings */,
 				BC9736A81680A8D0002304FA /* Localizable.strings */,
 				BC502C73166F6F0B0075E4D8 /* MainMenu.nib */,
@@ -365,6 +368,7 @@
 				BC8DDBC31670DB3D0098F508 /* Blacklist.plist in Resources */,
 				BCE2D47C1681B36600F4B40D /* Localizable.strings in Resources */,
 				BC08459216849D2C00619E60 /* MoveApplication.strings in Resources */,
+				307D52181689B493003D6C8C /* objektiv-overlay.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -447,6 +451,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		307D52161689B493003D6C8C /* objektiv-overlay.png */ = {
+			isa = PBXVariantGroup;
+			children = (
+				307D52171689B493003D6C8C /* en */,
+			);
+			name = "objektiv-overlay.png";
+			sourceTree = "<group>";
+		};
 		BC08459016849D2C00619E60 /* MoveApplication.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
