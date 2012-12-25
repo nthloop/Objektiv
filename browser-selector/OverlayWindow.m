@@ -52,7 +52,7 @@
 -(void)windowDidBecomeKey:(NSNotification *)notification
 {
     NSLog(@"became key");
-    browsers = appDelegate.browsers;
+    browsers = appDelegate.validBrowsers;
 
     OverlayWindowView *contentView = [[OverlayWindowView alloc] init];
     [self setContentView:contentView];

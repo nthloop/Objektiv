@@ -136,6 +136,15 @@
     return [allBrowsers sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]];
 }
 
+- (NSArray*) validBrowsers
+{
+    return [self.browsers filteredArrayUsingPredicate:
+                [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+        BrowserItem *item = evaluatedObject;
+        return !item.blacklisted;
+    }]];
+}
+
 - (void) selectABrowser:sender
 {
     NSString *newDefaultBrowser = [sender respondsToSelector:@selector(representedObject)]

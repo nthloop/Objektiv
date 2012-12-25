@@ -89,12 +89,6 @@ const NSUInteger BOX_PADDING = 16;
 // The first 9 will have hotkeys associated with them (numbers 1-9).
 - (NSSize)addBrowsers:(NSArray*)browsers
 {
-    browsers = [browsers filteredArrayUsingPredicate:
-                [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
-                    BrowserItem *item = evaluatedObject;
-                    return !item.blacklisted;
-                }]];
-
     NSRect itemRect = NSMakeRect(BOX_PADDING, BOX_PADDING, ICON_SIZE + H_PADDING, ICON_SIZE + TEXT_HEIGHT);
     NSRect buttonRect = CGRectInset(itemRect, H_PADDING / 2, 0);
     NSUInteger width = itemRect.size.width, height = itemRect.size.height;
