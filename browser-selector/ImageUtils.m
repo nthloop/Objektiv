@@ -12,6 +12,7 @@
 
 #import "ImageUtils.h"
 #import "Constants.h"
+#import <AppKit/AppKit.h>
 
 @implementation ImageUtils
 {
@@ -72,7 +73,7 @@ static ImageUtils *_sharedInstance = nil;
 // Used to add the 'checkmark' on the selected browser's icon
 + (NSImage*) tintInputImage:(NSImage*)inputImage toColor:(NSColor*)outputColor
 {
-    CIColor *ciColor = [CIColor colorWithCGColor:[outputColor CGColor]];
+    CIColor *ciColor = [[CIColor alloc] initWithColor:outputColor];
     CIImage *ciColorImage = [CIImage imageWithColor:(CIColor*)ciColor];
     CIImage *ciInputImage = [ImageUtils ciImageFromNSImate:inputImage];
 
