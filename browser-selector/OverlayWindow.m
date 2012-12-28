@@ -85,17 +85,6 @@
         [self orderOut:nil];
         [self close];
     }
-
-    if (theEvent.keyCode >= kVK_ANSI_1 && theEvent.keyCode <= kVK_ANSI_9)
-    {
-        NSUInteger offset = theEvent.keyCode - kVK_ANSI_1;
-        if (offset < browsers.count)
-        {
-            BrowserItem *item = browsers[offset];
-            [appDelegate selectABrowser:item.identifier];
-            [self orderOut:nil];
-        }
-    }
     else
     {
         [super keyDown:theEvent];

@@ -122,6 +122,7 @@ const NSUInteger BOX_PADDING = 16;
     NSButton *button = [[NSButton alloc] initWithFrame:frame];
 
     button.image = [self imageForBrowser:browser withBadge:position + 1];
+    button.keyEquivalent = [NSString stringWithFormat:@"%ld", position + 1];
     button.attributedTitle = [self titleForButton:browser.name inColor:self.strokeColor];
     button.target = self;
     button.action = @selector(buttonClicked:);
