@@ -96,6 +96,10 @@
             [self orderOut:nil];
         }
     }
+    else
+    {
+        [super keyDown:theEvent];
+    }
 }
 
 @end

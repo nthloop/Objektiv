@@ -11,6 +11,7 @@
 //
 
 #import "ImageUtils.h"
+#import "Constants.h"
 
 @implementation ImageUtils
 {
@@ -18,7 +19,7 @@
     NSCache *cache;
 }
 
-
+// Singleton instance is required to hold the NSCache instance
 static ImageUtils *_sharedInstance = nil;
 
 # pragma mark initialization
@@ -45,7 +46,8 @@ static ImageUtils *_sharedInstance = nil;
 
 + (NSImage*) statusBarIconForAppId: (NSString*) applicationIdentifier
 {
-    return [[ImageUtils sharedInstance] statusBarIconForAppId:applicationIdentifier];
+    // Use [self statusBarIconForAppId] if we want to revert to monochrome icons
+    return [[ImageUtils sharedInstance] menuIconForAppId:applicationIdentifier];
 }
 
 + (NSImage*) menuIconForAppId: (NSString*) applicationIdentifier
@@ -66,6 +68,8 @@ static ImageUtils *_sharedInstance = nil;
     return image;
 }
 
+// Convert the B&W input image into the output tint
+// Used to add the 'checkmark' on the selected browser's icon
 + (NSImage*) tintInputImage:(NSImage*)inputImage toColor:(NSColor*)outputColor
 {
     CIColor *ciColor = [CIColor colorWithCGColor:[outputColor CGColor]];
@@ -90,7 +94,8 @@ static ImageUtils *_sharedInstance = nil;
     NSImage *icon = [cache objectForKey:key];
     if (icon) return icon;
     
-    icon = [self resizeIcon:[self destaurateIcon:[self iconForAppIdentifier:applicationIdentifier]]];
+    icon = [ImageUtils resizeIcon:[ImageUtils destaurateIcon:
+                                   [self iconForAppIdentifier:applicationIdentifier]]];
     [cache setObject:icon forKey:key];
     return icon;
 }
@@ -102,18 +107,18 @@ static ImageUtils *_sharedInstance = nil;
     NSImage *icon = [cache objectForKey:key];
     if (icon) return icon;
 
-    icon = [self resizeIcon:[self iconForAppIdentifier:applicationIdentifier]];
+    icon = [ImageUtils resizeIcon:[self iconForAppIdentifier:applicationIdentifier]];
     [cache setObject:icon forKey:key];
     return icon;
 }
 
 # pragma mark internal utility methods
 
-- (NSImage*) resizeIcon: (NSImage*) icon
++ (NSImage*) resizeIcon: (NSImage*) icon
 {
     icon = [icon copy];
     icon.scalesWhenResized = YES;
-    icon.size = CGSizeMake(16, 16);
+    icon.size = CGSizeMake(StatusBarIconSize, StatusBarIconSize);
     return icon;
 }
 
@@ -150,7 +155,7 @@ static ImageUtils *_sharedInstance = nil;
     return [[CIImage alloc] initWithBitmapImageRep:rep];
 }
 
-- (NSImage*) destaurateIcon:(NSImage*)original
++ (NSImage*) destaurateIcon:(NSImage*)original
 {
     NSImage *icon = [original copy];
     NSSize size = [icon size];

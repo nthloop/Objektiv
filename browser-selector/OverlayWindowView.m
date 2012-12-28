@@ -124,19 +124,21 @@ const NSUInteger BOX_PADDING = 16;
     button.image = [self imageForBrowser:browser withBadge:position + 1];
     button.attributedTitle = [self titleForButton:browser.name inColor:self.strokeColor];
     button.target = self;
-    button.focusRingType = NSFocusRingTypeNone;
     button.action = @selector(buttonClicked:);
 
     NSButtonCell *cell = button.cell;
     cell.imagePosition = NSImageAbove;
 
-    [cell setBackgroundColor:self.fillColor];
+    cell.focusRingType = NSFocusRingTypeNone;
+    cell.backgroundColor = self.fillColor;
     [cell setBezeled:NO];
     [cell setBordered:NO];
+    [cell setTransparent:NO];
+    [cell setSelectable:NO];
     [cell setButtonType:NSMomentaryPushInButton];
-    [cell setShowsStateBy:NSPushInCellMask];
-    [cell setHighlightsBy:NSContentsCellMask];
-    [cell setRepresentedObject:browser.identifier];
+    cell.showsStateBy = NSPushInCellMask;
+    cell.highlightsBy = NSContentsCellMask;
+    cell.representedObject = browser.identifier;
 
     return button;
 }
