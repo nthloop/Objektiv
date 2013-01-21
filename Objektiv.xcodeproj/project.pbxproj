@@ -46,7 +46,7 @@
 			containerPortal = BCB54DD5164291F8003A59DF /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = BCB54DDD164291F8003A59DF;
-			remoteInfo = "browser-selector";
+			remoteInfo = "Objektiv";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -259,7 +259,7 @@
 				BC0845931684A1CA00619E60 /* source */,
 			);
 			name = Objektiv;
-			path = "browser-selector";
+			path = "Objektiv";
 			sourceTree = "<group>";
 		};
 		BCB54DE9164291F8003A59DF /* Supporting Files */ = {
@@ -288,7 +288,7 @@
 				BCB54E06164291F8003A59DF /* Supporting Files */,
 			);
 			name = ObjektivTests;
-			path = "browser-selectorTests";
+			path = "ObjektivTests";
 			sourceTree = "<group>";
 		};
 		BCB54E06164291F8003A59DF /* Supporting Files */ = {
@@ -327,7 +327,7 @@
 			dependencies = (
 			);
 			name = Objektiv;
-			productName = "browser-selector";
+			productName = "Objektiv";
 			productReference = BCB54DDE164291F8003A59DF /* Objektiv.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -346,7 +346,7 @@
 				BCB54E04164291F8003A59DF /* PBXTargetDependency */,
 			);
 			name = ObjektivTests;
-			productName = "browser-selectorTests";
+			productName = "ObjektivTests";
 			productReference = BCB54DFF164291F8003A59DF /* ObjektivTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
@@ -601,8 +601,8 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "browser-selector/Objektiv-Prefix.pch";
-				INFOPLIST_FILE = "browser-selector/Objektiv-Info.plist";
+				GCC_PREFIX_HEADER = "Objektiv/Objektiv-Prefix.pch";
+				INFOPLIST_FILE = "Objektiv/Objektiv-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = Objektiv;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
@@ -616,8 +616,8 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "browser-selector/Objektiv-Prefix.pch";
-				INFOPLIST_FILE = "browser-selector/Objektiv-Info.plist";
+				GCC_PREFIX_HEADER = "Objektiv/Objektiv-Prefix.pch";
+				INFOPLIST_FILE = "Objektiv/Objektiv-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = Objektiv;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
@@ -628,12 +628,12 @@
 		BCB54E14164291F8003A59DF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/browser-selector.app/Contents/MacOS/browser-selector";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Objektiv.app/Contents/MacOS/Objektiv";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "browser-selector/browser-selector-Prefix.pch";
-				INFOPLIST_FILE = "browser-selectorTests/ObjektivTests-Info.plist";
+				GCC_PREFIX_HEADER = "Objektiv/Objektiv-Prefix.pch";
+				INFOPLIST_FILE = "ObjektivTests/ObjektivTests-Info.plist";
 				PRODUCT_NAME = ObjektivTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
@@ -643,12 +643,12 @@
 		BCB54E15164291F8003A59DF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/browser-selector.app/Contents/MacOS/browser-selector";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Objektiv.app/Contents/MacOS/Objektiv";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "browser-selector/browser-selector-Prefix.pch";
-				INFOPLIST_FILE = "browser-selectorTests/ObjektivTests-Info.plist";
+				GCC_PREFIX_HEADER = "Objektiv/Objektiv-Prefix.pch";
+				INFOPLIST_FILE = "ObjektivTests/ObjektivTests-Info.plist";
 				PRODUCT_NAME = ObjektivTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
