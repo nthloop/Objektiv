@@ -18,6 +18,7 @@
 		BC502C74166F6F0B0075E4D8 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = BC502C73166F6F0B0075E4D8 /* MainMenu.nib */; };
 		BC605B0A165B71D500933942 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC605B08165B71D500933942 /* Defaults.plist */; };
 		BC68B2D81653CF92009465F5 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC68B2D71653CF92009465F5 /* Carbon.framework */; };
+		BC77344616ADED1900752685 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = BC77344516ADED1900752685 /* dsa_pub.pem */; };
 		BC8DDBC31670DB3D0098F508 /* Blacklist.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC8DDBC11670DB3D0098F508 /* Blacklist.plist */; };
 		BC9736A716806798002304FA /* BrowsersMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9736A616806798002304FA /* BrowsersMenu.m */; };
 		BC9736B01680ACC1002304FA /* BrowserItem.m in Sources */ = {isa = PBXBuildFile; fileRef = BC9736AF1680ACC1002304FA /* BrowserItem.m */; };
@@ -35,6 +36,8 @@
 		BCB54E0D164291F8003A59DF /* browser_selectorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB54E0C164291F8003A59DF /* browser_selectorTests.m */; };
 		BCB54E191642926D003A59DF /* NSWorkspace+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB54E181642926D003A59DF /* NSWorkspace+Utils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BCBC14FB167F0E06007D12E3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCBC14FA167F0E06007D12E3 /* QuartzCore.framework */; };
+		BCDBFAA916ADE664006F1FCD /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCDBFAA816ADE664006F1FCD /* Sparkle.framework */; };
+		BCDBFAAC16ADE6A9006F1FCD /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BCDBFAA816ADE664006F1FCD /* Sparkle.framework */; };
 		BCE2D47C1681B36600F4B40D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BC9736A81680A8D0002304FA /* Localizable.strings */; };
 		BCE2D47F1681B76200F4B40D /* OverlayWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE2D47E1681B76200F4B40D /* OverlayWindow.m */; };
 		BCE2D4861681CD4300F4B40D /* OverlayWindowView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE2D4851681CD4300F4B40D /* OverlayWindowView.m */; };
@@ -62,6 +65,16 @@
 			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BCDBFAAB16ADE699006F1FCD /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				BCDBFAAC16ADE6A9006F1FCD /* Sparkle.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -81,6 +94,7 @@
 		BC502C73166F6F0B0075E4D8 /* MainMenu.nib */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = MainMenu.nib; sourceTree = "<group>"; };
 		BC605B09165B71D500933942 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = en; path = en.lproj/Defaults.plist; sourceTree = "<group>"; };
 		BC68B2D71653CF92009465F5 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
+		BC77344516ADED1900752685 /* dsa_pub.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = dsa_pub.pem; path = resources/dsa_pub.pem; sourceTree = "<group>"; };
 		BC7F331E1642A63700A2DAFD /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		BC8DDBC21670DB3D0098F508 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = en; path = en.lproj/Blacklist.plist; sourceTree = "<group>"; };
 		BC9736A516806798002304FA /* BrowsersMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrowsersMenu.h; sourceTree = "<group>"; };
@@ -113,6 +127,7 @@
 		BCB54E171642926D003A59DF /* NSWorkspace+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSWorkspace+Utils.h"; path = "mozilla/NSWorkspace+Utils.h"; sourceTree = "<group>"; };
 		BCB54E181642926D003A59DF /* NSWorkspace+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSWorkspace+Utils.m"; path = "mozilla/NSWorkspace+Utils.m"; sourceTree = "<group>"; };
 		BCBC14FA167F0E06007D12E3 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		BCDBFAA816ADE664006F1FCD /* Sparkle.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Sparkle.framework; sourceTree = "<group>"; };
 		BCE2D47D1681B76200F4B40D /* OverlayWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayWindow.h; sourceTree = "<group>"; };
 		BCE2D47E1681B76200F4B40D /* OverlayWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OverlayWindow.m; sourceTree = "<group>"; };
 		BCE2D4841681CD4300F4B40D /* OverlayWindowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OverlayWindowView.h; sourceTree = "<group>"; };
@@ -131,6 +146,7 @@
 				BC68B2D81653CF92009465F5 /* Carbon.framework in Frameworks */,
 				BCB54DE3164291F8003A59DF /* Cocoa.framework in Frameworks */,
 				85E05F32EFA24E52AA562CC4 /* libPods.a in Frameworks */,
+				BCDBFAA916ADE664006F1FCD /* Sparkle.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,6 +246,7 @@
 		BCB54DE1164291F8003A59DF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BCDBFAA816ADE664006F1FCD /* Sparkle.framework */,
 				BC08458E16849A7200619E60 /* Security.framework */,
 				BCBC14FA167F0E06007D12E3 /* QuartzCore.framework */,
 				BC68B2D71653CF92009465F5 /* Carbon.framework */,
@@ -266,6 +283,7 @@
 		BCB54DE9164291F8003A59DF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				BC77344516ADED1900752685 /* dsa_pub.pem */,
 				BC9A149716ADE25000495314 /* Objektiv.iconset */,
 				307D52161689B493003D6C8C /* objektiv-overlay.png */,
 				BC08459016849D2C00619E60 /* MoveApplication.strings */,
@@ -322,6 +340,7 @@
 				BCB54DDB164291F8003A59DF /* Frameworks */,
 				BCB54DDC164291F8003A59DF /* Resources */,
 				0070E76AAF2C4318AFF32B85 /* Copy Pods Resources */,
+				BCDBFAAB16ADE699006F1FCD /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -394,6 +413,7 @@
 				BC08459216849D2C00619E60 /* MoveApplication.strings in Resources */,
 				307D52181689B493003D6C8C /* objektiv-overlay.png in Resources */,
 				BC9A149816ADE25000495314 /* Objektiv.iconset in Resources */,
+				BC77344616ADED1900752685 /* dsa_pub.pem in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -602,6 +622,10 @@
 			baseConfigurationReference = 3DAAA205D2EE40DDA76D0F72 /* Pods.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Objektiv/Objektiv-Prefix.pch";
 				INFOPLIST_FILE = "Objektiv/Objektiv-Info.plist";
@@ -617,6 +641,10 @@
 			baseConfigurationReference = 3DAAA205D2EE40DDA76D0F72 /* Pods.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Objektiv/Objektiv-Prefix.pch";
 				INFOPLIST_FILE = "Objektiv/Objektiv-Info.plist";

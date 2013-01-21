@@ -19,6 +19,7 @@
 #import <MASShortcut+UserDefaults.h>
 #import "PFMoveApplication.h"
 #import <CDEvents.h>
+#import <Sparkle/Sparkle.h>
 
 @interface AppDelegate()
 {
@@ -46,6 +47,8 @@
     PFMoveToApplicationsFolderIfNecessary();
 
     NSLog(@"applicationDidFinishLaunching");
+
+    [[SUUpdater sharedUpdater] checkForUpdatesInBackground];
 
     self.prefsController = [[PrefsController alloc] initWithWindowNibName:@"PrefsController"];
     sharedWorkspace = [NSWorkspace sharedWorkspace];
