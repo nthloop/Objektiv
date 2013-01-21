@@ -1,0 +1,132 @@
+@import "compass/utilities/sprites/base";
+
+// General Sprite Defaults
+// You can override them before you import this file.
+$parts-sprite-base-class: ".parts-sprite" !default;
+$parts-sprite-dimensions: false !default;
+$parts-position: 0% !default;
+$parts-spacing: 0 !default;
+$parts-repeat: no-repeat !default;
+$parts-prefix: '' !default;
+$parts-clean-up: true !default;
+$parts-layout:vertical !default;
+$parts-inline: false !default;
+
+  
+ // These variables control the generated sprite output
+ // You can override them selectively before you import this file.
+ 
+   $parts-appstore-icon-position: $parts-position !default;
+   $parts-appstore-icon-spacing:  $parts-spacing !default;
+   $parts-appstore-icon-repeat:   $parts-repeat !default;
+ 
+   $parts-clamp-left-position: $parts-position !default;
+   $parts-clamp-left-spacing:  $parts-spacing !default;
+   $parts-clamp-left-repeat:   $parts-repeat !default;
+ 
+   $parts-clamp-right-position: $parts-position !default;
+   $parts-clamp-right-spacing:  $parts-spacing !default;
+   $parts-clamp-right-repeat:   $parts-repeat !default;
+ 
+   $parts-github-icon-position: $parts-position !default;
+   $parts-github-icon-spacing:  $parts-spacing !default;
+   $parts-github-icon-repeat:   $parts-repeat !default;
+ 
+   $parts-gnat-left-position: $parts-position !default;
+   $parts-gnat-left-spacing:  $parts-spacing !default;
+   $parts-gnat-left-repeat:   $parts-repeat !default;
+ 
+   $parts-gnat-right-position: $parts-position !default;
+   $parts-gnat-right-spacing:  $parts-spacing !default;
+   $parts-gnat-right-repeat:   $parts-repeat !default;
+ 
+   $parts-objektiv-position: $parts-position !default;
+   $parts-objektiv-spacing:  $parts-spacing !default;
+   $parts-objektiv-repeat:   $parts-repeat !default;
+ 
+
+ $parts-sprites: sprite-map("parts/*.png",
+ 
+   $parts-appstore-icon-position: $parts-appstore-icon-position, 
+   $parts-appstore-icon-spacing:  $parts-appstore-icon-spacing, 
+   $parts-appstore-icon-repeat:   $parts-appstore-icon-repeat,
+ 
+   $parts-clamp-left-position: $parts-clamp-left-position, 
+   $parts-clamp-left-spacing:  $parts-clamp-left-spacing, 
+   $parts-clamp-left-repeat:   $parts-clamp-left-repeat,
+ 
+   $parts-clamp-right-position: $parts-clamp-right-position, 
+   $parts-clamp-right-spacing:  $parts-clamp-right-spacing, 
+   $parts-clamp-right-repeat:   $parts-clamp-right-repeat,
+ 
+   $parts-github-icon-position: $parts-github-icon-position, 
+   $parts-github-icon-spacing:  $parts-github-icon-spacing, 
+   $parts-github-icon-repeat:   $parts-github-icon-repeat,
+ 
+   $parts-gnat-left-position: $parts-gnat-left-position, 
+   $parts-gnat-left-spacing:  $parts-gnat-left-spacing, 
+   $parts-gnat-left-repeat:   $parts-gnat-left-repeat,
+ 
+   $parts-gnat-right-position: $parts-gnat-right-position, 
+   $parts-gnat-right-spacing:  $parts-gnat-right-spacing, 
+   $parts-gnat-right-repeat:   $parts-gnat-right-repeat,
+ 
+   $parts-objektiv-position: $parts-objektiv-position, 
+   $parts-objektiv-spacing:  $parts-objektiv-spacing, 
+   $parts-objektiv-repeat:   $parts-objektiv-repeat,
+ 
+ $layout: $parts-layout,
+ $cleanup: $parts-clean-up
+ );
+
+
+// All sprites should extend this class
+// The parts-sprite mixin will do so for you.
+@if $parts-inline {
+  #{$parts-sprite-base-class} {
+    background-image: inline-sprite($parts-sprites);
+  } 
+} @else {
+  #{$parts-sprite-base-class} {
+    background: $parts-sprites no-repeat;
+  }
+}
+//sass functions to return the dimensions of a sprite image as units
+
+  @function parts-sprite-width($name) {
+    $file: sprite_file($parts-sprites, $name);
+    @return image-width($file);
+  }
+
+  @function parts-sprite-height($name) {
+    $file: sprite_file($parts-sprites, $name);
+    @return image-height($file);
+  }
+
+
+// Use this to set the dimensions of an element
+// based on the size of the original image.
+@mixin parts-sprite-dimensions($name) {
+  @include sprite-dimensions($parts-sprites, $name)
+}
+
+// Move the background position to display the sprite.
+@mixin parts-sprite-position($name, $offset-x: 0, $offset-y: 0) {
+  @include sprite-background-position($parts-sprites, $name, $offset-x, $offset-y)
+}
+
+// Extends the sprite base class and set the background position for the desired sprite.
+// It will also apply the image dimensions if $dimensions is true.
+@mixin parts-sprite($name, $dimensions: $parts-sprite-dimensions, $offset-x: 0, $offset-y: 0) {
+  @extend #{$parts-sprite-base-class};
+  @include sprite($parts-sprites, $name, $dimensions, $offset-x, $offset-y)
+}
+
+@mixin parts-sprites($sprite-names, $dimensions: $parts-sprite-dimensions, $prefix: sprite-map-name($parts-sprites), $offset-x: 0, $offset-y: 0) {
+  @include sprites($parts-sprites, $sprite-names, $parts-sprite-base-class, $dimensions, $prefix, $offset-x, $offset-y)
+}
+
+// Generates a class for each sprited image.
+@mixin all-parts-sprites($dimensions: $parts-sprite-dimensions, $prefix: sprite-map-name($parts-sprites), $offset-x: 0, $offset-y: 0) {
+  @include parts-sprites(appstore-icon clamp-left clamp-right github-icon gnat-left gnat-right objektiv, $dimensions, $prefix, $offset-x, $offset-y);
+}

@@ -1,0 +1,161 @@
+@import "sass-twitter-bootstrap/lib/bootstrap";
+@import "compass/css3";
+
+$parts-spacing: 2px;
+@import "parts/*.png";
+@include all-parts-sprites;
+
+$objektiv-color: #06B;
+
+body {
+  font-size: 18px;
+  color: $objektiv-color;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.gothic-font {
+  font-weight: normal;
+  font-family: "Century Gothic", Questrial, "Apple Gothic", AppleGothic, "URW Gothic L", "Avant Garde", Futura, sans-serif;
+}
+
+.header, .content {
+  @extend .container-fluid;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.objektiv-image {
+  @extend .parts-objektiv;
+  height: 206px;
+  background-position: center top;
+  margin-bottom: 4em;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 5em;
+
+  h1 {
+    position: relative;
+    @extend .gothic-font;
+    text-transform: uppercase;
+    font-size: 5em;
+    line-height: 1em;
+
+    small {
+      position: absolute;
+      bottom: 12px;
+      color: inherit;
+      text-transform: lowercase;
+    }
+  }
+
+  h2 {
+    font-size: 1.2em;
+    font-weight: normal;
+    line-height: 1.2em;
+  }
+}
+
+// content
+
+.content {
+  min-height: 800px;
+}
+
+.slider {
+  @extend .row-fluid;
+  margin-bottom: 3em;
+
+  .carousel {
+    position: relative;
+    border: 1px solid $objektiv-color;
+    @extend .span8, .offset2;
+    max-width: 633px;
+    margin-bottom: 0;
+
+    &:before, &:after {
+      content: "";
+      width: 86px; height: 102px;
+      position: absolute;
+      z-index: 1;
+    }
+
+    &:before {
+      @extend .parts-clamp-left;
+      left: -54px;
+      top: 0;
+    }
+
+    &:after {
+      @extend .parts-clamp-right;
+      right: -54px;
+      bottom: 0;
+    }
+  }
+
+  img {
+    width: 100%;
+  }
+
+  .carousel-control {
+    top: 50%;
+    background: rgba($objektiv-color, 0.5);
+    border: none;
+  }
+}
+
+.cta, .description {
+  @extend .row-fluid;
+  margin-bottom: 3em;
+}
+
+  .download, .fork {
+    @include box-sizing(border-box);
+    padding: 28px 0px 0px 90px;
+    height: 80px;
+  }
+
+  .download {
+    @extend .parts-appstore-icon;
+    margin-left: 21% !important;
+  }
+
+  .fork {
+    @extend .parts-github-icon;
+  }
+
+
+.description .inner {
+  @extend .span8, .offset2;
+  line-height: 1.4em;
+
+  h1, h2, h3 {
+    @extend .gothic-font;
+    margin-top: 50px;
+    text-align: center;
+  }
+
+  p, ul {
+    font-size: 0.9em;
+  }
+}
+
+// footer
+
+footer {
+  text-align: center;
+  margin-bottom: 2em;
+}
+
+.gnats {
+  @extend .row-fluid;
+}
+
+.copyright {
+  margin-top: 1em;
+  font-size: small;
+}

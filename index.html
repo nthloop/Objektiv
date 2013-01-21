@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Objektiv</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width">
+<link href='http://fonts.googleapis.com/css?family=Questrial' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="css/objektiv.css">
+<body>
+<div class="wrapper">
+
+  <header>
+    <div class="objektiv-image"></div>
+
+    <h1>
+      Objektiv
+      <small>v0.5</small>
+    </h1>
+
+    <h2>
+      A Mac App that lets you switch your default browser with ease
+    </h2>
+
+  </header>
+
+  <div class="content">
+
+    <div class="slider">
+      <div id="objektiv-slider" class="carousel slide">
+        <!-- Carousel items -->
+        <div class="carousel-inner">
+          <div class="active item">
+            <img src="images/slide1.png" alt="Objektiv">
+          </div>
+          <div class="item">
+            <img src="images/slide2.jpg" alt="Access the tray using the global hotkey">
+          </div>
+          <div class="item">
+            <img src="images/slide3.jpg" alt="Show and hide items easily">
+          </div>
+        </div>
+        <!-- Carousel nav -->
+        <a class="carousel-control left" href="#objektiv-slider" data-slide="prev">&lsaquo;</a>
+        <a class="carousel-control right" href="#objektiv-slider" data-slide="next">&rsaquo;</a>
+      </div>
+    </div>
+
+    <div class="cta">
+      <a href="http://nthloop.com/objektiv/objektiv-latest.zip" class="download span4">
+        Download it now
+      </a>
+      <a href="https://github.com/nthloop/Objektiv" class="fork span3">
+        Fork on Github
+      </a>
+    </div>
+
+    <div class="description">
+      <div class="inner">
+      <p>
+      Objektiv is a utility that lets you switch your default browser easily. You might find
+      it useful if you're a web designer or use multiple browsers in your
+      workflow.
+      </p>
+
+      <h2>
+      <a name="features" class="anchor" href="#features"><span class="mini-icon mini-icon-link"></span></a>Features</h2>
+
+      <ul>
+      <li>A status-bar icon for quick access</li>
+      <li>An optional global hotkey triggers an overlay window for even quicker
+      switching</li>
+      <li>Pressing ALT (⌥) in the status menu lets you blacklist browsers that
+      are incorrectly detected</li>
+      </ul>
+
+
+      <h2>
+      <a name="copyright--about" class="anchor" href="#copyright--about"><span class="mini-icon mini-icon-link"></span></a>Copyright &amp; About</h2>
+
+      <p>We built Objektiv to scratch an itch we at <a href="http://nthloop.com">nth loop</a> were facing, and
+      to also learn all about developing Mac Apps. It's ridiculously
+      over-engineered for such a simple utility.</p>
+
+      <p>Objektiv is available under the MIT License.</p>
+
+      </div>
+    </div>
+
+
+
+  </div>
+
+  <footer>
+    <div class="gnats">
+      <div class="gnat left span1 offset5"
+           title="Why are there insects on this page?">
+        <img src="images/parts/gnat-left.png" alt="">
+      </div>
+      <div class="gnat right span1"
+           title="Because this is the intergnat!">
+        <img src="images/parts/gnat-right.png" alt="">
+      </div>
+    </div>
+    <div class="copyright">
+      &copy; <a href="http://nthloop.com">nth loop</a>
+    </div>
+  </footer>
+
+
+</div>
+</body>
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap-transition.js"></script>
+<script src="js/bootstrap-carousel.js"></script>
+<script>
+  $(function() {
+    $('#objektiv-slider').carousel();
+  });
+</script>
+</html>
