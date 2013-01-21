@@ -1,9 +1,10 @@
 Objektiv
 ========================================
 
-Objektiv is a utility that lets you switch your default browser
-easily. You might find it useful if you're a web designer or use
-multiple browsers in your workflow.
+<span style="float: left">![Objektiv Logo][logo]</span> Objektiv is a
+utility that lets you switch your default browser easily. You might find
+it useful if you're a web designer or use multiple browsers in your
+workflow.
 
 **[Download Objektiv now][download]!**
 
@@ -48,6 +49,7 @@ Credits
   - [CDEvents][] by Aron Cedercrantz (MIT Licensed)
   - [NSWorkspace+Utils][1] from Mozilla's Camino project (MPL)
 
+  [logo]:        https://raw.github.com/nthloop/Objektiv/master/Objektiv/Objektiv.iconset/icon_128x128.png
   [download]:    http://nthloop.com/objektiv/objektiv-latest.zip
   [nth loop]:    http://nthloop.com
   [CocoaPods]:   http://cocoapods.org/
