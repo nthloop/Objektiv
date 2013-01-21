@@ -1,6 +1,6 @@
 //
 //  PrefsController.m
-//  browser-selector
+//  Objektiv
 //
 //  Created by Ankit Solanki on 22/11/12.
 //  Copyright (c) 2012 nth loop. All rights reserved.

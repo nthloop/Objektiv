@@ -1,6 +1,6 @@
 //
 //  BrowserItem.m
-//  browser-selector
+//  Objektiv
 //
 //  Created by Ankit Solanki on 18/12/12.
 //  Copyright (c) 2012 nth loop. All rights reserved.

@@ -1,6 +1,6 @@
 //
 //  OverlayWindow.m
-//  browser-selector
+//  Objektiv
 //
 //  Created by Ankit Solanki on 17/12/12.
 //  Copyright (c) 2012 nth loop. All rights reserved.

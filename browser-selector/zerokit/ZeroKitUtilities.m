@@ -1,6 +1,6 @@
 //
 //  ZeroKitUtilities.m
-//  browser-selector
+//  Objektiv
 //
 //  A stripped-down version of the ZeroKit's ZeroKitUtilities class,
 //  mainly containing code we use in this project.

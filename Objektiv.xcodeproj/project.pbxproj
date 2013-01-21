@@ -95,16 +95,16 @@
 		BCB54DE5164291F8003A59DF /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		BCB54DE6164291F8003A59DF /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		BCB54DE7164291F8003A59DF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		BCB54DEA164291F8003A59DF /* browser-selector-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "browser-selector-Info.plist"; sourceTree = "<group>"; };
+		BCB54DEA164291F8003A59DF /* Objektiv-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Objektiv-Info.plist"; sourceTree = "<group>"; };
 		BCB54DEC164291F8003A59DF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BCB54DEE164291F8003A59DF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		BCB54DF0164291F8003A59DF /* browser-selector-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "browser-selector-Prefix.pch"; sourceTree = "<group>"; };
+		BCB54DF0164291F8003A59DF /* Objektiv-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Objektiv-Prefix.pch"; sourceTree = "<group>"; };
 		BCB54DF2164291F8003A59DF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		BCB54DF4164291F8003A59DF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		BCB54DF5164291F8003A59DF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		BCB54DFF164291F8003A59DF /* browser-selectorTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "browser-selectorTests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		BCB54DFF164291F8003A59DF /* ObjektivTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ObjektivTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCB54E00164291F8003A59DF /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		BCB54E07164291F8003A59DF /* browser-selectorTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "browser-selectorTests-Info.plist"; sourceTree = "<group>"; };
+		BCB54E07164291F8003A59DF /* ObjektivTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ObjektivTests-Info.plist"; sourceTree = "<group>"; };
 		BCB54E09164291F8003A59DF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		BCB54E0B164291F8003A59DF /* browser_selectorTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = browser_selectorTests.h; sourceTree = "<group>"; };
 		BCB54E0C164291F8003A59DF /* browser_selectorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = browser_selectorTests.m; sourceTree = "<group>"; };
@@ -208,8 +208,8 @@
 		BCB54DD3164291F8003A59DF = {
 			isa = PBXGroup;
 			children = (
-				BCB54DE8164291F8003A59DF /* browser-selector */,
-				BCB54E05164291F8003A59DF /* browser-selectorTests */,
+				BCB54DE8164291F8003A59DF /* Objektiv */,
+				BCB54E05164291F8003A59DF /* ObjektivTests */,
 				BCB54DE1164291F8003A59DF /* Frameworks */,
 				BCB54DDF164291F8003A59DF /* Products */,
 				3DAAA205D2EE40DDA76D0F72 /* Pods.xcconfig */,
@@ -220,7 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				BCB54DDE164291F8003A59DF /* Objektiv.app */,
-				BCB54DFF164291F8003A59DF /* browser-selectorTests.octest */,
+				BCB54DFF164291F8003A59DF /* ObjektivTests.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -249,7 +249,7 @@
 			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
-		BCB54DE8164291F8003A59DF /* browser-selector */ = {
+		BCB54DE8164291F8003A59DF /* Objektiv */ = {
 			isa = PBXGroup;
 			children = (
 				BC08458A168498D600619E60 /* potionfactory */,
@@ -258,6 +258,7 @@
 				BCB54DE9164291F8003A59DF /* Supporting Files */,
 				BC0845931684A1CA00619E60 /* source */,
 			);
+			name = Objektiv;
 			path = "browser-selector";
 			sourceTree = "<group>";
 		};
@@ -268,10 +269,10 @@
 				BC08459016849D2C00619E60 /* MoveApplication.strings */,
 				BC9736A81680A8D0002304FA /* Localizable.strings */,
 				BC502C73166F6F0B0075E4D8 /* MainMenu.nib */,
-				BCB54DEA164291F8003A59DF /* browser-selector-Info.plist */,
+				BCB54DEA164291F8003A59DF /* Objektiv-Info.plist */,
 				BCB54DEB164291F8003A59DF /* InfoPlist.strings */,
 				BCB54DEE164291F8003A59DF /* main.m */,
-				BCB54DF0164291F8003A59DF /* browser-selector-Prefix.pch */,
+				BCB54DF0164291F8003A59DF /* Objektiv-Prefix.pch */,
 				BCB54DF1164291F8003A59DF /* Credits.rtf */,
 				BC605B08165B71D500933942 /* Defaults.plist */,
 				BC8DDBC11670DB3D0098F508 /* Blacklist.plist */,
@@ -279,20 +280,21 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		BCB54E05164291F8003A59DF /* browser-selectorTests */ = {
+		BCB54E05164291F8003A59DF /* ObjektivTests */ = {
 			isa = PBXGroup;
 			children = (
 				BCB54E0B164291F8003A59DF /* browser_selectorTests.h */,
 				BCB54E0C164291F8003A59DF /* browser_selectorTests.m */,
 				BCB54E06164291F8003A59DF /* Supporting Files */,
 			);
+			name = ObjektivTests;
 			path = "browser-selectorTests";
 			sourceTree = "<group>";
 		};
 		BCB54E06164291F8003A59DF /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				BCB54E07164291F8003A59DF /* browser-selectorTests-Info.plist */,
+				BCB54E07164291F8003A59DF /* ObjektivTests-Info.plist */,
 				BCB54E08164291F8003A59DF /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
@@ -310,9 +312,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		BCB54DDD164291F8003A59DF /* browser-selector */ = {
+		BCB54DDD164291F8003A59DF /* Objektiv */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BCB54E10164291F8003A59DF /* Build configuration list for PBXNativeTarget "browser-selector" */;
+			buildConfigurationList = BCB54E10164291F8003A59DF /* Build configuration list for PBXNativeTarget "Objektiv" */;
 			buildPhases = (
 				BCB54DDA164291F8003A59DF /* Sources */,
 				BCBC14FF167F23DD007D12E3 /* Copy Frameworks */,
@@ -324,14 +326,14 @@
 			);
 			dependencies = (
 			);
-			name = "browser-selector";
+			name = Objektiv;
 			productName = "browser-selector";
 			productReference = BCB54DDE164291F8003A59DF /* Objektiv.app */;
 			productType = "com.apple.product-type.application";
 		};
-		BCB54DFE164291F8003A59DF /* browser-selectorTests */ = {
+		BCB54DFE164291F8003A59DF /* ObjektivTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = BCB54E13164291F8003A59DF /* Build configuration list for PBXNativeTarget "browser-selectorTests" */;
+			buildConfigurationList = BCB54E13164291F8003A59DF /* Build configuration list for PBXNativeTarget "ObjektivTests" */;
 			buildPhases = (
 				BCB54DFA164291F8003A59DF /* Sources */,
 				BCB54DFB164291F8003A59DF /* Frameworks */,
@@ -343,9 +345,9 @@
 			dependencies = (
 				BCB54E04164291F8003A59DF /* PBXTargetDependency */,
 			);
-			name = "browser-selectorTests";
+			name = ObjektivTests;
 			productName = "browser-selectorTests";
-			productReference = BCB54DFF164291F8003A59DF /* browser-selectorTests.octest */;
+			productReference = BCB54DFF164291F8003A59DF /* ObjektivTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -357,7 +359,7 @@
 				LastUpgradeCheck = 0450;
 				ORGANIZATIONNAME = "nth loop";
 			};
-			buildConfigurationList = BCB54DD8164291F8003A59DF /* Build configuration list for PBXProject "browser-selector" */;
+			buildConfigurationList = BCB54DD8164291F8003A59DF /* Build configuration list for PBXProject "Objektiv" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -370,8 +372,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				BCB54DDD164291F8003A59DF /* browser-selector */,
-				BCB54DFE164291F8003A59DF /* browser-selectorTests */,
+				BCB54DDD164291F8003A59DF /* Objektiv */,
+				BCB54DFE164291F8003A59DF /* ObjektivTests */,
 			);
 		};
 /* End PBXProject section */
@@ -467,7 +469,7 @@
 /* Begin PBXTargetDependency section */
 		BCB54E04164291F8003A59DF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = BCB54DDD164291F8003A59DF /* browser-selector */;
+			target = BCB54DDD164291F8003A59DF /* Objektiv */;
 			targetProxy = BCB54E03164291F8003A59DF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -599,8 +601,8 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "browser-selector/browser-selector-Prefix.pch";
-				INFOPLIST_FILE = "browser-selector/browser-selector-Info.plist";
+				GCC_PREFIX_HEADER = "browser-selector/Objektiv-Prefix.pch";
+				INFOPLIST_FILE = "browser-selector/Objektiv-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = Objektiv;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
@@ -614,8 +616,8 @@
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "browser-selector/browser-selector-Prefix.pch";
-				INFOPLIST_FILE = "browser-selector/browser-selector-Info.plist";
+				GCC_PREFIX_HEADER = "browser-selector/Objektiv-Prefix.pch";
+				INFOPLIST_FILE = "browser-selector/Objektiv-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = Objektiv;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
@@ -631,8 +633,8 @@
 				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "browser-selector/browser-selector-Prefix.pch";
-				INFOPLIST_FILE = "browser-selectorTests/browser-selectorTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "browser-selectorTests/ObjektivTests-Info.plist";
+				PRODUCT_NAME = ObjektivTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -646,8 +648,8 @@
 				FRAMEWORK_SEARCH_PATHS = "\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "browser-selector/browser-selector-Prefix.pch";
-				INFOPLIST_FILE = "browser-selectorTests/browser-selectorTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				INFOPLIST_FILE = "browser-selectorTests/ObjektivTests-Info.plist";
+				PRODUCT_NAME = ObjektivTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
@@ -656,7 +658,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		BCB54DD8164291F8003A59DF /* Build configuration list for PBXProject "browser-selector" */ = {
+		BCB54DD8164291F8003A59DF /* Build configuration list for PBXProject "Objektiv" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BCB54E0E164291F8003A59DF /* Debug */,
@@ -665,7 +667,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BCB54E10164291F8003A59DF /* Build configuration list for PBXNativeTarget "browser-selector" */ = {
+		BCB54E10164291F8003A59DF /* Build configuration list for PBXNativeTarget "Objektiv" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BCB54E11164291F8003A59DF /* Debug */,
@@ -674,7 +676,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		BCB54E13164291F8003A59DF /* Build configuration list for PBXNativeTarget "browser-selectorTests" */ = {
+		BCB54E13164291F8003A59DF /* Build configuration list for PBXNativeTarget "ObjektivTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				BCB54E14164291F8003A59DF /* Debug */,

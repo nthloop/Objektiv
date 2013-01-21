@@ -1,6 +1,6 @@
 //
 //  Browsers.h
-//  browser-selector
+//  Objektiv
 //
 //  Created by Ankit Solanki on 19/01/13.
 //  Copyright (c) 2013 nth loop. All rights reserved.

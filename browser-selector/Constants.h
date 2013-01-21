@@ -1,6 +1,6 @@
 //
 //  Constants.h
-//  browser-selector
+//  Objektiv
 //
 //  Created by Ankit Solanki on 01/11/12.
 //  Copyright (c) 2012 nth loop. All rights reserved.
