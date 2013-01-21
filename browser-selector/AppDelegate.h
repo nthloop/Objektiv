@@ -12,12 +12,9 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
--(void) hotkeyTriggered;
-- (BOOL) isBlacklisted:(NSString*) browserIdentifier;
+- (void) hotkeyTriggered;
 - (void) selectABrowser:sender;
-
-@property(readonly) NSArray* browsers;
-@property(readonly) NSArray* validBrowsers;
+- (void) updateStatusBarIcon;
 
 @property PrefsController* prefsController;
 

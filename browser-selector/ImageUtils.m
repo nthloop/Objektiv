@@ -20,18 +20,13 @@
     NSCache *cache;
 }
 
-// Singleton instance is required to hold the NSCache instance
-static ImageUtils *_sharedInstance = nil;
-
 # pragma mark initialization
 
 +(ImageUtils*) sharedInstance
 {
-    if (!_sharedInstance)
-    {
-        _sharedInstance = [[ImageUtils alloc] init];
-    }
-    return _sharedInstance;
+    DEFINE_SHARED_INSTANCE_USING_BLOCK(^{
+        return [[self alloc] init];
+    });
 }
 
 - (id)init
@@ -48,23 +43,23 @@ static ImageUtils *_sharedInstance = nil;
 + (NSImage*) statusBarIconForAppId: (NSString*) applicationIdentifier
 {
     // Use [self statusBarIconForAppId] if we want to revert to monochrome icons
-    return [[ImageUtils sharedInstance] menuIconForAppId:applicationIdentifier];
+    return [[self sharedInstance] menuIconForAppId:applicationIdentifier];
 }
 
 + (NSImage*) menuIconForAppId: (NSString*) applicationIdentifier
 {
-    return [[ImageUtils sharedInstance] menuIconForAppId:applicationIdentifier];
+    return [[self sharedInstance] menuIconForAppId:applicationIdentifier];
 }
 
 + (NSImage*) fullSizeIconForAppId: (NSString*) applicationIdentifier
 {
-    NSImage *image = [[[ImageUtils sharedInstance] iconForAppIdentifier:applicationIdentifier] copy];
+    NSImage *image = [[[self sharedInstance] iconForAppIdentifier:applicationIdentifier] copy];
     return image;
 }
 
 + (NSImage*) fullSizeIconForAppId: (NSString*) applicationIdentifier withSize:(NSSize)size
 {
-    NSImage *image = [ImageUtils fullSizeIconForAppId:applicationIdentifier];
+    NSImage *image = [self fullSizeIconForAppId:applicationIdentifier];
     image.size = size;
     return image;
 }
@@ -75,14 +70,14 @@ static ImageUtils *_sharedInstance = nil;
 {
     CIColor *ciColor = [[CIColor alloc] initWithColor:outputColor];
     CIImage *ciColorImage = [CIImage imageWithColor:(CIColor*)ciColor];
-    CIImage *ciInputImage = [ImageUtils ciImageFromNSImate:inputImage];
+    CIImage *ciInputImage = [self ciImageFromNSImate:inputImage];
 
     CIFilter *filter = [CIFilter filterWithName:@"CISourceInCompositing"];
     [filter setValue:ciColorImage forKey:@"inputImage"];
     [filter setValue:ciInputImage forKey:@"inputBackgroundImage"];
 
     CIImage *image = [filter valueForKey:@"outputImage"];
-    NSImage *output = [ImageUtils imageFromCIImage:image];
+    NSImage *output = [self imageFromCIImage:image];
 
     return output;
 }
@@ -172,7 +167,7 @@ static ImageUtils *_sharedInstance = nil;
     [filter setValue:[NSNumber numberWithInt:0] forKey:@"inputSaturation"];
     [filter setValue:[NSNumber numberWithInt:1] forKey:@"inputContrast"];
 
-    return [ImageUtils imageFromCIImage:[filter valueForKey:@"outputImage"]];
+    return [self imageFromCIImage:[filter valueForKey:@"outputImage"]];
 }
 
 

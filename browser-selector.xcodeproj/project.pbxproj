@@ -14,6 +14,7 @@
 		BC08458D1684998600619E60 /* NSString+SymlinksAndAliases.m in Sources */ = {isa = PBXBuildFile; fileRef = BC08458B1684998600619E60 /* NSString+SymlinksAndAliases.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BC08458F16849A7200619E60 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC08458E16849A7200619E60 /* Security.framework */; };
 		BC08459216849D2C00619E60 /* MoveApplication.strings in Resources */ = {isa = PBXBuildFile; fileRef = BC08459016849D2C00619E60 /* MoveApplication.strings */; };
+		BC265CCB16AAF9CE00DB7EDD /* Browsers.m in Sources */ = {isa = PBXBuildFile; fileRef = BC265CCA16AAF9CE00DB7EDD /* Browsers.m */; };
 		BC502C74166F6F0B0075E4D8 /* MainMenu.nib in Resources */ = {isa = PBXBuildFile; fileRef = BC502C73166F6F0B0075E4D8 /* MainMenu.nib */; };
 		BC605B0A165B71D500933942 /* Defaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = BC605B08165B71D500933942 /* Defaults.plist */; };
 		BC68B2D81653CF92009465F5 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BC68B2D71653CF92009465F5 /* Carbon.framework */; };
@@ -74,6 +75,8 @@
 		BC08458C1684998600619E60 /* NSString+SymlinksAndAliases.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+SymlinksAndAliases.h"; path = "potionfactory/NSString+SymlinksAndAliases.h"; sourceTree = "<group>"; };
 		BC08458E16849A7200619E60 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		BC08459116849D2C00619E60 /* en */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/MoveApplication.strings; sourceTree = "<group>"; };
+		BC265CC916AAF9CE00DB7EDD /* Browsers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Browsers.h; sourceTree = "<group>"; };
+		BC265CCA16AAF9CE00DB7EDD /* Browsers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Browsers.m; sourceTree = "<group>"; };
 		BC502C73166F6F0B0075E4D8 /* MainMenu.nib */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = MainMenu.nib; sourceTree = "<group>"; };
 		BC605B09165B71D500933942 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = en; path = en.lproj/Defaults.plist; sourceTree = "<group>"; };
 		BC68B2D71653CF92009465F5 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
@@ -164,13 +167,31 @@
 		BC0845931684A1CA00619E60 /* source */ = {
 			isa = PBXGroup;
 			children = (
-				BC7F331E1642A63700A2DAFD /* Constants.h */,
-				BC9736AE1680ACC1002304FA /* BrowserItem.h */,
-				BC9736AF1680ACC1002304FA /* BrowserItem.m */,
 				BCB54DF4164291F8003A59DF /* AppDelegate.h */,
 				BCB54DF5164291F8003A59DF /* AppDelegate.m */,
+				BC7F331E1642A63700A2DAFD /* Constants.h */,
+				BCB1EAC616AD940400E47EB2 /* models */,
+				BCB1EAC816AD941B00E47EB2 /* ui */,
+			);
+			name = source;
+			sourceTree = "<group>";
+		};
+		BCB1EAC616AD940400E47EB2 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				BC9736AE1680ACC1002304FA /* BrowserItem.h */,
+				BC9736AF1680ACC1002304FA /* BrowserItem.m */,
 				BCFF40CB167F3D8D00F9B8C5 /* ImageUtils.h */,
 				BCFF40CC167F3D8D00F9B8C5 /* ImageUtils.m */,
+				BC265CC916AAF9CE00DB7EDD /* Browsers.h */,
+				BC265CCA16AAF9CE00DB7EDD /* Browsers.m */,
+			);
+			name = models;
+			sourceTree = "<group>";
+		};
+		BCB1EAC816AD941B00E47EB2 /* ui */ = {
+			isa = PBXGroup;
+			children = (
 				BC9736A516806798002304FA /* BrowsersMenu.h */,
 				BC9736A616806798002304FA /* BrowsersMenu.m */,
 				BC9C5497165E57A80098709F /* PrefsController.xib */,
@@ -181,7 +202,7 @@
 				BCE2D4841681CD4300F4B40D /* OverlayWindowView.h */,
 				BCE2D4851681CD4300F4B40D /* OverlayWindowView.m */,
 			);
-			name = source;
+			name = ui;
 			sourceTree = "<group>";
 		};
 		BCB54DD3164291F8003A59DF = {
@@ -429,6 +450,7 @@
 				BC084585168484D500619E60 /* ZeroKitUtilities.m in Sources */,
 				BC084589168498D000619E60 /* PFMoveApplication.m in Sources */,
 				BC08458D1684998600619E60 /* NSString+SymlinksAndAliases.m in Sources */,
+				BC265CCB16AAF9CE00DB7EDD /* Browsers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,10 +7,10 @@
 //
 
 #import "OverlayWindow.h"
-#import "NSWorkspace+Utils.h"
 #import "ImageUtils.h"
 #import "AppDelegate.h"
 #import "BrowserItem.h"
+#import "Browsers.h"
 #import "OverlayWindowView.h"
 #import <Carbon/Carbon.h>
 
@@ -52,7 +52,7 @@
 -(void)windowDidBecomeKey:(NSNotification *)notification
 {
     NSLog(@"became key");
-    browsers = appDelegate.validBrowsers;
+    browsers = [Browsers validBrowsers];
 
     OverlayWindowView *contentView = [[OverlayWindowView alloc] init];
     [self setContentView:contentView];

@@ -8,9 +8,9 @@
 
 #import "AppDelegate.h"
 #import "BrowserItem.h"
+#import "Browsers.h"
 #import "Constants.h"
 #import "PrefsController.h"
-#import "NSWorkspace+Utils.h"
 #import "ImageUtils.h"
 #import "BrowsersMenu.h"
 #import "OverlayWindow.h"
@@ -18,6 +18,7 @@
 #import <MASShortcut.h>
 #import <MASShortcut+UserDefaults.h>
 #import "PFMoveApplication.h"
+#import <CDEvents.h>
 
 @interface AppDelegate()
 {
@@ -28,6 +29,8 @@
     NSWorkspace *sharedWorkspace;
     NSArray *blacklist;
     OverlayWindow *overlayWindow;
+    CDEvents *cdEvents;
+    NSString *_defaultBrowser;
 }
 @end
 
@@ -69,11 +72,28 @@
         [self hotkeyTriggered];
     }];
 
+    [[Browsers sharedInstance] findBrowsers];
     [self showAndHideIcon:nil];
 
     overlayWindow = [[OverlayWindow alloc] init];
 
+    [self watchApplicationsFolder];
+
     NSLog(@"applicationDidFinishLaunching :: finish");
+}
+
+- (void)watchApplicationsFolder
+{
+    // Watch the /Applications & ~/Applications directories for a change
+    NSArray *urls = @[
+        [NSURL URLWithString:@"/Applications"],
+        [NSURL URLWithString:[NSHomeDirectoryForUser(NSUserName()) stringByAppendingString:@"/Applications"]]
+    ];
+
+    cdEvents = [[CDEvents alloc] initWithURLs:urls block:^(CDEvents *watcher, CDEvent *event) {
+        [[Browsers sharedInstance] findBrowsersAsync];
+    }];
+    cdEvents.ignoreEventsFromSubDirectories = YES;
 }
 
 - (BOOL)applicationShouldHandleReopen: (NSApplication *)application hasVisibleWindows: (BOOL)visibleWindows
@@ -81,7 +101,6 @@
     [self showAndHideIcon:nil];
     return YES;
 }
-
 
 #pragma mark - NSKeyValueObserving
 
@@ -104,47 +123,7 @@
 
 - (NSArray*) browsers
 {
-    NSFileManager *defaultFileManager = [NSFileManager defaultManager];
-    NSArray *identifiers = [sharedWorkspace installedBrowserIdentifiers];
-    NSString *defaultBrowser = [sharedWorkspace defaultBrowserIdentifier];
-    NSMutableArray *allBrowsers = [[NSMutableArray alloc] initWithCapacity:identifiers.count];
-
-    for (int i = 0; i < identifiers.count; i++) {
-        NSString *browser = identifiers[i];
-
-        if (!browser) {
-            NSLog(@"Invalid application identifier: position %d of %@", i, identifiers);
-            continue;
-        }
-
-        NSString *browserPath = [sharedWorkspace absolutePathForAppBundleWithIdentifier:browser];
-        if (!browserPath) {
-            NSLog(@"Can't find path of browser: %@", browser);
-            continue;
-        }
-
-        NSString *browserName = [defaultFileManager displayNameAtPath:browserPath];
-        if (!browserName) {
-            NSLog(@"Can't find path of browser: %@", browser);
-            continue;
-        }
-
-        BrowserItem *item = [[BrowserItem alloc] initWithApplicationId:browser name:browserName path:browserPath];
-        item.blacklisted = [self isBlacklisted:browser];
-        item.isDefault = [browser isEqualToString:defaultBrowser];
-        [allBrowsers addObject:item];
-    }
-
-    return [allBrowsers sortedArrayUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"name" ascending:YES]]];
-}
-
-- (NSArray*) validBrowsers
-{
-    return [self.browsers filteredArrayUsingPredicate:
-                [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
-        BrowserItem *item = evaluatedObject;
-        return !item.blacklisted;
-    }]];
+    return [Browsers browsers];
 }
 
 - (void) selectABrowser:sender
@@ -152,19 +131,10 @@
     NSString *newDefaultBrowser = [sender respondsToSelector:@selector(representedObject)]
         ? [sender representedObject]
         :sender;
-    
-//    NSMenuItem *menuItem = sender;
-//    NSMenu *menu = menuItem.menu;
-//
-//    [menu.itemArray enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-//        [obj setState:NSOffState];
-//    }];
-//    menuItem.state = NSOnState;
 
     NSLog(@"Selecting a browser: %@", newDefaultBrowser);
-    [sharedWorkspace setDefaultBrowserWithIdentifier:newDefaultBrowser];
-    statusBarIcon.image = [ImageUtils statusBarIconForAppId:newDefaultBrowser];
-
+    [Browsers sharedInstance].defaultBrowserIdentifier = newDefaultBrowser;
+    [self performSelector:@selector(updateStatusBarIcon) withObject:nil afterDelay:0.1];
     [self showNotification:newDefaultBrowser];
 }
 
@@ -180,42 +150,8 @@
     }
 }
 
-- (BOOL) isBlacklisted:(NSString*) browserIdentifier
-{
-    if (!browserIdentifier) return NO;
-
-    NSArray *prefsBlacklist = [defaults valueForKey:PrefBlacklist];
-    NSUInteger index = [prefsBlacklist indexOfObjectPassingTest:^BOOL(id blacklistedIdentifier, NSUInteger idx, BOOL *stop) {
-        return [browserIdentifier rangeOfString:blacklistedIdentifier].location != NSNotFound;
-    }];
-
-    return index != NSNotFound;
-}
-
-- (void) blacklistABrowser:sender
-{
-    NSString *identifier = [sender representedObject];
-    NSMutableArray *prefsBlacklist = [[defaults valueForKey:PrefBlacklist] mutableCopy];
-    [prefsBlacklist addObject:identifier];
-    [defaults setValue:prefsBlacklist forKey:PrefBlacklist];
-}
-
-- (void) removeFromBlacklist:sender
-{
-    NSString *identifier = [sender representedObject];
-    NSMutableArray *prefsBlacklist = [[defaults valueForKey:PrefBlacklist] mutableCopy];
-
-    NSUInteger index = [prefsBlacklist indexOfObjectPassingTest:^BOOL(id blacklistedIdentifier, NSUInteger idx, BOOL *stop) {
-        return [identifier rangeOfString:blacklistedIdentifier].location != NSNotFound;
-    }];
-
-    if (index == NSNotFound) { return; }
-
-    [prefsBlacklist removeObjectAtIndex:index];
-    [defaults setValue:prefsBlacklist forKey:PrefBlacklist];
-}
-
 #pragma mark - UI
+
 
 - (void) hotkeyTriggered
 {
@@ -229,14 +165,23 @@
     NSLog(@"createStatusBarIcon");
     if (statusBarIcon != nil) return;
     NSStatusBar *statusBar = [NSStatusBar systemStatusBar];
-    NSString *defaultBrowser = [sharedWorkspace defaultBrowserIdentifier];
 
     statusBarIcon = [statusBar statusItemWithLength:NSVariableStatusItemLength];
     statusBarIcon.toolTip = AppDescription;
-    statusBarIcon.image = [ImageUtils statusBarIconForAppId:defaultBrowser];
+    [self updateStatusBarIcon];
     statusBarIcon.highlightMode = YES;
 
     statusBarIcon.menu = browserMenu;
+}
+
+- (void) updateStatusBarIcon;
+{
+    NSString *identifier = [Browsers sharedInstance].defaultBrowserIdentifier;
+    statusBarIcon.image = [ImageUtils statusBarIconForAppId:identifier];
+
+    if ([identifier isEqualToString:_defaultBrowser]) return;
+    _defaultBrowser = identifier;
+    [[Browsers sharedInstance] findBrowsersAsync];
 }
 
 - (void) destroyStatusBarIcon

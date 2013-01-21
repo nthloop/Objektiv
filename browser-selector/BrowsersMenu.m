@@ -7,10 +7,10 @@
 //
 
 #import "BrowsersMenu.h"
-#import "NSWorkspace+Utils.h"
 #import "ImageUtils.h"
 #import "AppDelegate.h"
 #import "BrowserItem.h"
+#import "Browsers.h"
 
 @implementation BrowsersMenu {
     @private
@@ -35,7 +35,7 @@
     NSLog(@"Create Menu");
     [self removeAllItems];
 
-    NSArray *browsers = [appDelegate browsers];
+    NSArray *browsers = [Browsers browsers];
     NSMenu *hiddenMenu = [[NSMenu alloc] init];
 
     NSLog(@"Browsers list: %@", browsers);
@@ -51,6 +51,7 @@
 
             item.offStateImage = [NSImage imageNamed:NSImageNameAddTemplate];
             item.toolTip = [NSString stringWithFormat:NSLocalizedString(@"Show %@", nil), browser.name];
+            item.target = [Browsers sharedInstance];
             item.action = @selector(removeFromBlacklist:);
 
             [hiddenMenu addItem:item];
@@ -66,6 +67,7 @@
         // Create an alternate item used to blacklist the browser
         NSMenuItem *alternate = [item copy];
 
+        alternate.target = [Browsers sharedInstance];
         alternate.keyEquivalentModifierMask = NSAlternateKeyMask;
         [alternate setAlternate:YES];
         alternate.state = NSMixedState;
@@ -133,9 +135,14 @@
 
 #pragma mark - NSMenuDelegate
 
--(void) menuDidClose:(NSMenu *) theMenu { self.menuIsOpen = NO; }
+-(void) menuDidClose:(NSMenu *) theMenu
+{
+    self.menuIsOpen = NO;
+}
 
--(void) menuWillOpen:(NSMenu *) theMenu {
+-(void) menuWillOpen:(NSMenu *) theMenu
+{
+    [appDelegate updateStatusBarIcon];
     self.menuIsOpen = YES;
     [self createMenu];
 }
