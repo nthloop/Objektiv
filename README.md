@@ -47,6 +47,7 @@ Credits
   - [ZeroKit][] by eczarny (MIT Licensed, portions of source used)
   - [MASShortcut][] by Vadim Shpakovski (BSD Licensed)
   - [CDEvents][] by Aron Cedercrantz (MIT Licensed)
+  - [Sparkle][] by Andy Matuschak
   - [NSWorkspace+Utils][1] from Mozilla's Camino project (MPL)
 
   [logo]:        https://raw.github.com/nthloop/Objektiv/master/Objektiv/Objektiv.iconset/icon_128x128.png
@@ -56,4 +57,5 @@ Credits
   [ZeroKit]:     https://github.com/eczarny/zerokit
   [MASShortcut]: https://github.com/shpakovski/MASShortcut
   [CDEvents]:    http://aron.cedercrantz.com/CDEvents/
+  [Sparkle]:     http://sparkle.andymatuschak.org/
   [1]:           http://hg.mozilla.org/camino/file/6d654a6d1cf4/src/extensions/NSWorkspace%2BUtils.h
