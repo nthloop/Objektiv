@@ -6,7 +6,7 @@ utility that lets you switch your default browser easily. You might find
 it useful if you're a web designer or use multiple browsers in your
 workflow.
 
-**[Download Objektiv now][download]!**
+**[Download Objektiv now][download]!** Works with Mac OS X 10.7 (Lion) onwards.
 
 Features
 ----------------------------------------
