@@ -13,7 +13,7 @@
 @property NSString *identifier;
 @property NSString *name;
 @property NSString *path;
-@property BOOL blacklisted;
+@property BOOL hidden;
 @property BOOL isDefault;
 
 - (BrowserItem*) initWithApplicationId: (NSString*)theId name: (NSString*)theName path: (NSString*) thePath;

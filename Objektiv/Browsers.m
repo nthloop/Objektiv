@@ -12,6 +12,9 @@
 
 @implementation Browsers {
     NSArray *_browsers;
+
+    // This internal blacklist of browsers is always hidden
+    NSArray *internalBlacklist;
 }
 
 + (Browsers*)sharedInstance
@@ -20,6 +23,15 @@
         return [[self alloc] init];
     });
 }
+
+-(id)init
+{
+    internalBlacklist = [[NSArray alloc] initWithContentsOfFile:[[NSBundle mainBundle]
+                                                pathForResource:@"Blacklist"
+                                                         ofType:@"plist"]];
+    return self;
+}
+
 
 + (NSArray*) browsers
 {
@@ -50,6 +62,11 @@
     NSFileManager *defaultFileManager = [NSFileManager defaultManager];
     NSWorkspace *sharedWorkspace = [NSWorkspace sharedWorkspace];
     NSArray *identifiers = [sharedWorkspace installedBrowserIdentifiers];
+
+    identifiers = [identifiers filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id browserId, NSDictionary *bindings) {
+        return ![self doesString:browserId matchPatternsInArray:internalBlacklist];
+    }]];
+
     NSString *defaultBrowser = [sharedWorkspace defaultBrowserIdentifier];
     NSMutableArray *allBrowsers = [[NSMutableArray alloc] initWithCapacity:identifiers.count];
 
@@ -74,7 +91,7 @@
         }
 
         BrowserItem *item = [[BrowserItem alloc] initWithApplicationId:browser name:browserName path:browserPath];
-        item.blacklisted = [self isBlacklisted:browser];
+        item.hidden = [self isHidden:browser];
         item.isDefault = [browser isEqualToString:defaultBrowser];
         [allBrowsers addObject:item];
     }
@@ -88,47 +105,52 @@
     return [self.browsers filteredArrayUsingPredicate:
             [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
         BrowserItem *item = evaluatedObject;
-        return !item.blacklisted;
+        return !item.hidden;
     }]];
 }
 
-- (BOOL) isBlacklisted:(NSString*) browserIdentifier
+- (BOOL) doesString: (NSString*) targetString matchPatternsInArray:(NSArray*) array
 {
-    if (!browserIdentifier) return NO;
-
-    NSArray *prefsBlacklist = [[NSUserDefaults standardUserDefaults] valueForKey:PrefBlacklist];
-    NSUInteger index = [prefsBlacklist indexOfObjectPassingTest:^BOOL(id blacklistedIdentifier, NSUInteger idx, BOOL *stop) {
-        return [browserIdentifier rangeOfString:blacklistedIdentifier].location != NSNotFound;
+    NSUInteger index = [array indexOfObjectPassingTest:^BOOL(id currentPattern, NSUInteger idx, BOOL *stop) {
+        return [targetString rangeOfString:currentPattern].location != NSNotFound;
     }];
 
     return index != NSNotFound;
 }
 
-- (void) blacklistABrowser:sender
+- (BOOL) isHidden:(NSString*) browserIdentifier
+{
+    if (!browserIdentifier) return NO;
+
+    NSArray *prefsHidden = [[NSUserDefaults standardUserDefaults] valueForKey:PrefBlacklist];
+    return [self doesString:browserIdentifier matchPatternsInArray:prefsHidden];
+}
+
+- (void) hideABrowser:sender
 {
     NSString *identifier = [sender representedObject];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSMutableArray *prefsBlacklist = [[defaults valueForKey:PrefBlacklist] mutableCopy];
-    [prefsBlacklist addObject:identifier];
-    [defaults setValue:prefsBlacklist forKey:PrefBlacklist];
+    NSMutableArray *prefsHidden = [[defaults valueForKey:PrefBlacklist] mutableCopy];
+    [prefsHidden addObject:identifier];
+    [defaults setValue:prefsHidden forKey:PrefBlacklist];
 
     [self findBrowsersAsync];
 }
 
-- (void) removeFromBlacklist:sender
+- (void) unhideABrowser:sender
 {
     NSString *identifier = [sender representedObject];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSMutableArray *prefsBlacklist = [[defaults valueForKey:PrefBlacklist] mutableCopy];
+    NSMutableArray *prefsHidden = [[defaults valueForKey:PrefBlacklist] mutableCopy];
 
-    NSUInteger index = [prefsBlacklist indexOfObjectPassingTest:^BOOL(id blacklistedIdentifier, NSUInteger idx, BOOL *stop) {
-        return [identifier rangeOfString:blacklistedIdentifier].location != NSNotFound;
+    NSUInteger index = [prefsHidden indexOfObjectPassingTest:^BOOL(id hiddenIdentifer, NSUInteger idx, BOOL *stop) {
+        return [identifier rangeOfString:hiddenIdentifer].location != NSNotFound;
     }];
 
     if (index == NSNotFound) { return; }
 
-    [prefsBlacklist removeObjectAtIndex:index];
-    [defaults setValue:prefsBlacklist forKey:PrefBlacklist];
+    [prefsHidden removeObjectAtIndex:index];
+    [defaults setValue:prefsHidden forKey:PrefBlacklist];
 
     [self findBrowsersAsync];
 }

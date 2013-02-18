@@ -23,9 +23,9 @@
 
 -(NSString *)description
 {
-    return [NSString stringWithFormat:@"<BrowserItem id:%@ name:%@ blacklisted:%@>",
+    return [NSString stringWithFormat:@"<BrowserItem id:%@ name:%@ hidden:%@>",
             self.identifier, self.name,
-            self.blacklisted ? @"YES" : @"NO"];
+            self.hidden ? @"YES" : @"NO"];
 }
 
 @end

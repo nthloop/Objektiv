@@ -45,15 +45,15 @@
     {
         BrowserItem *browser = browsers[i];
 
-        // Blacklisted browsers will be present in a hidden menu
+        // Hidden browsers will be present in a hidden menu
         // that will only be made visible on pressing Option
-        if (browser.blacklisted) {
+        if (browser.hidden) {
             NSMenuItem *item = [self menuItemForBrowser:browser withHotkey:nil];
 
             item.offStateImage = [NSImage imageNamed:NSImageNameAddTemplate];
             item.toolTip = [NSString stringWithFormat:NSLocalizedString(@"Show %@", nil), browser.name];
             item.target = [Browsers sharedInstance];
-            item.action = @selector(removeFromBlacklist:);
+            item.action = @selector(unhideABrowser:);
 
             [hiddenMenu addItem:item];
             continue;
@@ -65,7 +65,7 @@
 
         [self addItem:item];
 
-        // Create an alternate item used to blacklist the browser
+        // Create an alternate item used to hide the browser
         NSMenuItem *alternate = [item copy];
 
         alternate.target = [Browsers sharedInstance];
@@ -75,7 +75,7 @@
         alternate.mixedStateImage = [NSImage imageNamed:NSImageNameRemoveTemplate];
         alternate.toolTip = [NSString stringWithFormat:NSLocalizedString(@"Hide %@", nil), browser.name];
 
-        alternate.action = @selector(blacklistABrowser:);
+        alternate.action = @selector(hideABrowser:);
         [self addItem:alternate];
 
         count++;

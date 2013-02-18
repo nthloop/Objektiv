@@ -28,7 +28,6 @@
     BrowsersMenu *browserMenu;
     NSUserDefaults *defaults;
     NSWorkspace *sharedWorkspace;
-    NSArray *blacklist;
     OverlayWindow *overlayWindow;
     CDEvents *cdEvents;
     NSString *_defaultBrowser;
@@ -52,9 +51,6 @@
 
     self.prefsController = [[PrefsController alloc] initWithWindowNibName:@"PrefsController"];
     sharedWorkspace = [NSWorkspace sharedWorkspace];
-    blacklist = [[NSArray alloc] initWithContentsOfFile:[[NSBundle mainBundle]
-                                                         pathForResource:@"Blacklist"
-                                                         ofType:@"plist"]];
 
     browserMenu = [[BrowsersMenu alloc] init];
 

@@ -19,9 +19,9 @@
 @property(readonly) NSArray* validBrowsers;
 @property NSString* defaultBrowserIdentifier;
 
-- (BOOL) isBlacklisted:(NSString*) browserIdentifier;
-- (void) blacklistABrowser:sender;
-- (void) removeFromBlacklist:sender;
+- (BOOL) isHidden:(NSString*) browserIdentifier;
+- (void) hideABrowser:sender;
+- (void) unhideABrowser:sender;
 
 - (void) findBrowsersAsync;
 - (void) findBrowsers;
