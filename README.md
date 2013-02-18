@@ -1,10 +1,9 @@
 Objektiv
 ========================================
 
-<span style="float: left">![Objektiv Logo][logo]</span> Objektiv is a
-utility that lets you switch your default browser easily. You might find
-it useful if you're a web designer or use multiple browsers in your
-workflow.
+![Objektiv Logo][logo] Objektiv is a utility that lets you switch your
+default browser easily. You might find it useful if you're a web
+designer or use multiple browsers in your workflow.
 
 **[Download Objektiv now][download]!** Works with Mac OS X 10.7 (Lion) onwards.
 
@@ -50,7 +49,7 @@ Credits
   - [Sparkle][] by Andy Matuschak
   - [NSWorkspace+Utils][1] from Mozilla's Camino project (MPL)
 
-  [logo]:        https://raw.github.com/nthloop/Objektiv/master/Objektiv/Objektiv.iconset/icon_128x128.png
+  [logo]:        Objektiv/Objektiv.iconset/icon_128x128.png
   [download]:    http://nthloop.com/objektiv/objektiv-latest.zip
   [nth loop]:    http://nthloop.com
   [CocoaPods]:   http://cocoapods.org/
