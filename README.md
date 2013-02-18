@@ -16,7 +16,7 @@ Features
  - Pressing ALT (⌥) in the status menu lets you hide browsers that are
    incorrectly detected
 
-![Screenshot of the Objektiv overlay window](https://raw.github.com/nthloop/Objektiv/master/Objektiv/en.lproj/objektiv-overlay.png)
+![Screenshot of the Objektiv overlay window](Objektiv/en.lproj/objektiv-overlay.png)
 
 Building & Running
 ----------------------------------------
