@@ -7,9 +7,6 @@
 	<key>BrowserSelectorAutoHideIcon</key>
 	<false/>
 	<key>BrowserSelectorBlacklist</key>
-	<array>
-		<string>com.googlecode.iterm</string>
-		<string>com.fluidapp</string>
-	</array>
+	<array/>
 </dict>
 </plist>
