@@ -17,6 +17,8 @@
     NSArray *internalBlacklist;
 }
 
+# pragma mark - initialization
+
 + (Browsers*)sharedInstance
 {
     DEFINE_SHARED_INSTANCE_USING_BLOCK(^{
@@ -34,6 +36,7 @@
     return self;
 }
 
+# pragma mark - static properties
 
 + (NSArray*) browsers
 {
@@ -45,11 +48,34 @@
     return [[Browsers sharedInstance] validBrowsers];
 }
 
+# pragma mark - instance properties
+
 - (NSArray*) browsers
 {
     if (![_browsers count]) { [self findBrowsers]; }
     return _browsers;
 }
+
+- (NSArray*) validBrowsers
+{
+    return [self.browsers filteredArrayUsingPredicate:
+            [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
+        BrowserItem *item = evaluatedObject;
+        return !item.hidden;
+    }]];
+}
+
+- (NSString*) defaultBrowserIdentifier
+{
+    return [[NSWorkspace sharedWorkspace] defaultBrowserIdentifier];
+}
+
+- (void) setDefaultBrowserIdentifier:(NSString *)defaultBrowserIdentifier
+{
+    [[NSWorkspace sharedWorkspace] setDefaultBrowserWithIdentifier:defaultBrowserIdentifier];
+}
+
+# pragma mark - Public methods
 
 - (void) findBrowsersAsync
 {
@@ -102,24 +128,6 @@
 
 }
 
-- (NSArray*) validBrowsers
-{
-    return [self.browsers filteredArrayUsingPredicate:
-            [NSPredicate predicateWithBlock:^BOOL(id evaluatedObject, NSDictionary *bindings) {
-        BrowserItem *item = evaluatedObject;
-        return !item.hidden;
-    }]];
-}
-
-- (BOOL) doesString: (NSString*) targetString matchPatternsInArray:(NSArray*) array
-{
-    NSUInteger index = [array indexOfObjectPassingTest:^BOOL(id currentPattern, NSUInteger idx, BOOL *stop) {
-        return [targetString rangeOfString:currentPattern].location != NSNotFound;
-    }];
-
-    return index != NSNotFound;
-}
-
 - (BOOL) isHidden:(NSString*) browserIdentifier
 {
     if (!browserIdentifier) return NO;
@@ -157,14 +165,15 @@
     [self findBrowsersAsync];
 }
 
-- (NSString*) defaultBrowserIdentifier
-{
-    return [[NSWorkspace sharedWorkspace] defaultBrowserIdentifier];
-}
+#pragma mark - internal methods
 
-- (void) setDefaultBrowserIdentifier:(NSString *)defaultBrowserIdentifier
+- (BOOL) doesString: (NSString*) targetString matchPatternsInArray:(NSArray*) array
 {
-    [[NSWorkspace sharedWorkspace] setDefaultBrowserWithIdentifier:defaultBrowserIdentifier];
+    NSUInteger index = [array indexOfObjectPassingTest:^BOOL(id currentPattern, NSUInteger idx, BOOL *stop) {
+        return [targetString rangeOfString:currentPattern].location != NSNotFound;
+    }];
+
+    return index != NSNotFound;
 }
 
 @end

@@ -21,6 +21,8 @@
     NSArray *browsers;
 }
 
+#pragma mark - Initialization
+
 -(id)init
 {
     NSLog(@"Initializing OverlayWindow");
@@ -42,12 +44,28 @@
     return self;
 }
 
--(BOOL)canBecomeKeyWindow { return YES; }
-
+#pragma mark - NSWindow
 
 -(void)awakeFromNib
 {
 }
+
+-(BOOL)canBecomeKeyWindow { return YES; }
+
+-(void)keyDown:(NSEvent *)theEvent
+{
+    if (theEvent.keyCode == kVK_Escape)
+    {
+        [self orderOut:nil];
+        [self close];
+    }
+    else
+    {
+        [super keyDown:theEvent];
+    }
+}
+
+# pragma mark - NSWindowDelegate
 
 -(void)windowDidBecomeKey:(NSNotification *)notification
 {
@@ -78,17 +96,5 @@
     [self close];
 }
 
--(void)keyDown:(NSEvent *)theEvent
-{
-    if (theEvent.keyCode == kVK_Escape)
-    {
-        [self orderOut:nil];
-        [self close];
-    }
-    else
-    {
-        [super keyDown:theEvent];
-    }
-}
 
 @end
