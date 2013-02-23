@@ -26,6 +26,8 @@
 
 -(id)init
 {
+    self = [super init];
+
     internalBlacklist = [[NSArray alloc] initWithContentsOfFile:[[NSBundle mainBundle]
                                                 pathForResource:@"Blacklist"
                                                          ofType:@"plist"]];
