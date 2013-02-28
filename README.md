@@ -13,8 +13,8 @@ Features
  - A status-bar icon for quick access
  - An optional global hotkey triggers an overlay window for even quicker
    switching
- - Pressing ALT (⌥) in the status menu lets you hide browsers that are
-   incorrectly detected
+ - Pressing Option (⌥) in the status menu lets you hide browsers that
+   are incorrectly detected
 
 ![Screenshot of the Objektiv overlay window](Objektiv/en.lproj/objektiv-overlay.png)
 
