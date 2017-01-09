@@ -65,6 +65,8 @@
     NSLog(@"Setting defaults");
     [ZeroKitUtilities registerDefaultsForBundle:[NSBundle mainBundle]];
     defaults = [NSUserDefaults standardUserDefaults];
+    
+    [self displayAreWeDefaultMsg];
 
     [defaults addObserver:self
                forKeyPath:PrefAutoHideIcon
@@ -271,6 +273,31 @@ withReplyEvent:(NSAppleEventDescriptor *)replyEvent
 - (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification
 {
     return YES;
+}
+
+-(void)displayAreWeDefaultMsg
+{
+    if([defaults boolForKey:PrefAreWeDefault]) return;
+    if([[[NSBundle mainBundle] bundleIdentifier] caseInsensitiveCompare:[[Browsers sharedInstance] systemDefaultBrowser]] == NSOrderedSame) {
+        return;
+    }
+    
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert setShowsSuppressionButton:YES];
+    [alert setMessageText:NSLocalizedString(@"Non Default Browser", @"Non Default Browser")];
+    [alert setInformativeText:NSLocalizedString(@"No Default Browser Information", @"No Default Browser Information")];
+    [alert addButtonWithTitle:NSLocalizedString(@"Set As Default", @"Set As Default")];
+    NSButton *cancelButton = [alert addButtonWithTitle:NSLocalizedString(@"Cancel", @"Cancel")];
+    [cancelButton setKeyEquivalent:@"\e"];
+    
+    if ([alert runModal] == NSAlertFirstButtonReturn) {
+        [[Browsers sharedInstance] setOurselvesAsDefaultBrowser];
+    }
+    
+    if ([[alert suppressionButton] state] == NSOnState) {
+        NSLog(@"Suppress");
+        [defaults setBool:YES forKey:PrefAreWeDefault];
+    }
 }
 
 @end

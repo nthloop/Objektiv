@@ -18,6 +18,7 @@
 @property(readonly) NSArray* browsers;
 @property(readonly) NSArray* validBrowsers;
 @property NSString* defaultBrowserIdentifier;
+@property(readonly) NSString* systemDefaultBrowser;
 
 - (BOOL) isHidden:(NSString*) browserIdentifier;
 - (void) hideABrowser:sender;
@@ -25,5 +26,6 @@
 
 - (void) findBrowsersAsync;
 - (void) findBrowsers;
+- (void) setOurselvesAsDefaultBrowser;
 
 @end

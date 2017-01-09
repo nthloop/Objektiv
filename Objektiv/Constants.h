@@ -21,6 +21,8 @@
 
 #define PrefBlacklist @"BrowserSelectorBlacklist"
 
+#define PrefAreWeDefault @"AreWeDefaultAlertSuppress"
+
 #define NotificationTitle NSLocalizedString(@"%@ selected", @"Title of the notification")
 #define NotificationText NSLocalizedString(@"You selected %@ as your default browser using %@.", @"Notification text")
 

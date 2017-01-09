@@ -72,10 +72,20 @@
     
 }
 
+- (NSString*) systemDefaultBrowser
+{
+    return [[NSWorkspace sharedWorkspace] defaultBrowserIdentifier];
+}
+
 - (void) setDefaultBrowserIdentifier:(NSString *)defaultBrowserIdentifier
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults setValue:defaultBrowserIdentifier forKey:PrefSelectedBrowser];
+}
+
+- (void) setOurselvesAsDefaultBrowser
+{
+    [[NSWorkspace sharedWorkspace] setDefaultBrowserWithIdentifier:[[NSBundle mainBundle] bundleIdentifier]];
 }
 
 # pragma mark - Public methods
