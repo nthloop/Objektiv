@@ -243,8 +243,9 @@
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     notification.title = [NSString stringWithFormat:NotificationTitle, browserName];
     notification.informativeText = [NSString stringWithFormat:NotificationText, browserName, AppName];
-
-    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+    NSUserNotificationCenter* center = [NSUserNotificationCenter defaultUserNotificationCenter];
+    center.delegate = self;
+    [center deliverNotification:notification];
 }
 
 - (void)getUrl:(NSAppleEventDescriptor *)event
@@ -262,6 +263,11 @@ withReplyEvent:(NSAppleEventDescriptor *)replyEvent
                                     options: options
              additionalEventParamDescriptor: nil
                           launchIdentifiers: nil];
+}
+
+- (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification
+{
+    return YES;
 }
 
 @end
