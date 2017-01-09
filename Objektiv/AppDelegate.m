@@ -15,8 +15,7 @@
 #import "BrowsersMenu.h"
 #import "OverlayWindow.h"
 #import "ZeroKitUtilities.h"
-#import <MASShortcut.h>
-#import <MASShortcut+UserDefaults.h>
+#import <MASShortcut/Shortcut.h>
 #import "PFMoveApplication.h"
 #import <CDEvents.h>
 #import <Sparkle/Sparkle.h>
@@ -47,7 +46,7 @@
 
     NSLog(@"applicationDidFinishLaunching");
 
-    [[SUUpdater sharedUpdater] checkForUpdatesInBackground];
+//    [[SUUpdater sharedUpdater] checkForUpdatesInBackground];
 
     self.prefsController = [[PrefsController alloc] initWithWindowNibName:@"PrefsController"];
     sharedWorkspace = [NSWorkspace sharedWorkspace];
@@ -66,11 +65,17 @@
                forKeyPath:PrefStartAtLogin
                   options:NSKeyValueObservingOptionNew
                   context:NULL];
-
-    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:PrefHotkey handler:^{
+    
+    [[MASShortcutBinder sharedBinder] bindShortcutWithDefaultsKey:PrefHotkey toAction:^{
         [self hotkeyTriggered];
-    }];
-
+     }];
+    
+    NSAppleEventManager *em = [NSAppleEventManager sharedAppleEventManager];
+    [em setEventHandler:self
+            andSelector:@selector(getUrl:withReplyEvent:)
+          forEventClass:kInternetEventClass
+             andEventID:kAEGetURL];
+    
     [[Browsers sharedInstance] findBrowsers];
     [self showAndHideIcon:nil];
 
@@ -134,7 +139,11 @@
     NSLog(@"Selecting a browser: %@", newDefaultBrowser);
     [Browsers sharedInstance].defaultBrowserIdentifier = newDefaultBrowser;
     [self performSelector:@selector(updateStatusBarIcon) withObject:nil afterDelay:0.1];
-    [self showNotification:newDefaultBrowser];
+    
+    if ([defaults boolForKey:PrefShowNotifications])
+    {
+        [self showNotification:newDefaultBrowser];
+    }
 }
 
 - (void) toggleLoginItem
@@ -155,6 +164,10 @@
 - (void) hotkeyTriggered
 {
     NSLog(@"@Hotkey triggered");
+    if (overlayWindow.isVisible) {
+        [overlayWindow close];
+        return;
+    }
     [overlayWindow makeKeyAndOrderFront:NSApp];
     [self showAndHideIcon:nil];
 }
@@ -227,12 +240,28 @@
 {
     NSString *browserPath = [sharedWorkspace absolutePathForAppBundleWithIdentifier:browserIdentifier];
     NSString *browserName = [[NSFileManager defaultManager] displayNameAtPath:browserPath];
-
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     notification.title = [NSString stringWithFormat:NotificationTitle, browserName];
     notification.informativeText = [NSString stringWithFormat:NotificationText, browserName, AppName];
 
     [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+}
+
+- (void)getUrl:(NSAppleEventDescriptor *)event
+withReplyEvent:(NSAppleEventDescriptor *)replyEvent
+{
+    // Get the URL
+    NSString *urlStr = [[event paramDescriptorForKeyword:keyDirectObject]
+                        stringValue];
+    NSArray *urls = [NSArray arrayWithObject:[NSURL URLWithString:urlStr]];
+    
+    int options = NSWorkspaceLaunchAsync;
+
+    [[NSWorkspace sharedWorkspace] openURLs: urls
+                    withAppBundleIdentifier: [[Browsers sharedInstance] defaultBrowserIdentifier]
+                                    options: options
+             additionalEventParamDescriptor: nil
+                          launchIdentifiers: nil];
 }
 
 @end

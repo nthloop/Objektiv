@@ -7,8 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import <MASShortcutView.h>
-#import <MASShortcutView+UserDefaults.h>
+#import <MASShortcut/Shortcut.h>
 
 
 @interface PrefsController : NSWindowController
@@ -17,10 +16,12 @@
 
 @property (assign) IBOutlet NSButton *startAtLogin;
 @property (assign) IBOutlet NSButton *autoHideIcon;
+@property (assign) IBOutlet NSButton *showNotifications;
 @property (assign) IBOutlet MASShortcutView *hotkeyRecorder;
 
 
 - (IBAction)toggleLoginItem: (id)sender;
 - (IBAction)toggleHideItem: (id)sender;
+- (IBAction)toggleShowNotifications: (id)sender;
 
 @end

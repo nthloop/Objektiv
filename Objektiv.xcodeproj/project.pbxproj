@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		307D52181689B493003D6C8C /* objektiv-overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 307D52161689B493003D6C8C /* objektiv-overlay.png */; };
-		85E05F32EFA24E52AA562CC4 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F7216227D724BE9A9EBC6DC /* libPods.a */; };
 		BC084585168484D500619E60 /* ZeroKitUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = BC084584168484D500619E60 /* ZeroKitUtilities.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BC084589168498D000619E60 /* PFMoveApplication.m in Sources */ = {isa = PBXBuildFile; fileRef = BC084588168498D000619E60 /* PFMoveApplication.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BC08458D1684998600619E60 /* NSString+SymlinksAndAliases.m in Sources */ = {isa = PBXBuildFile; fileRef = BC08458B1684998600619E60 /* NSString+SymlinksAndAliases.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -37,11 +36,12 @@
 		BCB54E191642926D003A59DF /* NSWorkspace+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = BCB54E181642926D003A59DF /* NSWorkspace+Utils.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		BCBC14FB167F0E06007D12E3 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCBC14FA167F0E06007D12E3 /* QuartzCore.framework */; };
 		BCDBFAA916ADE664006F1FCD /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCDBFAA816ADE664006F1FCD /* Sparkle.framework */; };
-		BCDBFAAC16ADE6A9006F1FCD /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BCDBFAA816ADE664006F1FCD /* Sparkle.framework */; };
+		BCDBFAAC16ADE6A9006F1FCD /* Sparkle.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = BCDBFAA816ADE664006F1FCD /* Sparkle.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		BCE2D47C1681B36600F4B40D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BC9736A81680A8D0002304FA /* Localizable.strings */; };
 		BCE2D47F1681B76200F4B40D /* OverlayWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE2D47E1681B76200F4B40D /* OverlayWindow.m */; };
 		BCE2D4861681CD4300F4B40D /* OverlayWindowView.m in Sources */ = {isa = PBXBuildFile; fileRef = BCE2D4851681CD4300F4B40D /* OverlayWindowView.m */; };
 		BCFF40CD167F3D8D00F9B8C5 /* ImageUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = BCFF40CC167F3D8D00F9B8C5 /* ImageUtils.m */; };
+		C57AFA7BC45F63236D4F5DDC /* libPods-Objektiv.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D586439309ED799E410F4B8 /* libPods-Objektiv.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,9 +78,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1A16FB89B189A169D683F7E2 /* Pods-Objektiv.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Objektiv.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Objektiv/Pods-Objektiv.debug.xcconfig"; sourceTree = "<group>"; };
 		307D52171689B493003D6C8C /* en */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = en; path = "en.lproj/objektiv-overlay.png"; sourceTree = "<group>"; };
-		3DAAA205D2EE40DDA76D0F72 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = SOURCE_ROOT; };
+		3D586439309ED799E410F4B8 /* libPods-Objektiv.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Objektiv.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8F7216227D724BE9A9EBC6DC /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		B1FCC4D6C80F9B9D903BC35D /* Pods-Objektiv.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Objektiv.release.xcconfig"; path = "Pods/Target Support Files/Pods-Objektiv/Pods-Objektiv.release.xcconfig"; sourceTree = "<group>"; };
 		BC084583168484D500619E60 /* ZeroKitUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ZeroKitUtilities.h; path = zerokit/ZeroKitUtilities.h; sourceTree = "<group>"; };
 		BC084584168484D500619E60 /* ZeroKitUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ZeroKitUtilities.m; path = zerokit/ZeroKitUtilities.m; sourceTree = "<group>"; };
 		BC084587168498D000619E60 /* PFMoveApplication.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PFMoveApplication.h; path = potionfactory/PFMoveApplication.h; sourceTree = "<group>"; };
@@ -145,8 +147,8 @@
 				BCBC14FB167F0E06007D12E3 /* QuartzCore.framework in Frameworks */,
 				BC68B2D81653CF92009465F5 /* Carbon.framework in Frameworks */,
 				BCB54DE3164291F8003A59DF /* Cocoa.framework in Frameworks */,
-				85E05F32EFA24E52AA562CC4 /* libPods.a in Frameworks */,
 				BCDBFAA916ADE664006F1FCD /* Sparkle.framework in Frameworks */,
+				C57AFA7BC45F63236D4F5DDC /* libPods-Objektiv.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,6 +164,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		632D564DC94D6DBC88A95897 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1A16FB89B189A169D683F7E2 /* Pods-Objektiv.debug.xcconfig */,
+				B1FCC4D6C80F9B9D903BC35D /* Pods-Objektiv.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		BC0845861684856100619E60 /* zerokit */ = {
 			isa = PBXGroup;
 			children = (
@@ -230,7 +241,7 @@
 				BCB54E05164291F8003A59DF /* ObjektivTests */,
 				BCB54DE1164291F8003A59DF /* Frameworks */,
 				BCB54DDF164291F8003A59DF /* Products */,
-				3DAAA205D2EE40DDA76D0F72 /* Pods.xcconfig */,
+				632D564DC94D6DBC88A95897 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -254,6 +265,7 @@
 				BCB54E00164291F8003A59DF /* SenTestingKit.framework */,
 				BCB54DE4164291F8003A59DF /* Other Frameworks */,
 				8F7216227D724BE9A9EBC6DC /* libPods.a */,
+				3D586439309ED799E410F4B8 /* libPods-Objektiv.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -335,12 +347,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BCB54E10164291F8003A59DF /* Build configuration list for PBXNativeTarget "Objektiv" */;
 			buildPhases = (
+				E1D9A9F4FFEC3FE84B17A5EB /* [CP] Check Pods Manifest.lock */,
 				BCB54DDA164291F8003A59DF /* Sources */,
 				BCBC14FF167F23DD007D12E3 /* Copy Frameworks */,
 				BCB54DDB164291F8003A59DF /* Frameworks */,
 				BCB54DDC164291F8003A59DF /* Resources */,
-				0070E76AAF2C4318AFF32B85 /* Copy Pods Resources */,
+				0070E76AAF2C4318AFF32B85 /* [CP] Copy Pods Resources */,
 				BCDBFAAB16ADE699006F1FCD /* CopyFiles */,
+				00C11E93EAAA97585CEAC36E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -376,7 +390,7 @@
 		BCB54DD5164291F8003A59DF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "nth loop";
 			};
 			buildConfigurationList = BCB54DD8164291F8003A59DF /* Build configuration list for PBXProject "Objektiv" */;
@@ -428,19 +442,34 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0070E76AAF2C4318AFF32B85 /* Copy Pods Resources */ = {
+		0070E76AAF2C4318AFF32B85 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Objektiv/Pods-Objektiv-resources.sh\"\n";
+		};
+		00C11E93EAAA97585CEAC36E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Objektiv/Pods-Objektiv-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		BCB54DFD164291F8003A59DF /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -454,6 +483,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+		E1D9A9F4FFEC3FE84B17A5EB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -568,16 +612,26 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -586,7 +640,9 @@
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				ONLY_ACTIVE_ARCH = YES;
@@ -598,19 +654,30 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				SDKROOT = macosx;
@@ -619,7 +686,7 @@
 		};
 		BCB54E11164291F8003A59DF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3DAAA205D2EE40DDA76D0F72 /* Pods.xcconfig */;
+			baseConfigurationReference = 1A16FB89B189A169D683F7E2 /* Pods-Objektiv.debug.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -630,6 +697,8 @@
 				GCC_PREFIX_HEADER = "Objektiv/Objektiv-Prefix.pch";
 				INFOPLIST_FILE = "Objektiv/Objektiv-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nthloop.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = Objektiv;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				WRAPPER_EXTENSION = app;
@@ -638,7 +707,7 @@
 		};
 		BCB54E12164291F8003A59DF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3DAAA205D2EE40DDA76D0F72 /* Pods.xcconfig */;
+			baseConfigurationReference = B1FCC4D6C80F9B9D903BC35D /* Pods-Objektiv.release.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -649,6 +718,8 @@
 				GCC_PREFIX_HEADER = "Objektiv/Objektiv-Prefix.pch";
 				INFOPLIST_FILE = "Objektiv/Objektiv-Info.plist";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				OTHER_LDFLAGS = "$(inherited)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nthloop.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = Objektiv;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				WRAPPER_EXTENSION = app;

@@ -2,10 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>ShowNotifications</key>
+	<true/>
 	<key>BrowserSelectorStartAtLogin</key>
 	<false/>
 	<key>BrowserSelectorAutoHideIcon</key>
 	<false/>
+	<key>BrowserSelected</key>
+	<string>com.apple.Safari</string>
 	<key>BrowserSelectorBlacklist</key>
 	<array/>
 </dict>

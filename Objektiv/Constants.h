@@ -13,6 +13,9 @@
 
 #define PrefStartAtLogin @"BrowserSelectorStartAtLogin"
 #define PrefAutoHideIcon @"BrowserSelectorAutoHideIcon"
+#define PrefShowNotifications @"ShowNotifications"
+
+#define PrefSelectedBrowser @"BrowserSelected"
 
 #define PrefHotkey @"BrowserSelectorHotkey"
 

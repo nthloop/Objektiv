@@ -9,7 +9,7 @@
 	<key>CFBundleIconFile</key>
 	<string>Objektiv</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.nthloop.${PRODUCT_NAME:rfc1034identifier}</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -34,9 +34,30 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>NSSupportsAutomaticGraphicsSwitching</key>
+	<true/>
 	<key>SUFeedURL</key>
 	<string>http://nthloop.com/objektiv/appcast.xml</string>
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+            <key>CFBundleURLName</key>
+            <string>http URL</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>http</string>
+            </array>
+        </dict>
+        <dict>
+            <key>CFBundleURLName</key>
+            <string>Secure http URL</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>https</string>
+            </array>
+        </dict>
+    </array>
 </dict>
 </plist>
