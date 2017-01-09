@@ -18,6 +18,10 @@ Features
 
 ![Screenshot of the Objektiv overlay window](Objektiv/en.lproj/objektiv-overlay.png)
 
+Usage
+----------------------------------------
+Due to the recent changes in MacOS 10.10+, applications are now incapable of switching the user's default browser silently without a confirmation message. Please set Objektiv as your default browser in your System Prefences > General and everything will work as normal.
+
 Building & Running
 ----------------------------------------
 
