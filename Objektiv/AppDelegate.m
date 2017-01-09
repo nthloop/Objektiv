@@ -39,6 +39,15 @@
 
 #pragma mark - NSApplicationDelegate
 
+- (void)applicationWillFinishLaunching:(NSNotification *)aNotification
+{
+    NSAppleEventManager *em = [NSAppleEventManager sharedAppleEventManager];
+    [em setEventHandler:self
+            andSelector:@selector(getUrl:withReplyEvent:)
+          forEventClass:kInternetEventClass
+             andEventID:kAEGetURL];
+}
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
 
@@ -69,12 +78,6 @@
     [[MASShortcutBinder sharedBinder] bindShortcutWithDefaultsKey:PrefHotkey toAction:^{
         [self hotkeyTriggered];
      }];
-    
-    NSAppleEventManager *em = [NSAppleEventManager sharedAppleEventManager];
-    [em setEventHandler:self
-            andSelector:@selector(getUrl:withReplyEvent:)
-          forEventClass:kInternetEventClass
-             andEventID:kAEGetURL];
     
     [[Browsers sharedInstance] findBrowsers];
     [self showAndHideIcon:nil];
