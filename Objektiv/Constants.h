@@ -26,6 +26,8 @@
 #define NotificationTitle NSLocalizedString(@"%@ selected", @"Title of the notification")
 #define NotificationText NSLocalizedString(@"You selected %@ as your default browser using %@.", @"Notification text")
 
+#define kLocalFileUri @"file://locahost%@"
+
 #define StatusBarIconSize 16
 
 // Via https://gist.github.com/1057420

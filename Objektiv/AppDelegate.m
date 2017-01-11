@@ -253,23 +253,6 @@
     [center deliverNotification:notification];
 }
 
-- (void)getUrl:(NSAppleEventDescriptor *)event
-withReplyEvent:(NSAppleEventDescriptor *)replyEvent
-{
-    // Get the URL
-    NSString *urlStr = [[event paramDescriptorForKeyword:keyDirectObject]
-                        stringValue];
-    NSArray *urls = [NSArray arrayWithObject:[NSURL URLWithString:urlStr]];
-    
-    int options = NSWorkspaceLaunchAsync;
-
-    [[NSWorkspace sharedWorkspace] openURLs: urls
-                    withAppBundleIdentifier: [[Browsers sharedInstance] defaultBrowserIdentifier]
-                                    options: options
-             additionalEventParamDescriptor: nil
-                          launchIdentifiers: nil];
-}
-
 - (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification
 {
     return YES;
@@ -298,6 +281,35 @@ withReplyEvent:(NSAppleEventDescriptor *)replyEvent
         NSLog(@"Suppress");
         [defaults setBool:YES forKey:PrefAreWeDefault];
     }
+}
+
+#pragma mark - File Handlers
+
+- (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename
+{
+    [self openWithBrowser:[NSString stringWithFormat:kLocalFileUri, filename]];
+    return YES;
+}
+
+- (void)getUrl:(NSAppleEventDescriptor *)event
+withReplyEvent:(NSAppleEventDescriptor *)replyEvent
+{
+    [self openWithBrowser:[[event paramDescriptorForKeyword:keyDirectObject]
+                           stringValue]];
+}
+
+- (void)openWithBrowser:(NSString*)location
+{
+    
+    NSArray *urls = [NSArray arrayWithObject:[NSURL URLWithString:location]];
+    
+    int options = NSWorkspaceLaunchAsync;
+    
+    [[NSWorkspace sharedWorkspace] openURLs: urls
+                    withAppBundleIdentifier: [[Browsers sharedInstance] defaultBrowserIdentifier]
+                                    options: options
+             additionalEventParamDescriptor: nil
+                          launchIdentifiers: nil];
 }
 
 @end
