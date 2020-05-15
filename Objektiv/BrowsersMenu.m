@@ -121,14 +121,6 @@
     prefsItem.target = appDelegate.prefsController;
     [self addItem:prefsItem];
 
-    NSMenuItem *updaterItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"Check for Updates...", nil)
-                                                         action:@selector(checkForUpdates:)
-                                                  keyEquivalent:@"u"];
-    
-    updaterItem.target = [SUUpdater sharedUpdater];
-    [self addItem:updaterItem];
-
-
     NSMenuItem *aboutItem = [[NSMenuItem alloc] initWithTitle:NSLocalizedString(@"About", nil)
                                                        action:@selector(showAbout)
                                                 keyEquivalent:@"a"];

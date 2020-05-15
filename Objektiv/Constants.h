@@ -13,13 +13,20 @@
 
 #define PrefStartAtLogin @"BrowserSelectorStartAtLogin"
 #define PrefAutoHideIcon @"BrowserSelectorAutoHideIcon"
+#define PrefShowNotifications @"ShowNotifications"
+
+#define PrefSelectedBrowser @"BrowserSelected"
 
 #define PrefHotkey @"BrowserSelectorHotkey"
 
 #define PrefBlacklist @"BrowserSelectorBlacklist"
 
+#define PrefAreWeDefault @"AreWeDefaultAlertSuppress"
+
 #define NotificationTitle NSLocalizedString(@"%@ selected", @"Title of the notification")
 #define NotificationText NSLocalizedString(@"You selected %@ as your default browser using %@.", @"Notification text")
+
+#define kLocalFileUri @"file://locahost%@"
 
 #define StatusBarIconSize 16
 

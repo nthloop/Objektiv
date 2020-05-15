@@ -67,12 +67,25 @@
 
 - (NSString*) defaultBrowserIdentifier
 {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    return [defaults valueForKey:PrefSelectedBrowser];
+    
+}
+
+- (NSString*) systemDefaultBrowser
+{
     return [[NSWorkspace sharedWorkspace] defaultBrowserIdentifier];
 }
 
 - (void) setDefaultBrowserIdentifier:(NSString *)defaultBrowserIdentifier
 {
-    [[NSWorkspace sharedWorkspace] setDefaultBrowserWithIdentifier:defaultBrowserIdentifier];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setValue:defaultBrowserIdentifier forKey:PrefSelectedBrowser];
+}
+
+- (void) setOurselvesAsDefaultBrowser
+{
+    [[NSWorkspace sharedWorkspace] setDefaultBrowserWithIdentifier:[[NSBundle mainBundle] bundleIdentifier]];
 }
 
 # pragma mark - Public methods
@@ -95,7 +108,7 @@
         return ![self doesString:browserId matchPatternsInArray:internalBlacklist];
     }]];
 
-    NSString *defaultBrowser = [sharedWorkspace defaultBrowserIdentifier];
+    NSString *defaultBrowser = [self defaultBrowserIdentifier];
     NSMutableArray *allBrowsers = [[NSMutableArray alloc] initWithCapacity:identifiers.count];
 
     for (int i = 0; i < identifiers.count; i++) {

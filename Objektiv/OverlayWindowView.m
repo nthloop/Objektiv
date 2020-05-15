@@ -94,8 +94,8 @@ const NSUInteger BOX_PADDING = 16;
     NSUInteger width = itemRect.size.width, height = itemRect.size.height;
 
     NSUInteger maxRow = browsers.count / 9, maxColumn = browsers.count > 9 ? 9 : browsers.count;
+    if((browsers.count % 9) == 0) maxRow--;
     NSUInteger row = maxRow, column = 0;
-
     for (int i = 0; i < browsers.count; i++) {
         BrowserItem *browser = browsers[i];
 

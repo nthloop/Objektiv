@@ -15,8 +15,7 @@
 #import "BrowsersMenu.h"
 #import "OverlayWindow.h"
 #import "ZeroKitUtilities.h"
-#import <MASShortcut.h>
-#import <MASShortcut+UserDefaults.h>
+#import <MASShortcut/Shortcut.h>
 #import "PFMoveApplication.h"
 #import <CDEvents.h>
 #import <Sparkle/Sparkle.h>
@@ -40,6 +39,15 @@
 
 #pragma mark - NSApplicationDelegate
 
+- (void)applicationWillFinishLaunching:(NSNotification *)aNotification
+{
+    NSAppleEventManager *em = [NSAppleEventManager sharedAppleEventManager];
+    [em setEventHandler:self
+            andSelector:@selector(getUrl:withReplyEvent:)
+          forEventClass:kInternetEventClass
+             andEventID:kAEGetURL];
+}
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification
 {
 
@@ -47,7 +55,7 @@
 
     NSLog(@"applicationDidFinishLaunching");
 
-    [[SUUpdater sharedUpdater] checkForUpdatesInBackground];
+//    [[SUUpdater sharedUpdater] checkForUpdatesInBackground];
 
     self.prefsController = [[PrefsController alloc] initWithWindowNibName:@"PrefsController"];
     sharedWorkspace = [NSWorkspace sharedWorkspace];
@@ -57,6 +65,8 @@
     NSLog(@"Setting defaults");
     [ZeroKitUtilities registerDefaultsForBundle:[NSBundle mainBundle]];
     defaults = [NSUserDefaults standardUserDefaults];
+    
+    [self displayAreWeDefaultMsg];
 
     [defaults addObserver:self
                forKeyPath:PrefAutoHideIcon
@@ -66,11 +76,11 @@
                forKeyPath:PrefStartAtLogin
                   options:NSKeyValueObservingOptionNew
                   context:NULL];
-
-    [MASShortcut registerGlobalShortcutWithUserDefaultsKey:PrefHotkey handler:^{
+    
+    [[MASShortcutBinder sharedBinder] bindShortcutWithDefaultsKey:PrefHotkey toAction:^{
         [self hotkeyTriggered];
-    }];
-
+     }];
+    
     [[Browsers sharedInstance] findBrowsers];
     [self showAndHideIcon:nil];
 
@@ -134,7 +144,11 @@
     NSLog(@"Selecting a browser: %@", newDefaultBrowser);
     [Browsers sharedInstance].defaultBrowserIdentifier = newDefaultBrowser;
     [self performSelector:@selector(updateStatusBarIcon) withObject:nil afterDelay:0.1];
-    [self showNotification:newDefaultBrowser];
+    
+    if ([defaults boolForKey:PrefShowNotifications])
+    {
+        [self showNotification:newDefaultBrowser];
+    }
 }
 
 - (void) toggleLoginItem
@@ -155,6 +169,10 @@
 - (void) hotkeyTriggered
 {
     NSLog(@"@Hotkey triggered");
+    if (overlayWindow.isVisible) {
+        [overlayWindow close];
+        return;
+    }
     [overlayWindow makeKeyAndOrderFront:NSApp];
     [self showAndHideIcon:nil];
 }
@@ -227,12 +245,71 @@
 {
     NSString *browserPath = [sharedWorkspace absolutePathForAppBundleWithIdentifier:browserIdentifier];
     NSString *browserName = [[NSFileManager defaultManager] displayNameAtPath:browserPath];
-
     NSUserNotification *notification = [[NSUserNotification alloc] init];
     notification.title = [NSString stringWithFormat:NotificationTitle, browserName];
     notification.informativeText = [NSString stringWithFormat:NotificationText, browserName, AppName];
+    NSUserNotificationCenter* center = [NSUserNotificationCenter defaultUserNotificationCenter];
+    center.delegate = self;
+    [center deliverNotification:notification];
+}
 
-    [[NSUserNotificationCenter defaultUserNotificationCenter] deliverNotification:notification];
+- (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)notification
+{
+    return YES;
+}
+
+-(void)displayAreWeDefaultMsg
+{
+    if([defaults boolForKey:PrefAreWeDefault]) return;
+    if([[[NSBundle mainBundle] bundleIdentifier] caseInsensitiveCompare:[[Browsers sharedInstance] systemDefaultBrowser]] == NSOrderedSame) {
+        return;
+    }
+    
+    NSAlert *alert = [[NSAlert alloc] init];
+    [alert setShowsSuppressionButton:YES];
+    [alert setMessageText:NSLocalizedString(@"Non Default Browser", @"Non Default Browser")];
+    [alert setInformativeText:NSLocalizedString(@"No Default Browser Information", @"No Default Browser Information")];
+    [alert addButtonWithTitle:NSLocalizedString(@"Set As Default", @"Set As Default")];
+    NSButton *cancelButton = [alert addButtonWithTitle:NSLocalizedString(@"Cancel", @"Cancel")];
+    [cancelButton setKeyEquivalent:@"\e"];
+    
+    if ([alert runModal] == NSAlertFirstButtonReturn) {
+        [[Browsers sharedInstance] setOurselvesAsDefaultBrowser];
+    }
+    
+    if ([[alert suppressionButton] state] == NSOnState) {
+        NSLog(@"Suppress");
+        [defaults setBool:YES forKey:PrefAreWeDefault];
+    }
+}
+
+#pragma mark - File Handlers
+
+- (BOOL)application:(NSApplication *)theApplication openFile:(NSString *)filename
+{
+    [self openWithBrowser:[NSString stringWithFormat:kLocalFileUri, filename]];
+    return YES;
+}
+
+- (void)getUrl:(NSAppleEventDescriptor *)event
+withReplyEvent:(NSAppleEventDescriptor *)replyEvent
+{
+    [self openWithBrowser:[[event paramDescriptorForKeyword:keyDirectObject]
+                           stringValue]];
+}
+
+- (void)openWithBrowser:(NSString*)location
+{
+    
+    NSArray *urls = [NSArray arrayWithObject:[NSURL URLWithString:location]];
+    
+    int options = NSWorkspaceLaunchAsync;
+    
+    [[NSWorkspace sharedWorkspace] openURLs: urls
+                    withAppBundleIdentifier: [[Browsers sharedInstance] defaultBrowserIdentifier]
+                                    options: options
+             additionalEventParamDescriptor: nil
+                          launchIdentifiers: nil];
 }
 
 @end

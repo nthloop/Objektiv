@@ -5,7 +5,7 @@ Objektiv
 default browser easily. You might find it useful if you're a web
 designer or use multiple browsers in your workflow.
 
-**[Download Objektiv now][download]!** Works with Mac OS X 10.7 (Lion) onwards.
+**[Download Objektiv now][download]!** Works with Mac OS X 10.8 (Mountain Lion) onwards.
 
 Features
 ----------------------------------------
@@ -17,6 +17,10 @@ Features
    are incorrectly detected
 
 ![Screenshot of the Objektiv overlay window](Objektiv/en.lproj/objektiv-overlay.png)
+
+Usage
+----------------------------------------
+Due to the recent changes in MacOS 10.10+, applications are now incapable of switching the user's default browser silently without a confirmation message. Please set Objektiv as your default browser in your System Prefences > General and everything will work as normal.
 
 Building & Running
 ----------------------------------------
@@ -50,7 +54,7 @@ Credits
   - [NSWorkspace+Utils][1] from Mozilla's Camino project (MPL)
 
   [logo]:        Objektiv/Objektiv.iconset/icon_128x128.png
-  [download]:    http://nthloop.com/objektiv/objektiv-latest.zip
+  [download]:    https://github.com/nthloop/Objektiv/releases
   [nth loop]:    http://nthloop.com
   [CocoaPods]:   http://cocoapods.org/
   [ZeroKit]:     https://github.com/eczarny/zerokit

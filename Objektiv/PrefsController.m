@@ -48,7 +48,7 @@
 {
     self.autoHideIcon.state = [defaults boolForKey:PrefAutoHideIcon] ? NSOnState : NSOffState;
     self.startAtLogin.state = [defaults boolForKey:PrefStartAtLogin] ? NSOnState : NSOffState;
-
+    self.showNotifications.state = [defaults boolForKey:PrefShowNotifications] ? NSOnState : NSOffState;
     self.hotkeyRecorder.associatedUserDefaultsKey = PrefHotkey;
 }
 
@@ -64,6 +64,12 @@
 {
     NSLog(@"PrefsController :: toggleHideItem");
     [defaults setBool:(self.autoHideIcon.state == NSOnState) forKey:PrefAutoHideIcon];
+}
+
+- (IBAction)toggleShowNotifications: (id)sender;
+{
+    NSLog(@"PrefsController :: showNotifications");
+    [defaults setBool:(self.showNotifications.state == NSOnState) forKey:PrefShowNotifications];
 }
 
 @end

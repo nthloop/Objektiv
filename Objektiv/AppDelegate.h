@@ -10,7 +10,7 @@
 #import "PrefsController.h"
 
 
-@interface AppDelegate : NSObject <NSApplicationDelegate>
+@interface AppDelegate : NSObject <NSApplicationDelegate, NSUserNotificationCenterDelegate>
 
 - (void) hotkeyTriggered;
 - (void) selectABrowser:sender;
