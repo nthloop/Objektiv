@@ -54,7 +54,7 @@ Credits
   - [NSWorkspace+Utils][1] from Mozilla's Camino project (MPL)
 
   [logo]:        Objektiv/Objektiv.iconset/icon_128x128.png
-  [download]:    https://github.com/Vorror/Objektiv/releases
+  [download]:    https://github.com/nthloop/Objektiv/releases
   [nth loop]:    http://nthloop.com
   [CocoaPods]:   http://cocoapods.org/
   [ZeroKit]:     https://github.com/eczarny/zerokit
