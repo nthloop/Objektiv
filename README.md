@@ -5,7 +5,12 @@ Objektiv
 default browser easily. You might find it useful if you're a web
 designer or use multiple browsers in your workflow.
 
-**[Download Objektiv now][download]!** Works with Mac OS X 10.8 (Mountain Lion) onwards.
+Install
+----------------------------------------
+
+The app works with Mac OS X 10.8 (Mountain Lion) onwards.
+
+You can either **[download Objektiv][download]** or install it via homebrew: `brew cask install objektiv`
 
 Features
 ----------------------------------------
@@ -37,12 +42,20 @@ in order to grab dependencies. Also, make sure that you open
 Copyright & About
 ----------------------------------------
 
-We built Objektiv to scratch an itch we at [nth loop][] were facing, and
-to also learn all about developing Mac Apps. It's ridiculously
-over-engineered for such a simple utility.
+Objektiv was built by the former web development company *nth loop* to solve
+a problem they were facing and to learn all about developing Mac Apps.
+It might be ridiculously over-engineered for such a simple utility.
 
 Copyright 2012, [nth loop][]. Objektiv is available under the MIT
 License.
+
+Contributors
+----------------------------------------
+
+* [Anks](https://github.com/Anks), original developer
+* [xrivatsan](https://github.com/xrivatsan), original developer
+* [Vorror](https://github.com/Vorror), major bugfixes and making the tool work with present-day macOS
+
 
 Credits
 ----------------------------------------
