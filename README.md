@@ -10,7 +10,7 @@ Install
 
 The app works with Mac OS X 10.8 (Mountain Lion) onwards.
 
-You can either **[download Objektiv][download]** or install it via homebrew: `brew cask install objektiv`
+You can either **[download Objektiv][download]** or install it via homebrew: `brew install objektiv`
 
 Features
 ----------------------------------------
